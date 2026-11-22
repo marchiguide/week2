@@ -1,7 +1,7 @@
 # TEST-REPORT · e-Service เทศบาลในฝัน · Playwright 51 TC + BUG_MODE B01–B12
 
 > B13 (รวมระบบ + ทดสอบสุดท้าย) · รันจริงบน Docker Compose · อ้างอิง BUGS.md §1–§6 · TEST-PLAN.md §1 §17 §18 · CONTRACT.md §8
-> ผลชุดสุดท้าย (รอบ 2): image `egov-eservice-web:latest` build 2026-11-21 20:25 (+07:00) และไม่มีการแก้ซอร์สหลังจากนั้น · รันวันที่ 21–22 พ.ย. 2569
+> ผลชุดสุดท้าย: B01–B12 รอบ 2 รันบน image build 2026-11-21 20:25 (+07:00) · หลังตรวจทานมีการแก้ซอร์ส 2 ครั้ง (เปลี่ยนชื่อหน่วยงาน · จำกัด B07 ให้กระทบเฉพาะ SV-02 ดู §3 ข้อ 7) แล้ว build ใหม่และรันซ้ำ `none` `none-again` `B07` `B03,B07` `B08` `none-final` เมื่อ 22 พ.ย. 2569 22:01–22:13 · รอบเปลี่ยนชื่อ (22 พ.ย.) รัน B01–B12 ครบอีกรอบ ผลตรงตารางทุกตัว (ดู `BUG-HUNT.md` ของโฟลเดอร์ส่งงาน)
 
 ## สรุปตามเกณฑ์ done
 
@@ -45,11 +45,13 @@ NO_BUILD=1 app/scripts/run-bugs.sh B08 B09        # รันเฉพาะบ�
 
 ## 2. ผลเว็บถูกต้อง (`BUG_MODE` ว่าง)
 
-| รอบ | ความหมาย (BUGS §3) | ผล | เวลา |
-|---|---|---|---|
-| `none` | ขั้น 1 ชุดเต็มหลังสตาร์ตเว็บ | ✅ 51 passed | 1.6 นาที |
-| `none-again` | ขั้น 2 รันซ้ำทันทีโดยไม่ restart (พิสูจน์ว่า reset ให้ผลซ้ำได้) | ✅ 51 passed | 1.6 นาที |
-| `none-final` | ขั้น 6 ปิดบั๊กทั้งหมดอีกครั้งหลังรันทุกโหมด | ✅ 51 passed (`expected 51 · unexpected 0 · flaky 0 · skipped 0`) | 2.2 นาที |
+| รอบ | ความหมาย (BUGS §3) | ผล | เริ่ม (ไฟล์ `e2e/reports/bugs/<รอบ>.json`) | เวลา |
+|---|---|---|---|---|
+| `none` | ขั้น 1 ชุดเต็มหลังสตาร์ตเว็บ | ✅ 51 passed | 22 พ.ย. 22:01:36 | 1.6 นาที |
+| `none-again` | ขั้น 2 รันซ้ำทันทีโดยไม่ restart (พิสูจน์ว่า reset ให้ผลซ้ำได้) | ✅ 51 passed | 22 พ.ย. 22:03:15 (ต่อจาก `none` ทันที บนเว็บตัวเดียวกัน) | 1.5 นาที |
+| `none-final` | ขั้น 6 ปิดบั๊กทั้งหมดอีกครั้งหลังรันทุกโหมด | ✅ 51 passed (`expected 51 · unexpected 0 · flaky 0 · skipped 0`) | 22 พ.ย. 22:12:00 | 1.6 นาที |
+
+ทั้งสามไฟล์มาจากรอบเดียวกัน (build หลังแก้ §3 ข้อ 7) · ก่อนหน้านี้ `none.json` เคยถูกเขียนทับโดยรอบอื่น (22 พ.ย. 10:03) ขณะที่ `none-again.json` ยังเป็นของ 21 พ.ย. 20:27 ทำให้คู่ไฟล์ไม่ได้มาจากรอบเดียวกัน · รันคู่ใหม่แล้วตามตารางนี้
 
 รายละเอียดราย TC (`none-final`) ผ่านครบทั้ง 51 ตัว
 
@@ -77,18 +79,19 @@ NO_BUILD=1 app/scripts/run-bugs.sh B08 B09        # รันเฉพาะบ�
 
 หลักที่ใช้: แก้เว็บให้ตรง CONTRACT/BUGS ไม่แก้ test ให้ผ่าน · **B13 ไม่ได้แก้ไฟล์ test เลย** (`e2e/tests/**` ไม่ถูกแก้)
 
-| # | ไฟล์ | ปัญหาที่พบ | การแก้ | ผลยืนยัน |
-|---|---|---|---|---|
-| 1 | `server/modules/citizen/public/wizard.js` | race ฝั่ง UI ระหว่างสร้างร่างกับอัปโหลด: ขั้น 1 สร้างร่าง (`POST /api/drafts`) แบบ async ถ้าเลือกไฟล์ก่อนได้ `draftId` ไฟล์จะหายไปเงียบ ๆ (`file-item` ไม่ขึ้น) ทำให้ชุดเต็มรอบแรกล้มเป็นบางครั้ง | เก็บ promise ของ `saveDraft()` ที่ยังทำงานอยู่ไว้ใน `savePending` แล้วให้ `onFilesChosen()` รอร่างให้เสร็จก่อนจึงเข้าคิวอัปโหลด (ไม่เปลี่ยน API หรือข้อความใด) | `none` และ `none-again` ผ่าน 51/51 ทั้งรอบ 1 และรอบ 2 |
-| 2 | `server/rules/sla.js` (+ ค่าคาดหวังใน `server/rules/rules.test.js`) | B03 รั่วเกินจุด: ใน BUG_MODE=B03 ตัวนับ "วันคงเหลือ" (`businessDaysLeft` → `slaLevel` → การแจ้งเตือน) ก็ไม่ข้ามวันหยุดไปด้วย ทำให้ **TC-NOTI-02 ล้ม** ทั้งที่ไม่อยู่ในตาราง BUGS §2 (ผิดกติกาข้อ 1) | แยกฟังก์ชัน `deadlineHolidays()` ให้ B03 มีผล **เฉพาะ** การคำนวณกำหนดเสร็จ (`dueAt` / `extendDue`) ส่วนวันคงเหลือ ระดับเตือน และการแจ้งเตือนยังใช้ตารางวันหยุดเหมือนเดิม | รอบ 2 B03 ล้มแค่ SLA-01, SLA-02 และ RBAC-04 (ตรงตัวอย่าง BUGS §6) · unit test 22/22 |
-| 3 | `scripts/run-bugs.sh` (ใหม่) | – | สคริปต์รันทุก BUG_MODE ตาม BUGS §3 ขั้น 1–6 ตรวจ banner `BUG_MODE` ทุกครั้ง และทำ browser shim ให้อัตโนมัติ | ใช้รันผลทั้งหมดในรายงานนี้ |
-| 4 | `scripts/summarize-bugs.cjs` (ใหม่) | – | แปลง Playwright JSON → ตาราง BUGS §4 + ผล triage §5 + ข้อความ assert ที่ล้ม (และเตือนถ้ามี TC ล้มด้วย timeout) | `e2e/reports/bugs/summary.md` |
-| 5 | `README.md` §7 | – | เพิ่มวิธีรัน test และ BUG_MODE | – |
-| 6 | `e2e/package.json` | ต้องรวม `tests/part2/DEPS.md` | มี `@axe-core/playwright`, `exceljs`, `pdf-parse` ครบแล้ว (B11 เพิ่มไว้) · B13 ตรวจว่าติดตั้งแล้ว และ `tsc --noEmit` ผ่าน | NFR-02 / DASH-03 / DOC-01 ผ่าน |
+| # | ไฟล์ | TC ที่ล้ม · ประเภท · กฎที่อ้าง | ปัญหาที่พบ | การแก้ | ผลยืนยัน |
+|---|---|---|---|---|---|
+| 1 | `server/modules/citizen/public/wizard.js` | **TC-NFR-01** ล้ม (รอบ 0 · BUG_MODE ว่าง): `to-payment-btn` expected enabled received `disabled` · **เว็บผิด** · REQUIREMENTS NFR-01 (ทำงานหลักจบได้ทุกขนาดจอ: ล็อกอิน + กรอก SV-01 ถึงหน้าชำระเงิน) · FR-05 FR-06 · BR-08 (แนบเอกสารบังคับครบแล้วต้องไปชำระได้) | race ฝั่ง UI ระหว่างสร้างร่างกับอัปโหลด: ขั้น 1 สร้างร่าง (`POST /api/drafts`) แบบ async ถ้าเลือกไฟล์ก่อนได้ `draftId` ไฟล์จะหายไปเงียบ ๆ (`file-item` ไม่ขึ้น) ปุ่มไปชำระจึงยัง `disabled` | เก็บ promise ของ `saveDraft()` ที่ยังทำงานอยู่ไว้ใน `savePending` แล้วให้ `onFilesChosen()` รอร่างให้เสร็จก่อนจึงเข้าคิวอัปโหลด (ไม่เปลี่ยน API หรือข้อความใด · ไม่แก้ test) | TC-NFR-01 ผ่าน · `none` และ `none-again` ผ่าน 51/51 ทุกรอบหลังแก้ |
+| 2 | `server/rules/sla.js` (+ ค่าคาดหวังใน `server/rules/rules.test.js`) | **TC-NOTI-02** ล้มนอกตารางเมื่อเปิด B03 · **เว็บผิด (บั๊กรั่วเกินจุด)** · BUGS §1 ข้อ 1 · BR-14 BR-15 (ระดับเตือน/การแจ้งเตือนต้องใช้วันหยุดเสมอ) | ใน BUG_MODE=B03 ตัวนับ "วันคงเหลือ" (`businessDaysLeft` → `slaLevel` → การแจ้งเตือน) ก็ไม่ข้ามวันหยุดไปด้วย | แยกฟังก์ชัน `deadlineHolidays()` ให้ B03 มีผล **เฉพาะ** การคำนวณกำหนดเสร็จ (`dueAt` / `extendDue`) ส่วนวันคงเหลือ ระดับเตือน และการแจ้งเตือนยังใช้ตารางวันหยุดเหมือนเดิม | รอบ 2 B03 ล้มแค่ SLA-01, SLA-02 และ RBAC-04 (ตรงตัวอย่าง BUGS §6) · unit test 22/22 |
+| 3 | `scripts/run-bugs.sh` (ใหม่) | – | – | สคริปต์รันทุก BUG_MODE ตาม BUGS §3 ขั้น 1–6 ตรวจ banner `BUG_MODE` ทุกครั้ง และทำ browser shim ให้อัตโนมัติ | ใช้รันผลทั้งหมดในรายงานนี้ |
+| 4 | `scripts/summarize-bugs.cjs` (ใหม่) | – | – | แปลง Playwright JSON → ตาราง BUGS §4 + ผล triage §5 + ข้อความ assert ที่ล้ม (และเตือนถ้ามี TC ล้มด้วย timeout) | `e2e/reports/bugs/summary.md` |
+| 5 | `README.md` §7 | – | – | เพิ่มวิธีรัน test และ BUG_MODE | – |
+| 6 | `e2e/package.json` | – | ต้องรวม `tests/part2/DEPS.md` | มี `@axe-core/playwright`, `exceljs`, `pdf-parse` ครบแล้ว (B11 เพิ่มไว้) · B13 ตรวจว่าติดตั้งแล้ว และ `tsc --noEmit` ผ่าน | NFR-02 / DASH-03 / DOC-01 ผ่าน |
+| 7 | `server/modules/officer/service.js` (`checkDecider`) | ไม่มี TC ล้ม (พบตอนตรวจทานโค้ด หลัง B13) · **เว็บผิด (บั๊กกว้างเกินจุด)** · BUGS §2 B07 (เฉพาะ SV-02) · BUGS §1 ข้อ 1 · BR-21 | สาขา `bug('B07')` ข้ามการตรวจหัวหน้าให้ **ทุกบริการที่หัวหน้าเป็นผู้อนุมัติ** (SV-02 และ SV-03) ทั้งที่ BUGS.md กำหนดให้กระทบเฉพาะ SV-02 · ชุด TC ไม่จับได้เพราะไม่มี TC ใดยิงอนุมัติ SV-03 ด้วยเจ้าหน้าที่ขณะเปิด B07 | เพิ่มเงื่อนไข `c.service_id === 'SV-02'` ในสาขา B07 (โค้ดเว็บถูกต้องตอนไม่เปิดบั๊กไม่เปลี่ยน · ไม่แก้ test) | build ใหม่ · `B07` ยังล้มแค่ TC-RBAC-02 · `B03,B07` = union 4 TC · `none`/`none-again`/`none-final` 51/51 · API: เจ้าหน้าที่อนุมัติ SV-03 `…000010` ขณะเปิด B07 → 403 (`e2e/reports/bugs/api-evidence.md`) |
 
 ## 4. ตารางบันทึกผล (BUGS.md §4)
 
-รอบ 2 คือผลสุดท้าย (หลังแก้ข้อ 2) โดยรันชุดเต็ม 51 TC ทุกโหมด
+รอบ 2 คือผลสุดท้าย (หลังแก้ข้อ 2) โดยรันชุดเต็ม 51 TC ทุกโหมด · แถว `B07` `B08` `B03,B07` และ `(ปกติ)` เป็นผลรันซ้ำหลังแก้ข้อ 7 (22 พ.ย. 22:01–22:13)
 
 | บั๊ก | TC ที่คาดว่าล้ม (จากตาราง 2) | TC ที่ล้มจริง | TC ล้มเกินที่คาด | TC ที่ควรล้มแต่ผ่าน | ผล |
 |---|---|---|---|---|---|
@@ -120,12 +123,12 @@ NO_BUILD=1 app/scripts/run-bugs.sh B08 B09        # รันเฉพาะบ�
 | B04 | 50 passed · 1 failed | TC-SLA-02 `dueAt` หลังส่งแก้ expected `2026-12-08T16:30:00+07:00` received `2026-12-04T16:30:00+07:00` | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด |
 | B05 | 50 passed · 1 failed | TC-PAY-01 `POST /api/test/payments/PP-0001/pay` ที่อายุ 15:00 expected 410 received 200 `{"status":"PAID","caseNo":"EG-2569-000031",…}` | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด |
 | B06 | 50 passed · 1 failed | TC-RBAC-01 `/citizen/cases/EG-2569-000005` (สมหญิงเปิดของสมชาย) HTTP expected 404 received 200 | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด |
-| B07 | 50 passed · 1 failed | TC-RBAC-02 `off.reg2` `POST /api/cases/EG-2569-000014/approve` expected 403 received 200 (ยิง API ตรง ไม่ได้ดูแค่ปุ่ม) | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด · WORKFLOW-01 ผ่าน เพราะถอดแค่การตรวจหัวหน้าของ SV-02 ไม่ได้ถอดการตรวจสิทธิ์อนุมัติทั้งหมด |
-| B08 | 50 passed · 1 failed | TC-QUEUE-02 ส่วน 1 (`off.reg1` กับ `off.reg2` กดรับ `…000028` พร้อมกันผ่าน UI): สถานะ `200,200` · จำนวนที่ได้ 200 expected 1 received 2 | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด · ล้มตั้งแต่ส่วน 1 จึงไม่ถึงส่วน 3 (ต่อกัน) · ล้มแน่นอนทุกรอบ เพราะบั๊กข้ามการตรวจผู้ถือ ไม่ได้พึ่ง race (รอบ 1 และรอบ 2 ล้มทั้งคู่) |
+| B07 | 50 passed · 1 failed | TC-RBAC-02 `off.reg2` `POST /api/cases/EG-2569-000014/approve` expected 403 received 200 (ยิง API ตรง ไม่ได้ดูแค่ปุ่ม) | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด · หลังแก้ §3 ข้อ 7 บั๊กกระทบเฉพาะ SV-02: API ยืนยันว่าเจ้าหน้าที่อนุมัติ SV-03 `…000010` ขณะเปิด B07 ยังได้ 403 · WORKFLOW-01 ผ่าน |
+| B08 | 50 passed · 1 failed | TC-QUEUE-02 ส่วน 1 (`off.reg1` กับ `off.reg2` กดรับ `…000028` พร้อมกันผ่าน UI): สถานะ `200,200` · จำนวนที่ได้ 200 expected 1 received 2 | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด · TC ล้มตั้งแต่ส่วน 1 จึงไม่ถึงส่วน 3 (ต่อกัน) ในชุด Playwright → ยืนยันส่วน 3 ด้วย API แยก: `off.reg1` claim `…000029` 200 แล้ว `off.reg2` claim ต่อกัน 200 และ owner กลายเป็น `off.reg2` (เว็บถูกต้องได้ 409 `ALREADY_CLAIMED` · `e2e/reports/bugs/api-evidence.md`) · ล้มทุกรอบที่รัน ไม่พึ่ง race |
 | B09 | 50 passed · 1 failed | TC-PDPA-02 JSON ของ `GET /api/officer/queue` expected `not /\d{13}\|\d-\d{4}-\d{5}-\d{2}-\d/` received มีเลขบัตรเต็มใน `idNo` | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด |
 | B10 | 48 passed · 3 failed | TC-DASH-02 `kpi-ontime-pct` expected `85.7%` received `23.1%` · TC-DASH-01 expected `–` received `0.0%` · TC-DASH-03 expected `85.7%` received `23.1%` | TC ที่ระบุล้ม + DASH-01/03 ซึ่งเป็น "อาจล้มด้วย" | ✅ จับได้ · ล้มเกิน 1 TC เพราะใช้สูตรเดียวกัน ยอมรับได้ (ตรงตัวอย่าง §6) |
 | B11 | 49 passed · 2 failed | TC-PDPA-03 กรอง `UNMASK` แล้ว `audit-count` expected `1` received `0` · TC-AUDIT-01 `audit-count` expected `16` received `15` | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด |
-| B12 | 50 passed · 1 failed | TC-WORKFLOW-04 `…000023` (ตีกลับแล้ว 2 ครั้ง) `return-btn` expected count 0 received 1 | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด |
+| B12 | 50 passed · 1 failed | TC-WORKFLOW-04 ส่วน A `…000020` (SV-01 ที่ `off.reg1` ตีกลับครบ 2 ครั้งในการทดสอบ · `assertLimit(officer, 20)`) `return-btn` expected count 0 received 1 · TC หยุดที่ assertion ปุ่มนี้ จึงไม่ถึงการยิง API return ครั้งที่ 3 และส่วน B `…000023` | TC ที่ระบุล้ม ที่เหลือผ่าน | ✅ จับได้ตรงจุด |
 
 **รวมบั๊ก (BUGS §3 ขั้น 5):** ผลรวมเท่ากับ union ทั้งสองชุด ไม่มีอะไรหายหรือเพิ่มแปลก ๆ
 - `B03,B07` ล้ม 4 = {SLA-01, SLA-02, RBAC-04} ∪ {RBAC-02}
@@ -139,6 +142,7 @@ NO_BUILD=1 app/scripts/run-bugs.sh B08 B09        # รันเฉพาะบ�
 | รอบ 0 (19:54) | ชุดเต็มรอบแรกล้มเป็นบางครั้งที่ขั้นอัปโหลด (ไฟล์ที่เลือกก่อนสร้างร่างเสร็จหายไป) | แก้ #1 (`wizard.js`) → `none` / `none-again` 51/51 |
 | รอบ 1 (image เก่า) | B01, B02, B04–B09, B11, B12 ตรงตาราง · B10 ล้ม DASH-01/02/03 (ยอมรับ) · **B03 ล้ม TC-NOTI-02 เกินตาราง** | หยุด batch · แก้ #2 (`sla.js`) · rebuild image (20:25) แล้วรันใหม่ทุกโหมด |
 | รอบ 2 (image 20:25) | `none`, `none-again`, B01–B07 รันวันที่ 21 พ.ย. (20:27–20:43) · เครื่อง/Docker รีสตาร์ตระหว่าง B08 · รันต่อ B08–B12, `B03,B07`, `B01,B05,B09`, `none-final` วันที่ 22 พ.ย. (08:31–08:53) บน image เดิม (ตรวจแล้วว่าไม่มีไฟล์ซอร์สเปลี่ยนหลัง build) | ผลทุกโหมดตรงตาราง (§4) |
+| รอบ 3 (22 พ.ย. หลังตรวจทาน) | เปลี่ยนชื่อหน่วยงาน (build ใหม่ · B01–B12 ครบอีกรอบ ตรงตาราง) · ตรวจทานพบ B07 กว้างเกินจุด (§3 ข้อ 7) และคู่ไฟล์ `none` / `none-again` ไม่ได้มาจากรอบเดียวกัน | แก้ข้อ 7 · build ใหม่ · รัน `none` `none-again` `B07` `B03,B07` `B08` `none-final` (22:01–22:13) ผลตรงตาราง · เก็บหลักฐาน API ของ B07 (SV-03) และ B08 ส่วน 3 |
 
 ## 7. หลักฐาน
 
@@ -147,6 +151,7 @@ NO_BUILD=1 app/scripts/run-bugs.sh B08 B09        # รันเฉพาะบ�
 | `e2e/reports/bugs/<โหมด>.json` | Playwright JSON ของแต่ละโหมด (`none`, `none-again`, `B01`…`B12`, `B03+B07`, `B01+B05+B09`, `none-final`) |
 | `e2e/reports/bugs/<โหมด>.log` | log ของ Playwright line reporter |
 | `e2e/reports/bugs/summary.md` | ตาราง §4 กับข้อความ assert ทุกตัวที่ล้ม (สร้างจาก `scripts/summarize-bugs.cjs`) |
+| `e2e/reports/bugs/api-evidence.md` | ผลยิง API ตรง (นอกชุด Playwright) ยืนยันขอบเขต B07 (SV-03 ยัง 403) และ TC-QUEUE-02 ส่วน 3 ภายใต้ B08 เทียบกับเว็บถูกต้อง |
 | `/tmp/b13-test-results/<โหมด>/` | trace และ screenshot ของ TC ที่ล้ม (`trace: retain-on-failure`) |
 
 หลังรันเสร็จ เว็บกลับมาอยู่ในโหมดถูกต้อง: `docker compose logs web` แสดง `BUG_MODE : (none — correct app)` และ `/api/health` ตอบ `{"status":"ok"}`

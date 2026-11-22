@@ -54,4 +54,4 @@ Running 51 tests using 1 worker
 [49/51] [chromium] › tests/part2/workflow.spec.ts:173:1 › TC-WORKFLOW-04 two returns and valid decisions after the limit
 [50/51] [chromium] › tests/part2/workflow.spec.ts:211:1 › TC-WORKFLOW-05 return and reject reasons count trimmed characters
 [51/51] [chromium] › tests/part2/workflow.spec.ts:253:1 › TC-WORKFLOW-06 correction expires at exactly 168 hours
-  51 passed (1.6m)
+  51 passed (1.5m)

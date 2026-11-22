@@ -126,7 +126,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1720,
+                  "duration": 1712,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -134,38 +134,38 @@
                   "steps": [
                     {
                       "title": "ปฏิเสธ 110170012345",
-                      "duration": 260
+                      "duration": 251
                     },
                     {
                       "title": "ปฏิเสธ 11017001234567",
-                      "duration": 183
+                      "duration": 180
                     },
                     {
                       "title": "ปฏิเสธ 1101700123457",
-                      "duration": 178
+                      "duration": 166
                     },
                     {
                       "title": "ปฏิเสธ 11017001234ab",
-                      "duration": 176
+                      "duration": 203
                     },
                     {
                       "title": "รับ 1101700123456",
-                      "duration": 195
-                    },
-                    {
-                      "title": "รับ 3100600987659",
-                      "duration": 179
-                    },
-                    {
-                      "title": "รับ 1909900555015",
                       "duration": 200
                     },
                     {
+                      "title": "รับ 3100600987659",
+                      "duration": 199
+                    },
+                    {
+                      "title": "รับ 1909900555015",
+                      "duration": 185
+                    },
+                    {
                       "title": "รับ 5500400111221",
-                      "duration": 202
+                      "duration": 180
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:12.483Z",
+                  "startTime": "2026-11-22T15:03:16.779Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -194,7 +194,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1008,
+                  "duration": 1085,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -202,42 +202,42 @@
                   "steps": [
                     {
                       "title": "1 · OTP ผิดครั้งที่ 1 → เหลือ 2 ครั้ง",
-                      "duration": 88
+                      "duration": 98
                     },
                     {
                       "title": "2 · ผิดครั้งที่ 2 → เหลือ 1 ครั้ง",
-                      "duration": 75
+                      "duration": 88
                     },
                     {
                       "title": "3 · ผิดครั้งที่ 3 → 423 LOCKED ถึง 09:15:00",
-                      "duration": 92
+                      "duration": 101
                     },
                     {
                       "title": "4 · OTP ถูกทันที → ยัง 423",
-                      "duration": 7
+                      "duration": 8
                     },
                     {
                       "title": "5 · สมชายล็อกอินได้ระหว่างปิติถูกล็อก",
-                      "duration": 15
+                      "duration": 19
                     },
                     {
                       "title": "6 · 09:14:59 OTP ถูก → ยัง 423",
-                      "duration": 18
+                      "duration": 20
                     },
                     {
                       "title": "7 · 09:15:00 ปลดล็อก ผิดอีกครั้ง → 401 เหลือ 2 ครั้ง",
-                      "duration": 248
+                      "duration": 251
                     },
                     {
                       "title": "8 · OTP ถูก → 200",
-                      "duration": 79
+                      "duration": 104
                     },
                     {
                       "title": "9 · RESET · ผิด 2 → ถูก → ออก → ผิด 2 ไม่ล็อก (ตัวนับรีเซ็ต)",
-                      "duration": 66
+                      "duration": 64
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:14.282Z",
+                  "startTime": "2026-11-22T15:03:18.587Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -266,7 +266,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1548,
+                  "duration": 1546,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -274,42 +274,42 @@
                   "steps": [
                     {
                       "title": "1 · reg-name อ่านอย่างเดียว",
-                      "duration": 78
+                      "duration": 72
                     },
                     {
                       "title": "2–4 · เบอร์ 081234567 ไม่ผ่าน",
-                      "duration": 130
+                      "duration": 135
                     },
                     {
                       "title": "2–4 · เบอร์ 08123456789 ไม่ผ่าน",
-                      "duration": 108
+                      "duration": 90
                     },
                     {
                       "title": "2–4 · เบอร์ 1812345678 ไม่ผ่าน",
-                      "duration": 91
+                      "duration": 107
                     },
                     {
                       "title": "2–4 · เบอร์ 08123abcde ไม่ผ่าน",
-                      "duration": 103
+                      "duration": 94
                     },
                     {
                       "title": "5 · ไม่ติ๊กยินยอม",
-                      "duration": 147
+                      "duration": 139
                     },
                     {
                       "title": "6 · ครบ → /citizen",
-                      "duration": 162
+                      "duration": 196
                     },
                     {
                       "title": "7 · ออก → ล็อกอินใหม่ เข้า /citizen ตรง ๆ",
-                      "duration": 303
+                      "duration": 297
                     },
                     {
                       "title": "8 · RESET · API register ยังไม่ลงทะเบียน",
-                      "duration": 46
+                      "duration": 48
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:15.298Z",
+                  "startTime": "2026-11-22T15:03:19.678Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -338,7 +338,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4282,
+                  "duration": 4058,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -346,50 +346,50 @@
                   "steps": [
                     {
                       "title": "off.reg1 → /officer/queue",
-                      "duration": 503
+                      "duration": 447
                     },
                     {
                       "title": "off.reg2 → /officer/queue",
-                      "duration": 403
+                      "duration": 404
                     },
                     {
                       "title": "off.works1 → /officer/queue",
-                      "duration": 450
+                      "duration": 409
                     },
                     {
                       "title": "head1 → /head/approvals",
-                      "duration": 378
+                      "duration": 402
                     },
                     {
                       "title": "exec1 → /dashboard",
-                      "duration": 452
+                      "duration": 366
                     },
                     {
                       "title": "audit1 → /audit",
-                      "duration": 417
+                      "duration": 451
                     },
                     {
                       "title": "admin1 → /admin/services",
-                      "duration": 365
+                      "duration": 361
                     },
                     {
                       "title": "ปฏิเสธ off.reg1/wrong",
-                      "duration": 294
+                      "duration": 282
                     },
                     {
                       "title": "ปฏิเสธ nobody/Test@1234",
-                      "duration": 257
+                      "duration": 244
                     },
                     {
                       "title": "ปฏิเสธ 1101700123456/Test@1234",
-                      "duration": 306
+                      "duration": 255
                     },
                     {
                       "title": "ออกจากระบบแล้วเปิด /officer/queue → /login",
-                      "duration": 357
+                      "duration": 334
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:16.854Z",
+                  "startTime": "2026-11-22T15:03:21.233Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -426,7 +426,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1091,
+                  "duration": 1074,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -434,11 +434,11 @@
                   "steps": [
                     {
                       "title": "SV-03 areaSqm=0 → –",
-                      "duration": 70
+                      "duration": 76
                     },
                     {
                       "title": "SV-03 areaSqm=-1 → –",
-                      "duration": 41
+                      "duration": 46
                     },
                     {
                       "title": "SV-03 areaSqm=1 → ฿1,000",
@@ -446,51 +446,51 @@
                     },
                     {
                       "title": "SV-03 areaSqm=100 → ฿1,000",
-                      "duration": 48
+                      "duration": 40
                     },
                     {
                       "title": "SV-03 areaSqm=101 → ฿1,010",
-                      "duration": 43
+                      "duration": 41
                     },
                     {
                       "title": "SV-03 areaSqm=102 → ฿1,020",
-                      "duration": 44
-                    },
-                    {
-                      "title": "SV-03 areaSqm=250 → ฿2,500",
-                      "duration": 46
-                    },
-                    {
-                      "title": "SV-03 areaSqm=300 → ฿3,000",
-                      "duration": 43
-                    },
-                    {
-                      "title": "SV-03 areaSqm=499 → ฿4,990",
-                      "duration": 44
-                    },
-                    {
-                      "title": "SV-03 areaSqm=500 → ฿5,000",
-                      "duration": 43
-                    },
-                    {
-                      "title": "SV-03 areaSqm=501 → –",
                       "duration": 42
                     },
                     {
-                      "title": "SV-01 qty=0 → –",
-                      "duration": 63
+                      "title": "SV-03 areaSqm=250 → ฿2,500",
+                      "duration": 43
                     },
                     {
-                      "title": "SV-01 qty=1 → ฿20",
-                      "duration": 47
+                      "title": "SV-03 areaSqm=300 → ฿3,000",
+                      "duration": 41
                     },
                     {
-                      "title": "SV-01 qty=2 → ฿40",
+                      "title": "SV-03 areaSqm=499 → ฿4,990",
+                      "duration": 36
+                    },
+                    {
+                      "title": "SV-03 areaSqm=500 → ฿5,000",
                       "duration": 39
                     },
                     {
-                      "title": "SV-01 qty=3 → ฿60",
+                      "title": "SV-03 areaSqm=501 → –",
+                      "duration": 44
+                    },
+                    {
+                      "title": "SV-01 qty=0 → –",
+                      "duration": 57
+                    },
+                    {
+                      "title": "SV-01 qty=1 → ฿20",
                       "duration": 43
+                    },
+                    {
+                      "title": "SV-01 qty=2 → ฿40",
+                      "duration": 38
+                    },
+                    {
+                      "title": "SV-01 qty=3 → ฿60",
+                      "duration": 33
                     },
                     {
                       "title": "SV-01 qty=4 → ฿80",
@@ -498,18 +498,18 @@
                     },
                     {
                       "title": "SV-01 qty=5 → ฿100",
-                      "duration": 38
+                      "duration": 36
                     },
                     {
                       "title": "SV-01 qty=6 → –",
-                      "duration": 34
+                      "duration": 36
                     },
                     {
                       "title": "SV-02 ไม่มีช่องกรอก ฿500",
-                      "duration": 65
+                      "duration": 62
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:21.148Z",
+                  "startTime": "2026-11-22T15:03:25.305Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -546,7 +546,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1298,
+                  "duration": 1262,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -554,14 +554,14 @@
                   "steps": [
                     {
                       "title": "09:00 · ตามตาราง TEST-DATA 8",
-                      "duration": 501
+                      "duration": 504
                     },
                     {
                       "title": "16:31 · 000022 เกินกำหนด",
-                      "duration": 271
+                      "duration": 259
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:22.256Z",
+                  "startTime": "2026-11-22T15:03:26.389Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -590,7 +590,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3458,
+                  "duration": 3375,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -598,28 +598,28 @@
                   "steps": [
                     {
                       "title": "ส่วน A · ไม่แจ้งซ้ำ",
-                      "duration": 1699,
+                      "duration": 1676,
                       "steps": [
                         {
                           "title": "09:00 · ตามตาราง TEST-DATA 8",
-                          "duration": 480
+                          "duration": 481
                         },
                         {
                           "title": "16:31 · 000022 เกินกำหนด",
-                          "duration": 277
+                          "duration": 258
                         }
                       ]
                     },
                     {
                       "title": "ส่วน B · ข้ามระดับ (request แรกที่ ส. 5 ธ.ค. 10:00)",
-                      "duration": 848
+                      "duration": 808
                     },
                     {
                       "title": "ส่วน C · ขั้นรออนุมัติและรอออกเอกสาร",
-                      "duration": 462
+                      "duration": 453
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:23.562Z",
+                  "startTime": "2026-11-22T15:03:27.661Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -656,7 +656,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 711,
+                  "duration": 644,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -664,22 +664,22 @@
                   "steps": [
                     {
                       "title": "รอบ 1 · 09:00:00 (อายุ 5:00) → PAID",
-                      "duration": 79
+                      "duration": 70
                     },
                     {
                       "title": "รอบ 2 · 09:09:59 (อายุ 14:59) → PAID",
-                      "duration": 81
+                      "duration": 84
                     },
                     {
                       "title": "รอบ 3 · 09:10:00 (อายุ 15:00) → 410 QR_EXPIRED",
-                      "duration": 307
+                      "duration": 275
                     },
                     {
                       "title": "รอบ 4 · 09:10:01 (อายุ 15:01) → 410",
-                      "duration": 98
+                      "duration": 75
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:27.035Z",
+                  "startTime": "2026-11-22T15:03:31.052Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -708,7 +708,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 238,
+                  "duration": 207,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -716,15 +716,15 @@
                   "steps": [
                     {
                       "title": "1 · ฿19 → 422 AMOUNT_MISMATCH",
-                      "duration": 17
+                      "duration": 15
                     },
                     {
                       "title": "2 · ฿21 → 422",
-                      "duration": 13
+                      "duration": 14
                     },
                     {
                       "title": "3 · ฿20 → PAID 000031",
-                      "duration": 12
+                      "duration": 13
                     },
                     {
                       "title": "4 · ซ้ำ ref เดิม → duplicate:true เลขเดิม",
@@ -732,10 +732,10 @@
                     },
                     {
                       "title": "5 · ใบถัดไป 000032 ไม่ข้ามเลข",
-                      "duration": 28
+                      "duration": 32
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:27.755Z",
+                  "startTime": "2026-11-22T15:03:31.702Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -764,12 +764,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 364,
+                  "duration": 351,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:28.005Z",
+                  "startTime": "2026-11-22T15:03:31.917Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -798,7 +798,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 650,
+                  "duration": 668,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -806,26 +806,26 @@
                   "steps": [
                     {
                       "title": "1 · 31 ธ.ค. 23:58 สร้างร่าง SV-01 + QR (ยังไม่มีเลข)",
-                      "duration": 381
+                      "duration": 387
                     },
                     {
                       "title": "2 · 23:59 ชำระ → EG-2569-000031",
-                      "duration": 86
+                      "duration": 87
                     },
                     {
                       "title": "3 · 1 ม.ค. 2570 00:00 → EG-2570-000001",
-                      "duration": 44
+                      "duration": 37
                     },
                     {
                       "title": "4 · ใบที่ 2 ของปี 2570",
-                      "duration": 21
+                      "duration": 22
                     },
                     {
                       "title": "5 · เลขเดิมไม่ถูกแก้",
-                      "duration": 6
+                      "duration": 8
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:28.376Z",
+                  "startTime": "2026-11-22T15:03:32.276Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -862,7 +862,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1246,
+                  "duration": 1248,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -870,30 +870,30 @@
                   "steps": [
                     {
                       "title": "filter all · 17 แถวตาม BR-16",
-                      "duration": 54
+                      "duration": 52
                     },
                     {
                       "title": "claim-btn 4 ปุ่ม เฉพาะแถวไม่มีผู้รับ",
-                      "duration": 99
+                      "duration": 87
                     },
                     {
                       "title": "filter unclaimed / mine · workload 3",
-                      "duration": 57
+                      "duration": 187
                     },
                     {
                       "title": "off.reg2 mine 9 แถว · workload 9",
-                      "duration": 243
+                      "duration": 207
                     },
                     {
                       "title": "off.works1 เห็น 000010 แถวเดียว",
-                      "duration": 202
+                      "duration": 163
                     },
                     {
                       "title": "head1 เห็น 18 แถว ไม่มี claim-btn",
-                      "duration": 215
+                      "duration": 197
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:29.040Z",
+                  "startTime": "2026-11-22T15:03:32.956Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -922,7 +922,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1670,
+                  "duration": 1554,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -930,18 +930,18 @@
                   "steps": [
                     {
                       "title": "ส่วน 1 · พร้อมกันผ่าน UI (000028)",
-                      "duration": 564
+                      "duration": 513
                     },
                     {
                       "title": "ส่วน 2 · API 10 ครั้งพร้อมกัน (000029)",
-                      "duration": 314
+                      "duration": 291
                     },
                     {
                       "title": "ส่วน 3 · ต่อกัน (จับ B08)",
-                      "duration": 392
+                      "duration": 385
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:30.294Z",
+                  "startTime": "2026-11-22T15:03:34.211Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -970,7 +970,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1994,
+                  "duration": 1941,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -978,48 +978,48 @@
                   "steps": [
                     {
                       "title": "1 · workload 9",
-                      "duration": 93
+                      "duration": 100
                     },
                     {
                       "title": "2 · claim 000028 (ครั้งที่ 10) → 10",
-                      "duration": 145
+                      "duration": 136
                     },
                     {
                       "title": "3 · claim 000029 (ครั้งที่ 11) → WORKLOAD_LIMIT",
-                      "duration": 159
+                      "duration": 157
                     },
                     {
                       "title": "4 · อนุมัติ 000025 → 9",
-                      "duration": 200
+                      "duration": 211
                     },
                     {
                       "title": "5 · claim 000029 อีกครั้ง → 10",
-                      "duration": 141
+                      "duration": 126
                     },
                     {
                       "title": "6 · off.reg1 claim 000030 ไม่ติดเพดาน",
-                      "duration": 84
+                      "duration": 75
                     },
                     {
                       "title": "7 · RESET · ตีกลับ 000025 → 8 (NEED_FIX ไม่นับ)",
-                      "duration": 894,
+                      "duration": 842,
                       "steps": [
                         {
                           "title": "8 · claim 000028 + 000029 → 10",
-                          "duration": 70
+                          "duration": 91
                         },
                         {
                           "title": "9 · สมหญิงส่งแก้ → กลับผู้ถือเดิม 11",
-                          "duration": 298
+                          "duration": 304
                         },
                         {
                           "title": "10 · claim 000030 → WORKLOAD_LIMIT · ยัง 11",
-                          "duration": 101
+                          "duration": 75
                         }
                       ]
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:31.973Z",
+                  "startTime": "2026-11-22T15:03:35.772Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1056,7 +1056,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2178,
+                  "duration": 2136,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1064,42 +1064,42 @@
                   "steps": [
                     {
                       "title": "แถว a · SV-01 ชำระ 2026-12-01T09:00:00+07:00 → 2026-12-04T16:30:00+07:00",
-                      "duration": 208
+                      "duration": 194
                     },
                     {
                       "title": "แถว b · SV-01 ชำระ 2026-12-01T16:29:00+07:00 → 2026-12-04T16:30:00+07:00",
-                      "duration": 199
+                      "duration": 201
                     },
                     {
                       "title": "แถว c · SV-01 ชำระ 2026-12-01T16:30:00+07:00 → 2026-12-08T16:30:00+07:00",
-                      "duration": 209
+                      "duration": 188
                     },
                     {
                       "title": "แถว d · SV-01 ชำระ 2026-12-04T10:00:00+07:00 → 2026-12-11T16:30:00+07:00",
-                      "duration": 204
+                      "duration": 191
                     },
                     {
                       "title": "แถว e · SV-01 ชำระ 2026-12-05T10:00:00+07:00 → 2026-12-14T16:30:00+07:00",
-                      "duration": 198
+                      "duration": 195
                     },
                     {
                       "title": "แถว f · SV-02 ชำระ 2026-12-01T09:00:00+07:00 → 2026-12-17T16:30:00+07:00",
-                      "duration": 206
+                      "duration": 210
                     },
                     {
                       "title": "แถว g · SV-03 ชำระ 2026-12-01T09:00:00+07:00 → 2026-12-24T16:30:00+07:00",
-                      "duration": 209
+                      "duration": 212
                     },
                     {
                       "title": "แถว h · SV-01 ชำระ 2026-12-29T10:00:00+07:00 → 2027-01-05T16:30:00+07:00",
-                      "duration": 200
+                      "duration": 188
                     },
                     {
                       "title": "แถว i · SV-01 ชำระ 2026-12-31T23:59:00+07:00 → 2027-01-07T16:30:00+07:00",
-                      "duration": 195
+                      "duration": 187
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:33.982Z",
+                  "startTime": "2026-11-22T15:03:37.725Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1128,7 +1128,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2080,
+                  "duration": 1972,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1136,26 +1136,26 @@
                   "steps": [
                     {
                       "title": "ส่วน 1 · ตีกลับ 2 ธ.ค. 11:00 ส่งแก้ 3 ธ.ค. 10:00 → 8 ธ.ค.",
-                      "duration": 635
+                      "duration": 618
                     },
                     {
                       "title": "ส่วน 2 · seed 000017 ส่งแก้ 1 ธ.ค. 09:00 → 1 ธ.ค. 16:30",
-                      "duration": 314
+                      "duration": 269
                     },
                     {
                       "title": "ส่วน 3 · ส่งแก้ 000017 เมื่อ 4 ธ.ค. 10:00 → 4 ธ.ค. 16:30",
-                      "duration": 198
+                      "duration": 195
                     },
                     {
                       "title": "ส่วน 4 · ตีกลับและส่งแก้วันเดียวกัน → หยุด 0 วัน",
-                      "duration": 243
+                      "duration": 242
                     },
                     {
                       "title": "ส่วน 5 · คร่อมสุดสัปดาห์/วันหยุด ส่งแก้หลัง 16:30 → 8 ธ.ค. เกินกำหนด",
-                      "duration": 356
+                      "duration": 314
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:36.168Z",
+                  "startTime": "2026-11-22T15:03:39.869Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1184,7 +1184,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2288,
+                  "duration": 2255,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1192,19 +1192,19 @@
                   "steps": [
                     {
                       "title": "ส่วน A · คำขอใหม่ กำหนด 4 ธ.ค. 16:30",
-                      "duration": 663,
+                      "duration": 674,
                       "steps": [
                         {
                           "title": "2026-12-01T09:00:00+07:00 → normal",
-                          "duration": 105
+                          "duration": 104
                         },
                         {
                           "title": "2026-12-02T09:00:00+07:00 → normal",
-                          "duration": 75
+                          "duration": 78
                         },
                         {
                           "title": "2026-12-03T09:00:00+07:00 → near",
-                          "duration": 72
+                          "duration": 71
                         },
                         {
                           "title": "2026-12-04T16:30:00+07:00 → near",
@@ -1212,46 +1212,46 @@
                         },
                         {
                           "title": "2026-12-04T16:30:01+07:00 → overdue",
-                          "duration": 74
+                          "duration": 85
                         },
                         {
                           "title": "2026-12-04T16:31:00+07:00 → overdue",
-                          "duration": 76
+                          "duration": 77
                         },
                         {
                           "title": "2026-12-05T10:00:00+07:00 → overdue",
-                          "duration": 78
+                          "duration": 74
                         }
                       ]
                     },
                     {
                       "title": "ส่วน B · seed 000016 กำหนด 8 ธ.ค. 16:30",
-                      "duration": 403,
+                      "duration": 395,
                       "steps": [
                         {
                           "title": "2026-12-03T09:00:00+07:00 → normal",
-                          "duration": 109
+                          "duration": 111
                         },
                         {
                           "title": "2026-12-04T09:00:00+07:00 → near",
-                          "duration": 75
+                          "duration": 68
                         },
                         {
                           "title": "2026-12-08T16:30:00+07:00 → near",
-                          "duration": 79
+                          "duration": 75
                         },
                         {
                           "title": "2026-12-08T16:31:00+07:00 → overdue",
-                          "duration": 72
+                          "duration": 74
                         }
                       ]
                     },
                     {
                       "title": "ส่วน C · seed ที่ 09:00 (คิว + หน้าคำขอ)",
-                      "duration": 967
+                      "duration": 946
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:38.259Z",
+                  "startTime": "2026-11-22T15:03:41.851Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1288,7 +1288,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1032,
+                  "duration": 1024,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1296,30 +1296,30 @@
                   "steps": [
                     {
                       "title": "1 · กรอกข้อมูล qty 2 → ฿40",
-                      "duration": 231
+                      "duration": 229
                     },
                     {
                       "title": "2 · แนบ id-card.pdf",
-                      "duration": 95
+                      "duration": 97
                     },
                     {
                       "title": "3 · สร้าง QR PP-0002",
-                      "duration": 122
+                      "duration": 124
                     },
                     {
                       "title": "4 · ชำระ ฿40 → EG-2569-000031",
-                      "duration": 81
+                      "duration": 80
                     },
                     {
                       "title": "5 · หน้าคำขอ",
-                      "duration": 137
+                      "duration": 150
                     },
                     {
                       "title": "off.reg1 เห็นในคิว ท้ายกลุ่ม 4 ธ.ค.",
-                      "duration": 202
+                      "duration": 199
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:40.560Z",
+                  "startTime": "2026-11-22T15:03:44.117Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1348,7 +1348,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 819,
+                  "duration": 811,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1356,18 +1356,18 @@
                   "steps": [
                     {
                       "title": "SV-02",
-                      "duration": 329
+                      "duration": 330
                     },
                     {
                       "title": "SV-03 พื้นที่ 100",
-                      "duration": 331
+                      "duration": 322
                     },
                     {
                       "title": "API: ขาดแบบแปลน → 409 MISSING_DOCS · ครบ → 201",
-                      "duration": 44
+                      "duration": 47
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:41.598Z",
+                  "startTime": "2026-11-22T15:03:45.149Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1396,7 +1396,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2195,
+                  "duration": 2111,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1404,26 +1404,26 @@
                   "steps": [
                     {
                       "title": "ส่วน A ร่าง",
-                      "duration": 535
+                      "duration": 463
                     },
                     {
                       "title": "ส่วน B ยกเลิก …000030",
-                      "duration": 692
+                      "duration": 649
                     },
                     {
                       "title": "ส่วน C ยกเลิกไม่ได้เมื่อมีผู้รับ",
-                      "duration": 248
+                      "duration": 256
                     },
                     {
                       "title": "ส่วน E ลบร่าง",
-                      "duration": 179
+                      "duration": 183
                     },
                     {
                       "title": "ส่วน F ยกเลิกชนกับรับเรื่อง (พร้อมกัน)",
-                      "duration": 164
+                      "duration": 163
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:42.426Z",
+                  "startTime": "2026-11-22T15:03:45.967Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1460,7 +1460,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1159,
+                  "duration": 1183,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1468,26 +1468,26 @@
                   "steps": [
                     {
                       "title": "5,242,879 ไบต์ → รับ",
-                      "duration": 230
+                      "duration": 209
                     },
                     {
                       "title": "5,242,880 ไบต์ (ขอบ ≤ 5 MB) → รับ",
-                      "duration": 222
+                      "duration": 227
                     },
                     {
                       "title": "5,242,881 ไบต์ → 400 FILE_TOO_LARGE (ไม่ใช่ 413)",
-                      "duration": 91
+                      "duration": 152
                     },
                     {
                       "title": "จำนวน: 5 ไฟล์รับ · ไฟล์ที่ 6 ปฏิเสธ",
-                      "duration": 267
+                      "duration": 240
                     },
                     {
                       "title": "จำนวน (API): ไฟล์ที่ 6 → 400 FILE_COUNT",
-                      "duration": 52
+                      "duration": 54
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:44.631Z",
+                  "startTime": "2026-11-22T15:03:48.088Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1516,7 +1516,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 932,
+                  "duration": 895,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1524,38 +1524,38 @@
                   "steps": [
                     {
                       "title": "รับ ok-id.pdf",
-                      "duration": 127
+                      "duration": 146
                     },
                     {
                       "title": "รับ real.jpg",
-                      "duration": 116
+                      "duration": 112
                     },
                     {
                       "title": "รับ real.png",
-                      "duration": 136
+                      "duration": 100
                     },
                     {
                       "title": "ปฏิเสธ fake-text.pdf",
-                      "duration": 49
+                      "duration": 48
                     },
                     {
                       "title": "ปฏิเสธ fake-text.jpg",
-                      "duration": 47
+                      "duration": 45
                     },
                     {
                       "title": "ปฏิเสธ exe-as.png",
-                      "duration": 43
+                      "duration": 45
                     },
                     {
                       "title": "ปฏิเสธ notes.txt",
-                      "duration": 45
+                      "duration": 42
                     },
                     {
                       "title": "ปฏิเสธ fake-text.pdf (mimeType application/pdf)",
-                      "duration": 45
+                      "duration": 46
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:45.800Z",
+                  "startTime": "2026-11-22T15:03:49.278Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1592,12 +1592,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2491,
+                  "duration": 2520,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:46.747Z",
+                  "startTime": "2026-11-22T15:03:50.190Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1626,12 +1626,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 409,
+                  "duration": 383,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:49.245Z",
+                  "startTime": "2026-11-22T15:03:52.718Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1660,7 +1660,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2041,
+                  "duration": 1995,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -1668,34 +1668,34 @@
                   "steps": [
                     {
                       "title": "from 2026-12-01 to 2026-12-01, actor any",
-                      "duration": 229
+                      "duration": 211
                     },
                     {
                       "title": "from 2026-11-30 to 2026-11-30, actor any",
-                      "duration": 188
+                      "duration": 189
                     },
                     {
                       "title": "from 2026-11-30 to 2026-12-01, actor any",
-                      "duration": 216
+                      "duration": 208
                     },
                     {
                       "title": "from 2026-12-02 to any, actor any",
-                      "duration": 194
+                      "duration": 225
                     },
                     {
                       "title": "from any to 2026-11-30, actor any",
-                      "duration": 187
+                      "duration": 184
                     },
                     {
                       "title": "from 2026-12-01 to 2026-12-02, actor any",
-                      "duration": 214
+                      "duration": 201
                     },
                     {
                       "title": "from 2026-12-01 to 2026-12-01, actor off.reg2",
-                      "duration": 201
+                      "duration": 184
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:49.660Z",
+                  "startTime": "2026-11-22T15:03:53.107Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1732,12 +1732,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 605,
+                  "duration": 551,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:52.133Z",
+                  "startTime": "2026-11-22T15:03:55.572Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1774,42 +1774,42 @@
                   "steps": [
                     {
                       "title": "2026-10 ALL",
-                      "duration": 148
+                      "duration": 140
                     },
                     {
                       "title": "2026-11 ALL",
-                      "duration": 127
-                    },
-                    {
-                      "title": "2026-11 SV-01",
-                      "duration": 134
-                    },
-                    {
-                      "title": "2026-11 SV-02",
                       "duration": 128
                     },
                     {
+                      "title": "2026-11 SV-01",
+                      "duration": 138
+                    },
+                    {
+                      "title": "2026-11 SV-02",
+                      "duration": 123
+                    },
+                    {
                       "title": "2026-11 SV-03",
-                      "duration": 133
+                      "duration": 127
                     },
                     {
                       "title": "2026 ALL",
-                      "duration": 135
+                      "duration": 141
                     },
                     {
                       "title": "2026 SV-01",
-                      "duration": 134
+                      "duration": 126
                     },
                     {
                       "title": "2026 SV-02",
-                      "duration": 121
+                      "duration": 125
                     },
                     {
                       "title": "2026 SV-03",
-                      "duration": 125
+                      "duration": 122
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:52.748Z",
+                  "startTime": "2026-11-22T15:03:56.134Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1838,12 +1838,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1151,
+                  "duration": 1138,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:54.150Z",
+                  "startTime": "2026-11-22T15:03:57.538Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1872,12 +1872,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 853,
+                  "duration": 852,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:55.314Z",
+                  "startTime": "2026-11-22T15:03:58.683Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1914,12 +1914,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 616,
+                  "duration": 577,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:56.177Z",
+                  "startTime": "2026-11-22T15:03:59.547Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1948,12 +1948,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 285,
+                  "duration": 280,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:56.800Z",
+                  "startTime": "2026-11-22T15:04:00.130Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1982,12 +1982,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1959,
+                  "duration": 1886,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:27:57.092Z",
+                  "startTime": "2026-11-22T15:04:00.416Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2024,7 +2024,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3039,
+                  "duration": 2908,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -2032,7 +2032,7 @@
                   "steps": [
                     {
                       "title": "375×812 /login",
-                      "duration": 87
+                      "duration": 74
                     },
                     {
                       "title": "375×812 /citizen",
@@ -2044,55 +2044,55 @@
                     },
                     {
                       "title": "375×812 /citizen/cases/EG-2569-000013",
-                      "duration": 41
-                    },
-                    {
-                      "title": "375×812 /officer/queue",
-                      "duration": 92
-                    },
-                    {
-                      "title": "375×812 /officer/cases/EG-2569-000020",
-                      "duration": 43
-                    },
-                    {
-                      "title": "375×812 /head/approvals",
-                      "duration": 73
-                    },
-                    {
-                      "title": "375×812 /dashboard",
-                      "duration": 71
-                    },
-                    {
-                      "title": "375×812 /audit",
-                      "duration": 81
-                    },
-                    {
-                      "title": "375×812 /admin/services",
-                      "duration": 71
-                    },
-                    {
-                      "title": "375×812 /verify/K7M2Q9XA",
-                      "duration": 42
-                    },
-                    {
-                      "title": "768×1024 /login",
                       "duration": 40
                     },
                     {
+                      "title": "375×812 /officer/queue",
+                      "duration": 100
+                    },
+                    {
+                      "title": "375×812 /officer/cases/EG-2569-000020",
+                      "duration": 49
+                    },
+                    {
+                      "title": "375×812 /head/approvals",
+                      "duration": 71
+                    },
+                    {
+                      "title": "375×812 /dashboard",
+                      "duration": 79
+                    },
+                    {
+                      "title": "375×812 /audit",
+                      "duration": 72
+                    },
+                    {
+                      "title": "375×812 /admin/services",
+                      "duration": 67
+                    },
+                    {
+                      "title": "375×812 /verify/K7M2Q9XA",
+                      "duration": 34
+                    },
+                    {
+                      "title": "768×1024 /login",
+                      "duration": 35
+                    },
+                    {
                       "title": "768×1024 /citizen",
-                      "duration": 54
+                      "duration": 47
                     },
                     {
                       "title": "768×1024 /citizen/new/SV-03",
-                      "duration": 44
+                      "duration": 37
                     },
                     {
                       "title": "768×1024 /citizen/cases/EG-2569-000013",
-                      "duration": 41
+                      "duration": 39
                     },
                     {
                       "title": "768×1024 /officer/queue",
-                      "duration": 57
+                      "duration": 61
                     },
                     {
                       "title": "768×1024 /officer/cases/EG-2569-000020",
@@ -2100,70 +2100,70 @@
                     },
                     {
                       "title": "768×1024 /head/approvals",
-                      "duration": 49
-                    },
-                    {
-                      "title": "768×1024 /dashboard",
-                      "duration": 51
-                    },
-                    {
-                      "title": "768×1024 /audit",
-                      "duration": 54
-                    },
-                    {
-                      "title": "768×1024 /admin/services",
-                      "duration": 46
-                    },
-                    {
-                      "title": "768×1024 /verify/K7M2Q9XA",
                       "duration": 38
                     },
                     {
-                      "title": "1280×800 /login",
-                      "duration": 39
-                    },
-                    {
-                      "title": "1280×800 /citizen",
-                      "duration": 58
-                    },
-                    {
-                      "title": "1280×800 /citizen/new/SV-03",
+                      "title": "768×1024 /dashboard",
                       "duration": 45
                     },
                     {
-                      "title": "1280×800 /citizen/cases/EG-2569-000013",
-                      "duration": 43
+                      "title": "768×1024 /audit",
+                      "duration": 48
                     },
                     {
-                      "title": "1280×800 /officer/queue",
-                      "duration": 60
-                    },
-                    {
-                      "title": "1280×800 /officer/cases/EG-2569-000020",
-                      "duration": 43
-                    },
-                    {
-                      "title": "1280×800 /head/approvals",
+                      "title": "768×1024 /admin/services",
                       "duration": 42
                     },
                     {
+                      "title": "768×1024 /verify/K7M2Q9XA",
+                      "duration": 34
+                    },
+                    {
+                      "title": "1280×800 /login",
+                      "duration": 34
+                    },
+                    {
+                      "title": "1280×800 /citizen",
+                      "duration": 48
+                    },
+                    {
+                      "title": "1280×800 /citizen/new/SV-03",
+                      "duration": 39
+                    },
+                    {
+                      "title": "1280×800 /citizen/cases/EG-2569-000013",
+                      "duration": 42
+                    },
+                    {
+                      "title": "1280×800 /officer/queue",
+                      "duration": 55
+                    },
+                    {
+                      "title": "1280×800 /officer/cases/EG-2569-000020",
+                      "duration": 38
+                    },
+                    {
+                      "title": "1280×800 /head/approvals",
+                      "duration": 38
+                    },
+                    {
                       "title": "1280×800 /dashboard",
-                      "duration": 57
+                      "duration": 43
                     },
                     {
                       "title": "1280×800 /audit",
-                      "duration": 50
+                      "duration": 48
                     },
                     {
                       "title": "1280×800 /admin/services",
-                      "duration": 45
+                      "duration": 43
                     },
                     {
                       "title": "1280×800 /verify/K7M2Q9XA",
-                      "duration": 39
+                      "duration": 41
                     }
                   ],
-                  "startTime": "2026-11-21T13:27:59.108Z",
+                  "startTime": "2026-11-22T15:04:02.357Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2192,7 +2192,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 11986,
+                  "duration": 11948,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -2200,58 +2200,58 @@
                   "steps": [
                     {
                       "title": "accessibility of /login",
-                      "duration": 615
+                      "duration": 578
                     },
                     {
                       "title": "accessibility of /register",
-                      "duration": 574
+                      "duration": 557
                     },
                     {
                       "title": "accessibility of /citizen",
-                      "duration": 1220
+                      "duration": 1209
                     },
                     {
                       "title": "accessibility of /citizen/new/SV-01",
-                      "duration": 467
+                      "duration": 458
                     },
                     {
                       "title": "accessibility of /citizen/cases/EG-2569-000017",
-                      "duration": 613
+                      "duration": 607
                     },
                     {
                       "title": "accessibility of /officer/queue",
-                      "duration": 2589
+                      "duration": 2356
                     },
                     {
                       "title": "accessibility of /officer/cases/EG-2569-000020",
-                      "duration": 625
+                      "duration": 661
                     },
                     {
                       "title": "accessibility of /head/approvals",
-                      "duration": 596
+                      "duration": 661
                     },
                     {
                       "title": "accessibility of /dashboard",
-                      "duration": 624
+                      "duration": 623
                     },
                     {
                       "title": "accessibility of /audit",
-                      "duration": 632
+                      "duration": 724
                     },
                     {
                       "title": "accessibility of /admin/services",
-                      "duration": 585
+                      "duration": 742
                     },
                     {
                       "title": "accessibility of /notifications",
-                      "duration": 427
+                      "duration": 482
                     },
                     {
                       "title": "accessibility of /verify/K7M2Q9XA",
-                      "duration": 489
+                      "duration": 441
                     }
                   ],
-                  "startTime": "2026-11-21T13:28:02.155Z",
+                  "startTime": "2026-11-22T15:04:05.273Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2280,12 +2280,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1954,
+                  "duration": 1907,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:14.148Z",
+                  "startTime": "2026-11-22T15:04:17.227Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2319,12 +2319,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 574,
+                  "duration": 549,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:16.113Z",
+                  "startTime": "2026-11-22T15:04:19.143Z",
                   "annotations": [
                     {
                       "type": "database encryption",
@@ -2366,12 +2366,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 923,
+                  "duration": 884,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:16.696Z",
+                  "startTime": "2026-11-22T15:04:19.702Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2400,7 +2400,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 353,
+                  "duration": 323,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -2408,43 +2408,43 @@
                   "steps": [
                     {
                       "title": "off.reg1 GET /api/officer/queue?filter=all",
-                      "duration": 17
+                      "duration": 14
                     },
                     {
                       "title": "off.reg1 GET /api/cases/EG-2569-000025",
-                      "duration": 11
-                    },
-                    {
-                      "title": "off.reg1 GET /api/cases/EG-2569-000026",
-                      "duration": 8
-                    },
-                    {
-                      "title": "off.reg1 GET /api/cases/EG-2569-000020",
                       "duration": 7
                     },
                     {
+                      "title": "off.reg1 GET /api/cases/EG-2569-000026",
+                      "duration": 7
+                    },
+                    {
+                      "title": "off.reg1 GET /api/cases/EG-2569-000020",
+                      "duration": 8
+                    },
+                    {
                       "title": "off.reg1 GET /api/notifications",
-                      "duration": 6
+                      "duration": 7
                     },
                     {
                       "title": "off.reg1 GET /api/cases/EG-2569-000025/files",
-                      "duration": 9
+                      "duration": 10
                     },
                     {
                       "title": "head1 GET /api/officer/queue?filter=all",
-                      "duration": 17
+                      "duration": 13
                     },
                     {
                       "title": "head1 GET /api/cases/EG-2569-000025",
-                      "duration": 9
+                      "duration": 8
                     },
                     {
                       "title": "head1 GET /api/cases/EG-2569-000026",
-                      "duration": 6
+                      "duration": 7
                     },
                     {
                       "title": "head1 GET /api/cases/EG-2569-000020",
-                      "duration": 6
+                      "duration": 8
                     },
                     {
                       "title": "head1 GET /api/notifications",
@@ -2452,10 +2452,10 @@
                     },
                     {
                       "title": "head1 GET /api/cases/EG-2569-000025/files",
-                      "duration": 9
+                      "duration": 7
                     }
                   ],
-                  "startTime": "2026-11-21T13:28:17.625Z",
+                  "startTime": "2026-11-22T15:04:20.592Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2484,12 +2484,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1168,
+                  "duration": 1090,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:17.984Z",
+                  "startTime": "2026-11-22T15:04:20.921Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2526,12 +2526,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 348,
+                  "duration": 347,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:19.164Z",
+                  "startTime": "2026-11-22T15:04:22.021Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2560,12 +2560,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 785,
+                  "duration": 788,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:19.518Z",
+                  "startTime": "2026-11-22T15:04:22.375Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2594,7 +2594,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 6053,
+                  "duration": 5681,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -2602,34 +2602,34 @@
                   "steps": [
                     {
                       "title": "permissions for anon",
-                      "duration": 613
+                      "duration": 599
                     },
                     {
                       "title": "permissions for citizen",
-                      "duration": 833
+                      "duration": 785
                     },
                     {
                       "title": "permissions for officer",
-                      "duration": 863
+                      "duration": 831
                     },
                     {
                       "title": "permissions for head",
-                      "duration": 853
+                      "duration": 754
                     },
                     {
                       "title": "permissions for executive",
-                      "duration": 826
+                      "duration": 744
                     },
                     {
                       "title": "permissions for auditor",
-                      "duration": 794
+                      "duration": 752
                     },
                     {
                       "title": "permissions for admin",
-                      "duration": 837
+                      "duration": 803
                     }
                   ],
-                  "startTime": "2026-11-21T13:28:20.308Z",
+                  "startTime": "2026-11-22T15:04:23.170Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2658,12 +2658,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1998,
+                  "duration": 1868,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:26.368Z",
+                  "startTime": "2026-11-22T15:04:28.861Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2692,12 +2692,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 6308,
+                  "duration": 6190,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:28.372Z",
+                  "startTime": "2026-11-22T15:04:30.734Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2726,7 +2726,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1907,
+                  "duration": 1903,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -2734,70 +2734,70 @@
                   "steps": [
                     {
                       "title": "UI fee=-1",
-                      "duration": 111
+                      "duration": 131
                     },
                     {
                       "title": "UI fee=0",
-                      "duration": 140
+                      "duration": 110
                     },
                     {
                       "title": "UI fee=100000",
-                      "duration": 121
+                      "duration": 122
                     },
                     {
                       "title": "UI fee=100001",
-                      "duration": 121
+                      "duration": 141
                     },
                     {
                       "title": "UI sla=0",
-                      "duration": 114
+                      "duration": 123
                     },
                     {
                       "title": "UI sla=1",
-                      "duration": 125
+                      "duration": 118
                     },
                     {
                       "title": "UI sla=60",
-                      "duration": 124
+                      "duration": 112
                     },
                     {
                       "title": "UI sla=61",
-                      "duration": 120
+                      "duration": 122
                     },
                     {
                       "title": "API fee=-1",
-                      "duration": 14
+                      "duration": 16
                     },
                     {
                       "title": "API fee=0",
-                      "duration": 8
+                      "duration": 9
                     },
                     {
                       "title": "API fee=100000",
-                      "duration": 8
-                    },
-                    {
-                      "title": "API fee=100001",
-                      "duration": 9
-                    },
-                    {
-                      "title": "API sla=0",
-                      "duration": 9
-                    },
-                    {
-                      "title": "API sla=1",
                       "duration": 10
                     },
                     {
+                      "title": "API fee=100001",
+                      "duration": 10
+                    },
+                    {
+                      "title": "API sla=0",
+                      "duration": 11
+                    },
+                    {
+                      "title": "API sla=1",
+                      "duration": 9
+                    },
+                    {
                       "title": "API sla=60",
-                      "duration": 8
+                      "duration": 9
                     },
                     {
                       "title": "API sla=61",
-                      "duration": 8
+                      "duration": 11
                     }
                   ],
-                  "startTime": "2026-11-21T13:28:34.689Z",
+                  "startTime": "2026-11-22T15:04:36.932Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2834,12 +2834,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 899,
+                  "duration": 855,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:36.609Z",
+                  "startTime": "2026-11-22T15:04:38.848Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2868,12 +2868,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1640,
+                  "duration": 1646,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:37.514Z",
+                  "startTime": "2026-11-22T15:04:39.708Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2902,12 +2902,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1519,
+                  "duration": 1499,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:39.162Z",
+                  "startTime": "2026-11-22T15:04:41.363Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2936,12 +2936,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3282,
+                  "duration": 2977,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:40.688Z",
+                  "startTime": "2026-11-22T15:04:42.869Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -2970,12 +2970,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1841,
+                  "duration": 1623,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:43.980Z",
+                  "startTime": "2026-11-22T15:04:45.853Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -3004,12 +3004,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 987,
+                  "duration": 976,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-21T13:28:45.832Z",
+                  "startTime": "2026-11-22T15:04:47.485Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -3027,8 +3027,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-11-21T13:27:11.558Z",
-    "duration": 95464.674,
+    "startTime": "2026-11-22T15:03:15.880Z",
+    "duration": 92767.36899999999,
     "expected": 51,
     "skipped": 0,
     "unexpected": 0,

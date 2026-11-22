@@ -279,7 +279,7 @@ const forward = db.transaction((caseNo, user, body) => {
 
 /**
  * Who may decide (approve / reject): SV-01 → the holding officer while IN_REVIEW (head → 403) ·
- * SV-02/03 → head while PENDING_APPROVAL (officer → 403; BUG B07 lets an officer APPROVE anyway).
+ * SV-02/03 → head while PENDING_APPROVAL (officer → 403; BUG B07 lets an officer APPROVE SV-02 only).
  */
 function checkDecider(c, user, action) {
   if (approverRole(c.service_id) === 'officer') {
@@ -292,7 +292,8 @@ function checkDecider(c, user, action) {
     if (c.status !== 'PENDING_APPROVAL') throw new ApiError('INVALID_STATE');
     return;
   }
-  if (action === 'approve' && bug('B07') && user.role === 'officer') {
+  // B07 is scoped to SV-02 only (BUGS.md §2, §1 rule 1): SV-03 keeps the head-only check
+  if (action === 'approve' && bug('B07') && user.role === 'officer' && c.service_id === 'SV-02') {
     if (!['PENDING_APPROVAL', 'IN_REVIEW'].includes(c.status)) throw new ApiError('INVALID_STATE');
     return; // B07: no head-only check on the API
   }
