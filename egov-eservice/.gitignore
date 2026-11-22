@@ -1,0 +1,9 @@
+# dependencies (npm install / docker compose up --build rebuilds them)
+node_modules/
+
+# test database (deleted and re-seeded at every start with TEST_MODE=1)
+app/data/egov.db
+app/data/*.db-*
+
+# Playwright scratch output (evidence kept in app/app/e2e/reports and test-report/)
+app/app/e2e/test-results/

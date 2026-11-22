@@ -1,0 +1,8 @@
+**/node_modules
+**/.git
+**/*.log
+data
+app/data
+app/e2e
+app/test-results
+app/playwright-report
