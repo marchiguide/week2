@@ -1,0 +1,105 @@
+npm notice run egov-eservice-e2e@1.0.0 npx
+npm notice run 'playwright' test --reporter=line,json --output=/tmp/b13-test-results/B12
+
+Running 51 tests using 1 worker
+
+[1/51] [chromium] › tests/part1/auth.spec.ts:8:1 › TC-AUTH-01 · เลขบัตร 13 หลัก + checksum
+[2/51] [chromium] › tests/part1/auth.spec.ts:42:1 › TC-AUTH-02 · OTP ผิด 3 ครั้งล็อก 15 นาที
+[3/51] [chromium] › tests/part1/auth.spec.ts:126:1 › TC-AUTH-03 · ลงทะเบียนครั้งแรก
+[4/51] [chromium] › tests/part1/auth.spec.ts:193:1 › TC-AUTH-04 · เจ้าหน้าที่ SSO จำลองและหน้าตั้งต้น
+[5/51] [chromium] › tests/part1/fee.spec.ts:35:1 › TC-FEE-01 · ค่าธรรมเนียม SV-01 / SV-02 / SV-03
+[6/51] [chromium] › tests/part1/noti.spec.ts:54:1 › TC-NOTI-01 · ผู้รับแจ้งเตือนตามระดับ
+[7/51] [chromium] › tests/part1/noti.spec.ts:58:1 › TC-NOTI-02 · ไม่แจ้งซ้ำ ข้ามระดับ และขั้นรออนุมัติ/รอออกเอกสาร
+[8/51] [chromium] › tests/part1/pay.spec.ts:6:1 › TC-PAY-01 · อายุ QR 15:00
+[9/51] [chromium] › tests/part1/pay.spec.ts:55:1 › TC-PAY-02 · ยอดเงินและ callback ซ้ำ
+[10/51] [chromium] › tests/part1/pay.spec.ts:97:1 › TC-PAY-03 · ชำระพร้อมกัน เลขไม่ซ้ำ
+[11/51] [chromium] › tests/part1/pay.spec.ts:132:1 › TC-PAY-04 · เลขคำขอข้ามปี
+[12/51] [chromium] › tests/part1/queue.spec.ts:18:1 › TC-QUEUE-01 · ลำดับคิวและขอบเขตแผนก
+[13/51] [chromium] › tests/part1/queue.spec.ts:68:1 › TC-QUEUE-02 · รับเรื่องซ้อน (พร้อมกันและต่อกัน)
+[14/51] [chromium] › tests/part1/queue.spec.ts:135:1 › TC-QUEUE-03 · งานในมือสูงสุด 10
+[15/51] [chromium] › tests/part1/sla.spec.ts:19:1 › TC-SLA-01 · กำหนดเสร็จตามตารางวันที่
+[16/51] [chromium] › tests/part1/sla.spec.ts:44:1 › TC-SLA-02 · หยุดนับ SLA ระหว่างรอแก้ไข
+[17/51] [chromium] › tests/part1/sla.spec.ts:130:1 › TC-SLA-03 · ระดับเตือน ปกติ / ใกล้ครบกำหนด / เกินกำหนด
+[18/51] [chromium] › tests/part1/submit.spec.ts:25:1 › TC-SUBMIT-01 · ยื่นคำขอ SV-01 ครบวงจร
+[19/51] [chromium] › tests/part1/submit.spec.ts:95:1 › TC-SUBMIT-02 · เอกสารบังคับครบก่อนชำระ
+[20/51] [chromium] › tests/part1/submit.spec.ts:161:1 › TC-SUBMIT-03 · ร่าง และการยกเลิก
+[21/51] [chromium] › tests/part1/upload.spec.ts:16:1 › TC-UPLOAD-01 · ขนาดและจำนวนไฟล์
+[22/51] [chromium] › tests/part1/upload.spec.ts:76:1 › TC-UPLOAD-02 · ชนิดไฟล์จากเนื้อไฟล์
+[23/51] [chromium] › tests/part2/audit.spec.ts:7:1 › TC-AUDIT-01 records audited actions, newest-first ordering, filters and CSV
+[24/51] [chromium] › tests/part2/audit.spec.ts:99:1 › TC-AUDIT-02 immutable audit rows and read permissions
+[25/51] [chromium] › tests/part2/audit.spec.ts:133:1 › TC-AUDIT-03 date filters use inclusive Bangkok calendar days
+[26/51] [chromium] › tests/part2/dash.spec.ts:75:1 › TC-DASH-01 December dashboard, workload, privacy and service filters
+[27/51] [chromium] › tests/part2/dash.spec.ts:104:1 › TC-DASH-02 historical monthly and yearly rates use closed cases
+[28/51] [chromium] › tests/part2/dash.spec.ts:128:1 › TC-DASH-03 Excel and PDF exports match the KPIs and leave audit entries
+[29/51] [chromium] › tests/part2/dash.spec.ts:177:1 › TC-DASH-04 closure by 16:30:00 is on time including rejection
+[30/51] [chromium] › tests/part2/doc.spec.ts:38:1 › TC-DOC-01 issued PDF, public metadata, QR and duplicate issue
+[31/51] [chromium] › tests/part2/doc.spec.ts:74:1 › TC-DOC-02 public verification of valid and unknown codes
+[32/51] [chromium] › tests/part2/doc.spec.ts:93:1 › TC-DOC-03 expiry at midnight, leap dates and tamper precedence
+[33/51] [chromium] › tests/part2/nfr.spec.ts:21:1 › TC-NFR-01 eleven routes fit desktop, tablet and mobile viewports
+[34/51] [chromium] › tests/part2/nfr.spec.ts:119:1 › TC-NFR-02 WCAG scans, labeled controls, keyboard flow and status text
+[35/51] [chromium] › tests/part2/nfr.spec.ts:194:1 › TC-NFR-03 health, warm page loads, deterministic reset and hook validation
+[36/51] [chromium] › tests/part2/nfr.spec.ts:256:1 › TC-NFR-04 stored citizen IDs and phone numbers are absent in plaintext
+[37/51] [chromium] › tests/part2/pdpa.spec.ts:9:1 › TC-PDPA-01 ID masking on officer pages and full ID for the owner
+[38/51] [chromium] › tests/part2/pdpa.spec.ts:38:1 › TC-PDPA-02 staff JSON masks IDs and omits full IDs at every depth
+[39/51] [chromium] › tests/part2/pdpa.spec.ts:67:1 › TC-PDPA-03 unmask requires a reason, expires on reload and leaves an audit entry
+[40/51] [chromium] › tests/part2/rbac.spec.ts:10:1 › TC-RBAC-01 citizen case ownership and indistinguishable 404 responses
+[41/51] [chromium] › tests/part2/rbac.spec.ts:33:1 › TC-RBAC-02 head-only approval and rejection for SV-02
+[42/51] [chromium] › tests/part2/rbac.spec.ts:88:1 › TC-RBAC-03 page, API, department and menu permission matrix
+[43/51] [chromium] › tests/part2/rbac.spec.ts:156:1 › TC-RBAC-04 admin settings preserve existing fees and deadlines
+[44/51] [chromium] › tests/part2/rbac.spec.ts:238:1 › TC-RBAC-05 attachment list, download and department history permissions
+[45/51] [chromium] › tests/part2/rbac.spec.ts:305:1 › TC-RBAC-06 admin fee and SLA boundaries, holiday duplicates and role protection
+[46/51] [chromium] › tests/part2/workflow.spec.ts:44:1 › TC-WORKFLOW-01 SV-01 approval, issue and citizen download
+[47/51] [chromium] › tests/part2/workflow.spec.ts:81:1 › TC-WORKFLOW-02 SV-02 routes through head and back to the issuer
+[48/51] [chromium] › tests/part2/workflow.spec.ts:124:1 › TC-WORKFLOW-03 SV-03 passes registry, works and head in order
+[49/51] [chromium] › tests/part2/workflow.spec.ts:173:1 › TC-WORKFLOW-04 two returns and valid decisions after the limit
+  1) [chromium] › tests/part2/workflow.spec.ts:173:1 › TC-WORKFLOW-04 two returns and valid decisions after the limit 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('return-btn')
+    Expected: 0
+    Received: 1
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('return-btn') with timeout 10000ms
+      - waiting for getByTestId('return-btn')
+        24 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+       8 | async function buttons(page: Page, present: string[], absent: string[] = []) {
+       9 |   for (const name of present) await expect(page.getByTestId(`${name}-btn`)).toHaveCount(1);
+    > 10 |   for (const name of absent) await expect(page.getByTestId(`${name}-btn`)).toHaveCount(0);
+         |                                                                            ^
+      11 | }
+      12 |
+      13 | async function enterReason(page: Page, action: 'return' | 'reject', text: string) {
+        at buttons (/workspace/plans/egov-eservice/app/app/e2e/tests/part2/workflow.spec.ts:10:76)
+        at assertLimit (/workspace/plans/egov-eservice/app/app/e2e/tests/part2/workflow.spec.ts:177:5)
+        at /workspace/plans/egov-eservice/app/app/e2e/tests/part2/workflow.spec.ts:185:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../tmp/b13-test-results/B12/part2-workflow-TC-WORKFLOW-cad75-d-decisions-after-the-limit-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../../../../tmp/b13-test-results/B12/part2-workflow-TC-WORKFLOW-cad75-d-decisions-after-the-limit-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../../../../tmp/b13-test-results/B12/part2-workflow-TC-WORKFLOW-cad75-d-decisions-after-the-limit-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../../tmp/b13-test-results/B12/part2-workflow-TC-WORKFLOW-cad75-d-decisions-after-the-limit-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../../tmp/b13-test-results/B12/part2-workflow-TC-WORKFLOW-cad75-d-decisions-after-the-limit-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[50/51] [chromium] › tests/part2/workflow.spec.ts:211:1 › TC-WORKFLOW-05 return and reject reasons count trimmed characters
+[51/51] [chromium] › tests/part2/workflow.spec.ts:253:1 › TC-WORKFLOW-06 correction expires at exactly 168 hours
+  1 failed
+    [chromium] › tests/part2/workflow.spec.ts:173:1 › TC-WORKFLOW-04 two returns and valid decisions after the limit 
+  50 passed (2.4m)

@@ -1,0 +1,1261 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/workspace/plans/egov-eservice/app/app/e2e/node_modules/.bin/playwright",
+      "test",
+      "--list"
+    ],
+    "configFile": "/workspace/plans/egov-eservice/app/app/e2e/playwright.config.ts",
+    "rootDir": "/workspace/plans/egov-eservice/app/app/e2e/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/workspace/plans/egov-eservice/app/app/e2e/helpers/global-setup.ts",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/workspace/plans/egov-eservice/app/app/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/workspace/plans/egov-eservice/app/app/e2e/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/workspace/plans/egov-eservice/app/app/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "name": "chromium",
+        "testDir": "/workspace/plans/egov-eservice/app/app/e2e/tests",
+        "snapshotDir": "/workspace/plans/egov-eservice/app/app/e2e/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://localhost:8080",
+          "locale": "th-TH",
+          "timezoneId": "Asia/Bangkok",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "video": "off",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/159.0.8154.6 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 900
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "reports/html",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "part1/auth.spec.ts",
+      "file": "part1/auth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-AUTH-01 · เลขบัตร 13 หลัก + checksum",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "775a73268134e340ec75-8ea6377dacd3a476cbc5",
+          "file": "part1/auth.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "TC-AUTH-02 · OTP ผิด 3 ครั้งล็อก 15 นาที",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "775a73268134e340ec75-1420e0fd4719459ff5c0",
+          "file": "part1/auth.spec.ts",
+          "line": 42,
+          "column": 1
+        },
+        {
+          "title": "TC-AUTH-03 · ลงทะเบียนครั้งแรก",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "775a73268134e340ec75-806b934396c8c2376fd9",
+          "file": "part1/auth.spec.ts",
+          "line": 126,
+          "column": 1
+        },
+        {
+          "title": "TC-AUTH-04 · เจ้าหน้าที่ SSO จำลองและหน้าตั้งต้น",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "775a73268134e340ec75-a1194d860bbf14923aa7",
+          "file": "part1/auth.spec.ts",
+          "line": 193,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part1/fee.spec.ts",
+      "file": "part1/fee.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-FEE-01 · ค่าธรรมเนียม SV-01 / SV-02 / SV-03",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "48dc2dd0fc8083f6853c-f7e48949cfa27c8b1725",
+          "file": "part1/fee.spec.ts",
+          "line": 35,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part1/noti.spec.ts",
+      "file": "part1/noti.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-NOTI-01 · ผู้รับแจ้งเตือนตามระดับ",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "89404c5f6255960c3d57-cfc672564905a1839a1e",
+          "file": "part1/noti.spec.ts",
+          "line": 54,
+          "column": 1
+        },
+        {
+          "title": "TC-NOTI-02 · ไม่แจ้งซ้ำ ข้ามระดับ และขั้นรออนุมัติ/รอออกเอกสาร",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "89404c5f6255960c3d57-8a6852eb995b49f33874",
+          "file": "part1/noti.spec.ts",
+          "line": 58,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part1/pay.spec.ts",
+      "file": "part1/pay.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-PAY-01 · อายุ QR 15:00",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "44aaaae1665bdd47f55e-b174652355a4cc38a17c",
+          "file": "part1/pay.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "TC-PAY-02 · ยอดเงินและ callback ซ้ำ",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "44aaaae1665bdd47f55e-06d44093007957a55a4f",
+          "file": "part1/pay.spec.ts",
+          "line": 55,
+          "column": 1
+        },
+        {
+          "title": "TC-PAY-03 · ชำระพร้อมกัน เลขไม่ซ้ำ",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "44aaaae1665bdd47f55e-3bd56be683a53d7acdd7",
+          "file": "part1/pay.spec.ts",
+          "line": 97,
+          "column": 1
+        },
+        {
+          "title": "TC-PAY-04 · เลขคำขอข้ามปี",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "44aaaae1665bdd47f55e-75b96d5041909eff9ced",
+          "file": "part1/pay.spec.ts",
+          "line": 132,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part1/queue.spec.ts",
+      "file": "part1/queue.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-QUEUE-01 · ลำดับคิวและขอบเขตแผนก",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "bb80192029c0a48f9ed2-4a83461f5f20e44b4d0a",
+          "file": "part1/queue.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "TC-QUEUE-02 · รับเรื่องซ้อน (พร้อมกันและต่อกัน)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "bb80192029c0a48f9ed2-318e329db80a1a28b646",
+          "file": "part1/queue.spec.ts",
+          "line": 68,
+          "column": 1
+        },
+        {
+          "title": "TC-QUEUE-03 · งานในมือสูงสุด 10",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "bb80192029c0a48f9ed2-76f69c2bec4718b8d603",
+          "file": "part1/queue.spec.ts",
+          "line": 135,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part1/sla.spec.ts",
+      "file": "part1/sla.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-SLA-01 · กำหนดเสร็จตามตารางวันที่",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "0f2bc7ee94b12f29e808-28bb1a47f406c0a139b3",
+          "file": "part1/sla.spec.ts",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "TC-SLA-02 · หยุดนับ SLA ระหว่างรอแก้ไข",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "0f2bc7ee94b12f29e808-fba2a0de1bd07623c762",
+          "file": "part1/sla.spec.ts",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "TC-SLA-03 · ระดับเตือน ปกติ / ใกล้ครบกำหนด / เกินกำหนด",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "0f2bc7ee94b12f29e808-f2d49c6e166a6774f9f2",
+          "file": "part1/sla.spec.ts",
+          "line": 130,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part1/submit.spec.ts",
+      "file": "part1/submit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-SUBMIT-01 · ยื่นคำขอ SV-01 ครบวงจร",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "609a4dd02736318ac682-6b14d99c1c9171c52fd5",
+          "file": "part1/submit.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "TC-SUBMIT-02 · เอกสารบังคับครบก่อนชำระ",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "609a4dd02736318ac682-55682d1cbd0de043b968",
+          "file": "part1/submit.spec.ts",
+          "line": 95,
+          "column": 1
+        },
+        {
+          "title": "TC-SUBMIT-03 · ร่าง และการยกเลิก",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "609a4dd02736318ac682-e64a5f455b4e1a6bc1c1",
+          "file": "part1/submit.spec.ts",
+          "line": 161,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part1/upload.spec.ts",
+      "file": "part1/upload.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-UPLOAD-01 · ขนาดและจำนวนไฟล์",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "d369cbbb9521ee86f1dc-ed37f66d1383a28ceebf",
+          "file": "part1/upload.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "TC-UPLOAD-02 · ชนิดไฟล์จากเนื้อไฟล์",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "d369cbbb9521ee86f1dc-af3deecd5016b65cc782",
+          "file": "part1/upload.spec.ts",
+          "line": 76,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part2/audit.spec.ts",
+      "file": "part2/audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-AUDIT-01 records audited actions, newest-first ordering, filters and CSV",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "640ab200d112b14ef0f5-5f7d2387360b888ff686",
+          "file": "part2/audit.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "TC-AUDIT-02 immutable audit rows and read permissions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "640ab200d112b14ef0f5-9fc324aedddcdca2a1e4",
+          "file": "part2/audit.spec.ts",
+          "line": 99,
+          "column": 1
+        },
+        {
+          "title": "TC-AUDIT-03 date filters use inclusive Bangkok calendar days",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "640ab200d112b14ef0f5-69b333fb7fa4e9bd1fe3",
+          "file": "part2/audit.spec.ts",
+          "line": 133,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part2/dash.spec.ts",
+      "file": "part2/dash.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-DASH-01 December dashboard, workload, privacy and service filters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "f0c3af39fb0a20a820d2-b62e0393043a39a966e2",
+          "file": "part2/dash.spec.ts",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "TC-DASH-02 historical monthly and yearly rates use closed cases",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "f0c3af39fb0a20a820d2-de81962a9c70c788fc8a",
+          "file": "part2/dash.spec.ts",
+          "line": 103,
+          "column": 1
+        },
+        {
+          "title": "TC-DASH-03 Excel and PDF exports match the KPIs and leave audit entries",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "f0c3af39fb0a20a820d2-95b1ec7052692edead0e",
+          "file": "part2/dash.spec.ts",
+          "line": 127,
+          "column": 1
+        },
+        {
+          "title": "TC-DASH-04 closure by 16:30:00 is on time including rejection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "f0c3af39fb0a20a820d2-87a737676176536188b1",
+          "file": "part2/dash.spec.ts",
+          "line": 176,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part2/doc.spec.ts",
+      "file": "part2/doc.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-DOC-01 issued PDF, public metadata, QR and duplicate issue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "32a1f403a7e497456265-96e5b44b9d073eaa1c36",
+          "file": "part2/doc.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "TC-DOC-02 public verification of valid and unknown codes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "32a1f403a7e497456265-bce34948753e1c60a178",
+          "file": "part2/doc.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "TC-DOC-03 expiry at midnight, leap dates and tamper precedence",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "32a1f403a7e497456265-b43be943b3cee9c56d0b",
+          "file": "part2/doc.spec.ts",
+          "line": 93,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part2/nfr.spec.ts",
+      "file": "part2/nfr.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-NFR-01 eleven routes fit desktop, tablet and mobile viewports",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "8a5d96b08b2f016b9a1c-1bc5542db82e1e51eb05",
+          "file": "part2/nfr.spec.ts",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "TC-NFR-02 WCAG scans, labeled controls, keyboard flow and status text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "8a5d96b08b2f016b9a1c-5337668ece711b6928d5",
+          "file": "part2/nfr.spec.ts",
+          "line": 114,
+          "column": 1
+        },
+        {
+          "title": "TC-NFR-03 health, warm page loads, deterministic reset and hook validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "8a5d96b08b2f016b9a1c-ed487a9a8007aeb4ec13",
+          "file": "part2/nfr.spec.ts",
+          "line": 189,
+          "column": 1
+        },
+        {
+          "title": "TC-NFR-04 stored citizen IDs and phone numbers are absent in plaintext",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "8a5d96b08b2f016b9a1c-c7081a23de9b1e814807",
+          "file": "part2/nfr.spec.ts",
+          "line": 251,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part2/pdpa.spec.ts",
+      "file": "part2/pdpa.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-PDPA-01 ID masking on officer pages and full ID for the owner",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "66b657272b25a2cd59d5-5d661eae7a59564dc083",
+          "file": "part2/pdpa.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "TC-PDPA-02 staff JSON masks IDs and omits full IDs at every depth",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "66b657272b25a2cd59d5-df999ffde4e6336b66e0",
+          "file": "part2/pdpa.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "TC-PDPA-03 unmask requires a reason, expires on reload and leaves an audit entry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "66b657272b25a2cd59d5-b080e48439a323bbdc3f",
+          "file": "part2/pdpa.spec.ts",
+          "line": 67,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part2/rbac.spec.ts",
+      "file": "part2/rbac.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-RBAC-01 citizen case ownership and indistinguishable 404 responses",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "a077bc8fdf8a7582f7d9-847a313a62b03d258bf8",
+          "file": "part2/rbac.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "TC-RBAC-02 head-only approval and rejection for SV-02",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "a077bc8fdf8a7582f7d9-dfc973eb78e1d157c7d4",
+          "file": "part2/rbac.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "TC-RBAC-03 page, API, department and menu permission matrix",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "a077bc8fdf8a7582f7d9-8843c2f0b0d69c673168",
+          "file": "part2/rbac.spec.ts",
+          "line": 88,
+          "column": 1
+        },
+        {
+          "title": "TC-RBAC-04 admin settings preserve existing fees and deadlines",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "a077bc8fdf8a7582f7d9-58f46935a73b0cfc1bb5",
+          "file": "part2/rbac.spec.ts",
+          "line": 156,
+          "column": 1
+        },
+        {
+          "title": "TC-RBAC-05 attachment list, download and department history permissions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "a077bc8fdf8a7582f7d9-30e1b10ecfc19bbfa808",
+          "file": "part2/rbac.spec.ts",
+          "line": 238,
+          "column": 1
+        },
+        {
+          "title": "TC-RBAC-06 admin fee and SLA boundaries, holiday duplicates and role protection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "a077bc8fdf8a7582f7d9-f1aa3f45985e761e5c9a",
+          "file": "part2/rbac.spec.ts",
+          "line": 305,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "part2/workflow.spec.ts",
+      "file": "part2/workflow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-WORKFLOW-01 SV-01 approval, issue and citizen download",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "b9cf33b7cf35705c8abf-9c579ca7861313d15c20",
+          "file": "part2/workflow.spec.ts",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "TC-WORKFLOW-02 SV-02 routes through head and back to the issuer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "b9cf33b7cf35705c8abf-0ace22799ca5f0bd803f",
+          "file": "part2/workflow.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "TC-WORKFLOW-03 SV-03 passes registry, works and head in order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "b9cf33b7cf35705c8abf-4b2285e3179e409ec034",
+          "file": "part2/workflow.spec.ts",
+          "line": 124,
+          "column": 1
+        },
+        {
+          "title": "TC-WORKFLOW-04 two returns and valid decisions after the limit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "b9cf33b7cf35705c8abf-1660c86eebe8e45a0477",
+          "file": "part2/workflow.spec.ts",
+          "line": 173,
+          "column": 1
+        },
+        {
+          "title": "TC-WORKFLOW-05 return and reject reasons count trimmed characters",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "b9cf33b7cf35705c8abf-91847330c26b62873cf4",
+          "file": "part2/workflow.spec.ts",
+          "line": 211,
+          "column": 1
+        },
+        {
+          "title": "TC-WORKFLOW-06 correction expires at exactly 168 hours",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "b9cf33b7cf35705c8abf-70918917e3cbdc847aaf",
+          "file": "part2/workflow.spec.ts",
+          "line": 253,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-21T07:27:02.854Z",
+    "duration": 686.6179999999999,
+    "expected": 0,
+    "skipped": 51,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

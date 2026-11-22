@@ -1,0 +1,23 @@
+{
+  "name": "egov-eservice-e2e",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Playwright E2E ของ e-Service เทศบาลในฝัน ตาม /workspace/egov-brief/TEST-PLAN.md",
+  "scripts": {
+    "test": "playwright test",
+    "test:part1": "playwright test tests/part1",
+    "list": "playwright test --list",
+    "typecheck": "tsc --noEmit",
+    "typecheck:part1": "tsc --noEmit -p tsconfig.part1.json",
+    "make-testfiles": "node fixtures/make-testfiles.cjs",
+    "report": "playwright show-report reports/html"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "1.65.1",
+    "@types/node": "^22.10.0",
+    "exceljs": "^4.4.0",
+    "pdf-parse": "^2.4.5",
+    "typescript": "5.9.3"
+  }
+}
