@@ -1,0 +1,260 @@
+[
+ {
+  "tc": "TC-AUTH-01",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 2.9s \u00b7 124 KB"
+ },
+ {
+  "tc": "TC-AUTH-02",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 2.0s \u00b7 181 KB"
+ },
+ {
+  "tc": "TC-AUTH-03",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 2.5s \u00b7 224 KB"
+ },
+ {
+  "tc": "TC-FEE-01",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 2.3s \u00b7 166 KB"
+ },
+ {
+  "tc": "TC-NOTI-01",
+  "status": "passed",
+  "gif": true,
+  "note": "4 context(s) \u00b7 9.7s \u00b7 279 KB"
+ },
+ {
+  "tc": "TC-NOTI-02",
+  "status": "passed",
+  "gif": true,
+  "note": "11 context(s) \u00b7 63.6s \u00b7 1710 KB"
+ },
+ {
+  "tc": "TC-PAY-01",
+  "status": "passed",
+  "gif": true,
+  "note": "screen frames from Playwright trace (5 frames) \u00b7 video was blank"
+ },
+ {
+  "tc": "TC-PAY-02",
+  "status": "passed",
+  "gif": true,
+  "note": "API-only test: GIF is a result card (no screen in video or trace)"
+ },
+ {
+  "tc": "TC-PAY-03",
+  "status": "passed",
+  "gif": true,
+  "note": "API-only test: GIF is a result card (no screen in video or trace)"
+ },
+ {
+  "tc": "TC-QUEUE-01",
+  "status": "passed",
+  "gif": true,
+  "note": "4 context(s) \u00b7 5.0s \u00b7 782 KB"
+ },
+ {
+  "tc": "TC-QUEUE-02",
+  "status": "passed",
+  "gif": true,
+  "note": "9 context(s) \u00b7 22.2s \u00b7 365 KB"
+ },
+ {
+  "tc": "TC-QUEUE-03",
+  "status": "passed",
+  "gif": true,
+  "note": "4 context(s) \u00b7 7.4s \u00b7 1036 KB"
+ },
+ {
+  "tc": "TC-SLA-01",
+  "status": "passed",
+  "gif": true,
+  "note": "9 context(s) \u00b7 27.0s \u00b7 1452 KB"
+ },
+ {
+  "tc": "TC-SLA-02",
+  "status": "passed",
+  "gif": true,
+  "note": "8 context(s) \u00b7 21.2s \u00b7 1129 KB"
+ },
+ {
+  "tc": "TC-SLA-03",
+  "status": "passed",
+  "gif": true,
+  "note": "5 context(s) \u00b7 12.4s \u00b7 953 KB"
+ },
+ {
+  "tc": "TC-SUBMIT-01",
+  "status": "passed",
+  "gif": true,
+  "note": "2 context(s) \u00b7 2.9s \u00b7 430 KB"
+ },
+ {
+  "tc": "TC-SUBMIT-02",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 1.8s \u00b7 196 KB"
+ },
+ {
+  "tc": "TC-UPLOAD-01",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 2.1s \u00b7 198 KB"
+ },
+ {
+  "tc": "TC-UPLOAD-02",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 1.9s \u00b7 172 KB"
+ },
+ {
+  "tc": "TC-AUDIT-01",
+  "status": "passed",
+  "gif": true,
+  "note": "6 context(s) \u00b7 19.6s \u00b7 508 KB"
+ },
+ {
+  "tc": "TC-AUDIT-02",
+  "status": "passed",
+  "gif": true,
+  "note": "2 context(s) \u00b7 2.7s \u00b7 127 KB"
+ },
+ {
+  "tc": "TC-AUDIT-03",
+  "status": "passed",
+  "gif": true,
+  "note": "5 context(s) \u00b7 14.8s \u00b7 241 KB"
+ },
+ {
+  "tc": "TC-DASH-01",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 1.6s \u00b7 154 KB"
+ },
+ {
+  "tc": "TC-DASH-02",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 2.9s \u00b7 233 KB"
+ },
+ {
+  "tc": "TC-DASH-04",
+  "status": "passed",
+  "gif": true,
+  "note": "3 context(s) \u00b7 6.9s \u00b7 394 KB"
+ },
+ {
+  "tc": "TC-DOC-01",
+  "status": "passed",
+  "gif": true,
+  "note": "4 context(s) \u00b7 5.7s \u00b7 210 KB"
+ },
+ {
+  "tc": "TC-DOC-02",
+  "status": "passed",
+  "gif": true,
+  "note": "1 context(s) \u00b7 1.2s \u00b7 48 KB"
+ },
+ {
+  "tc": "TC-DOC-03",
+  "status": "passed",
+  "gif": true,
+  "note": "10 context(s) \u00b7 11.0s \u00b7 394 KB"
+ },
+ {
+  "tc": "TC-NFR-01",
+  "status": "passed",
+  "gif": true,
+  "note": "8 context(s) \u00b7 36.7s \u00b7 2047 KB"
+ },
+ {
+  "tc": "TC-NFR-02",
+  "status": "passed",
+  "gif": true,
+  "note": "22 context(s) \u00b7 177.5s \u00b7 4735 KB"
+ },
+ {
+  "tc": "TC-PDPA-01",
+  "status": "passed",
+  "gif": true,
+  "note": "4 context(s) \u00b7 7.0s \u00b7 558 KB"
+ },
+ {
+  "tc": "TC-PDPA-02",
+  "status": "passed",
+  "gif": true,
+  "note": "API-only test: GIF is a result card (no screen in video or trace)"
+ },
+ {
+  "tc": "TC-PDPA-03",
+  "status": "passed",
+  "gif": true,
+  "note": "4 context(s) \u00b7 5.5s \u00b7 298 KB"
+ },
+ {
+  "tc": "TC-RBAC-01",
+  "status": "passed",
+  "gif": true,
+  "note": "screen frames from Playwright trace (2 frames) \u00b7 video was blank"
+ },
+ {
+  "tc": "TC-RBAC-02",
+  "status": "passed",
+  "gif": true,
+  "note": "3 context(s) \u00b7 4.9s \u00b7 333 KB"
+ },
+ {
+  "tc": "TC-RBAC-03",
+  "status": "passed",
+  "gif": true,
+  "note": "10 context(s) \u00b7 16.5s \u00b7 1356 KB"
+ },
+ {
+  "tc": "TC-RBAC-05",
+  "status": "passed",
+  "gif": true,
+  "note": "11 context(s) \u00b7 27.8s \u00b7 229 KB"
+ },
+ {
+  "tc": "TC-WORKFLOW-01",
+  "status": "passed",
+  "gif": true,
+  "note": "4 context(s) \u00b7 5.8s \u00b7 286 KB"
+ },
+ {
+  "tc": "TC-WORKFLOW-02",
+  "status": "passed",
+  "gif": true,
+  "note": "6 context(s) \u00b7 9.5s \u00b7 895 KB"
+ },
+ {
+  "tc": "TC-WORKFLOW-03",
+  "status": "passed",
+  "gif": true,
+  "note": "5 context(s) \u00b7 11.0s \u00b7 945 KB"
+ },
+ {
+  "tc": "TC-WORKFLOW-04",
+  "status": "passed",
+  "gif": true,
+  "note": "7 context(s) \u00b7 17.0s \u00b7 1352 KB"
+ },
+ {
+  "tc": "TC-WORKFLOW-05",
+  "status": "passed",
+  "gif": true,
+  "note": "screen frames from Playwright trace (24 frames) \u00b7 video was blank"
+ },
+ {
+  "tc": "TC-WORKFLOW-06",
+  "status": "passed",
+  "gif": true,
+  "note": "5 context(s) \u00b7 5.3s \u00b7 353 KB"
+ }
+]

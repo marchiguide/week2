@@ -1,0 +1,274 @@
+{
+ "goal": "สร้างเว็บ e-Service กลางของเทศบาลในฝันตามชุดโจทย์ /workspace/egov-brief ให้ตรง REQUIREMENTS CONTRACT TEST-DATA DECISIONS ครบทุกข้อ รันด้วย Docker Compose คำสั่งเดียว รองรับ TEST_MODE=1 และ BUG_MODE (B01–B12 ตาม BUGS.md) พร้อมชุด Playwright ครบ 51 TC ใน TEST-PLAN.md",
+ "name": "egov-eservice",
+ "blocks": [
+  {
+   "id": "B01",
+   "title": "โครงโปรเจกต์ + compose + DB + test hook",
+   "size": "L",
+   "depends_on": [],
+   "skill": "yolo",
+   "difficulty": 4,
+   "reads": [
+    "README.md §3 §6",
+    "CONTRACT.md §0 §1 §2.1 §4 §5 §6.6 §8",
+    "DECISIONS.md §0 §1 §11 §13 §15 §18 (reset · ขนาด request)",
+    "REQUIREMENTS.md §4 §3",
+    "TEST-DATA.md §1 §10 (โครงตารางเท่านั้น)"
+   ],
+   "detail": "อ่าน: README.md §3 §6 · CONTRACT.md §0 §1 §2.1 §4 §5 §6.6 §8 · DECISIONS.md §0 §1 §11 §13 §15 §18 (reset · ขนาด request) · REQUIREMENTS.md §4 §3 · TEST-DATA.md §1 §10 (โครงตารางเท่านั้น). ขอบเขต: เลือก stack Node 20 + Express + better-sqlite3 + หน้า HTML ฝั่งเซิร์ฟเวอร์ (EJS) · docker-compose.yml + Dockerfile (`docker compose up` คำสั่งเดียว พอร์ต 3000 · env TEST_MODE BUG_MODE DB_PATH) · app/server/index.js โหลด app/server/modules/*/index.js และ app/server/db/migrations/*.sql อัตโนมัติ (บล็อกอื่นเพิ่มไฟล์ของตัวเองโดยไม่แตะ index.js) · db/schema.sql ครบทุกตาราง (users citizens services holidays drafts files payments cases case_events documents notifications audit counters sessions) · lib/clock.js (นาฬิกาแช่แข็ง Asia/Bangkok ห้ามใช้ Date.now ในกฎ) · lib/bugs.js `bug('B03')` อ่าน BUG_MODE · lib/session.js + middleware requireRole/redirect /login/403 forbidden-msg/404 not-found-msg · lib/audit.js `logAudit()` append-only · lib/crypto.js AES-256-GCM เลขบัตร/เบอร์ · lib/format.js วันที่ พ.ศ. + data-iso + เงิน ฿1,010 + maskId · lib/notify-hook.js (stub ว่าง ให้ B08 เขียนทับ) · layout หัวหน้า testid ตาม §2.1 · error JSON {code,message} · body ≥ 6 MB · GET /api/health · modules/testhook: POST /api/test/reset (ล้าง session + เรียก app/server/seed/index.js ซึ่งตอนนี้เป็น stub) · GET/PUT /api/test/clock (400 INVALID_TIME) · TEST_MODE ไม่ตั้ง → /api/test/* 404 · ไฟล์ที่บล็อกนี้เขียน: docker-compose.yml Dockerfile app/package.json app/server/index.js app/server/lib/ app/server/db/schema.sql app/server/views/layout* app/server/modules/testhook/ app/server/seed/index.js (stub) app/README.md",
+   "output": "app/server/",
+   "done": "docker compose up แล้ว GET /api/health = {\"status\":\"ok\"} · TEST_MODE=1 POST /api/test/reset ได้ now=2026-12-01T09:00:00+07:00 · PUT/GET /api/test/clock ทำงาน · ไม่ตั้ง TEST_MODE → /api/test/reset 404",
+   "exclusive": false
+  },
+  {
+   "id": "B02",
+   "title": "ข้อมูล seed ตาม TEST-DATA",
+   "size": "L",
+   "depends_on": [
+    "B01"
+   ],
+   "skill": "review",
+   "difficulty": 4,
+   "reads": [
+    "TEST-DATA.md §1–§10 §12",
+    "DECISIONS.md §3 §6 §8 §12 §17 §18 (ทันกำหนด)",
+    "CONTRACT.md §3 §4"
+   ],
+   "detail": "อ่าน: TEST-DATA.md §1–§10 §12 · DECISIONS.md §3 §6 §8 §12 §17 §18 (ทันกำหนด) · CONTRACT.md §3 §4. ขอบเขต: เขียน seed ที่ reset เรียก: บัญชีประชาชน/เจ้าหน้าที่ (รหัสผ่าน Test@1234 แฮช · เลขบัตรเข้ารหัสด้วย lib/crypto) · บริการ 3 รายการ · วันหยุด 4 วัน · คำขอ 30 ใบ + ร่าง 2 ใบ ด้วยค่า dueAt closed_at owner returnCount ประวัติตีกลับ F01/F02 ตรงตัวตามตาราง (ใส่ค่าตรง ไม่คำนวณใหม่) · เอกสารที่ออกแล้ว 1 ใบ (HMAC ด้วยคีย์ทดสอบ) · payments/receipts · ตัวนับเลขถัดไปตาม §12 · audit/notifications ว่าง · เพิ่มสคริปต์ตรวจ seed เทียบตัวเลข §7 §9 (นับตรงจาก DB). แก้เฉพาะ app/server/seed/ (เขียนทับ stub ของ B01) ห้ามแก้ schema.sql — ถ้าต้องการคอลัมน์เพิ่มให้เพิ่ม app/server/db/migrations/seed.sql",
+   "output": "app/server/seed/",
+   "done": "หลัง reset: node app/server/seed/check.js ผ่าน = นับคำขอมีเลข 30 + ร่าง 2 · คิวทะเบียน 17 แถว โยธา 1 head 2 (TEST-DATA §9) · ตัวเลข Dashboard ธ.ค./พ.ย./ต.ค. ตรง §7 · เลขถัดไปตรง §12",
+   "exclusive": false
+  },
+  {
+   "id": "B03",
+   "title": "กฎตัวเลข: ค่าธรรมเนียม + วันทำการ/SLA",
+   "size": "M",
+   "depends_on": [
+    "B01"
+   ],
+   "skill": "review",
+   "difficulty": 4,
+   "reads": [
+    "DECISIONS.md §0 §3 §8 §18 (เพิ่ม/ลบวันหยุด · แก้ค่าธรรมเนียม)",
+    "REQUIREMENTS.md §2 (BR ค่าธรรมเนียม · SLA)",
+    "BUGS.md §2 (B01 B03 B04)",
+    "TEST-PLAN.md TC-FEE-01 TC-SLA-01 TC-SLA-02 TC-SLA-03 (ตารางค่าคาดหวังเท่านั้น)"
+   ],
+   "detail": "อ่าน: DECISIONS.md §0 §3 §8 §18 (เพิ่ม/ลบวันหยุด · แก้ค่าธรรมเนียม) · REQUIREMENTS.md §2 (BR ค่าธรรมเนียม · SLA) · BUGS.md §2 (B01 B03 B04) · TEST-PLAN.md TC-FEE-01 TC-SLA-01..03 (ตารางค่าคาดหวังเท่านั้น). ขอบเขต: ฟังก์ชันบริสุทธิ์ไม่มี HTTP: fee(serviceId, qty|area, serviceRow) + ข้อความ error ตรง CONTRACT §5 · isBusinessDay/nextBusinessDay (อ่านวันหยุดจาก DB) · d0(paidAt) ตัดรอบ 16:30:00 · dueAt(paidAt, sla) · extendDue(due, returnedAt, resubmittedAt) หยุดนับ · businessDaysLeft(now, due) · slaLevel(case, now) normal/near/overdue/paused/closed · isOnTime(closedAt, due) · ใส่ BUG_MODE B01 (>101) B03 (ไม่ข้ามวันหยุดในตาราง) B04 (ไม่หยุดนับ) ผ่าน lib/bugs.js · unit test ครบทุกแถวตัวอย่างใน DECISIONS §8. แก้เฉพาะ app/server/rules/",
+   "output": "app/server/rules/",
+   "done": "node --test app/server/rules ผ่าน: ค่าขอบ SV-03 0✗ 1/100→1000 101→1010 500→5000 501✗ · SV-01 0✗ 1→20 5→100 6✗ · 6 แถวกำหนดเสร็จใน DECISIONS §8 · ระดับเตือน อ.1–ศ.4 16:31 ตรง (BR ค่าธรรมเนียม/SLA)",
+   "exclusive": false
+  },
+  {
+   "id": "B04",
+   "title": "ยืนยันตัวตน ThaiD/SSO จำลอง + ลงทะเบียน",
+   "size": "M",
+   "depends_on": [
+    "B01"
+   ],
+   "skill": "cyolo",
+   "difficulty": 3,
+   "reads": [
+    "CONTRACT.md §1 §2.2 §2.3 §5 §6.1",
+    "DECISIONS.md §1 §2 §17",
+    "REQUIREMENTS.md §2 (BR OTP · เลขบัตร · มือถือ)",
+    "TEST-DATA.md §1"
+   ],
+   "detail": "อ่าน: CONTRACT.md §1 §2.2 §2.3 §5 §6.1 · DECISIONS.md §1 §2 §17 · REQUIREMENTS.md §2 (BR OTP · เลขบัตร · มือถือ) · TEST-DATA.md §1. ขอบเขต: หน้า /login (แท็บประชาชน + เจ้าหน้าที่) /register · API thaid/start (checksum 13 หลัก · 400 INVALID_ID) thaid/verify (OTP 123456 · ผิด 3 ครั้งล็อก 15 นาทีตามนาฬิกาทดสอบ 423 LOCKED) register (มือถือ · consent) staff/login (Audit STAFF_LOGIN) logout /api/me · redirect / ไปหน้าตั้งต้นตามบทบาท · ใช้ lib/session ของ B01 ไม่แก้มัน · ทำงานได้กับคีย์บอร์ดอย่างเดียว ทุกช่องมี label. แก้เฉพาะ app/server/modules/auth/",
+   "output": "app/server/modules/auth/",
+   "done": "เกณฑ์ TC-AUTH-01..04 ผ่านด้วย curl: เลขบัตร checksum ผิด → INVALID_ID · OTP ผิด 3 ครั้ง → 423 LOCKED และปลดหลัง 15 นาที · ลงทะเบียนครั้งแรก → /citizen · staff login แต่ละบทบาทได้ landing ตาม CONTRACT §1",
+   "exclusive": false
+  },
+  {
+   "id": "B05",
+   "title": "ประชาชน: ยื่นคำขอ ไฟล์แนบ ชำระเงิน ติดตาม",
+   "size": "L",
+   "depends_on": [
+    "B02",
+    "B03",
+    "B04"
+   ],
+   "skill": "yolo",
+   "difficulty": 4,
+   "reads": [
+    "CONTRACT.md §1 §2.4 §2.5 §2.6 §4 §5 §6.2 §6.7 §8 (payments)",
+    "DECISIONS.md §3 §4 §5 §6 §7 §9 (168 ชม.) §11 §18 (ไม่คืนเงิน · ยอดล็อก)",
+    "TEST-DATA.md §4.2 §11 §12",
+    "BUGS.md §2 (B02 B05 B06)"
+   ],
+   "detail": "อ่าน: CONTRACT.md §1 §2.4 §2.5 §2.6 §4 §5 §6.2 §6.7 §8 (payments) · DECISIONS.md §3 §4 §5 §6 §7 §9 (168 ชม.) §11 §18 (ไม่คืนเงิน · ยอดล็อก) · TEST-DATA.md §4.2 §11 §12 · BUGS.md §2 (B02 B05 B06). ขอบเขต: หน้า /citizen /citizen/new/:service (3 ขั้น · ?draft=) /citizen/cases/:caseNo · API drafts (fee จาก rules/ · ยอดล็อกตอนเข้า PENDING_PAYMENT) files (magic bytes PDF/JPG/PNG · ≤5,242,880 ไบต์ · ≤5 ไฟล์ · แบบแปลน PDF เท่านั้น) payment QR (อายุ < 15:00 นาที · QR ใหม่ ref ใหม่) POST /api/test/payments/:ref/pay (ยอดต้องพอดี · idempotent · ออก EG-/RC- ตามปี พ.ศ. ของเวลาชำระ ไม่ซ้ำเมื่อพร้อมกัน · dueAt จาก rules/) · GET /api/cases และ /api/cases/:caseNo (รูปแบบ §6.7 · citizen คนอื่น 404 · staff ได้ idMasked) · cancel (confirm + no-refund-note) · resubmit (extendDue · FIX_WINDOW_EXPIRED) · GET /api/cases/:caseNo/files /api/files/:id /api/documents/:docNo/pdf (สิทธิ์ตาม §18) · BUG_MODE B02 B05 B06. แก้เฉพาะ app/server/modules/citizen/ และ app/server/db/migrations/citizen.sql",
+   "output": "app/server/modules/citizen/",
+   "done": "เกณฑ์ TC-SUBMIT-01..03 TC-UPLOAD-01..02 TC-PAY-01..04 TC-RBAC-01 ผ่านด้วย curl: ไฟล์ 5,242,880 ✓ 5,242,881 → 400 ไฟล์ใหญ่เกิน 5 MB · QR 14:59 ✓ 15:00 → 410 · ชำระ 2027-01-01 00:00 → EG-2570-000001 · สมหญิงเปิดคำขอสมชาย → 404",
+   "exclusive": false
+  },
+  {
+   "id": "B06",
+   "title": "เจ้าหน้าที่/หัวหน้า: คิว รับเรื่อง ตีกลับ ส่งต่อ อนุมัติ",
+   "size": "L",
+   "depends_on": [
+    "B02",
+    "B03",
+    "B04"
+   ],
+   "skill": "yolo",
+   "difficulty": 4,
+   "reads": [
+    "CONTRACT.md §1 §2.6 §2.7 §2.8 §4 §5 §6.3 (ยกเว้น issue · notifications) §6.8",
+    "DECISIONS.md §1 §3 (routing) §5 §9 §10 (ผู้ลงนาม) §11 §18 (เพดาน 10 · ตีกลับครบ 2 · B08)",
+    "TEST-DATA.md §4.3 §4.4 §9",
+    "BUGS.md §2 (B07 B08 B09 B11 B12)"
+   ],
+   "detail": "อ่าน: CONTRACT.md §1 §2.6 §2.7 §2.8 §4 §5 §6.3 (ยกเว้น issue · notifications) §6.8 · DECISIONS.md §1 §3 (routing) §5 §9 §10 (ผู้ลงนาม) §11 §18 (เพดาน 10 · ตีกลับครบ 2 · B08) · TEST-DATA.md §4.3 §4.4 §9 · BUGS.md §2 (B07 B08 B09 B11 B12). ขอบเขต: หน้า /officer/queue (เรียงกำหนดเสร็จ→เลขคำขอ · เฉพาะแผนก · head อ่านอย่างเดียว · row-sla-level จาก rules/) /officer/cases/:caseNo (ปุ่มตามสถานะ: ไม่มี = ไม่ render) /head/approvals · API queue (ห้ามมี idNo/เลข 13 หลัก) claim (ทีละ 1 คนแบบ atomic · 409 ALREADY_CLAIMED · WORKLOAD_LIMIT 10) return (เหตุผล ≥10 · ≤2 ครั้ง · fixDeadline +168 ชม.) forward (routing อัตโนมัติ SV-02/03 · ขั้น 2/3 โยธา) approve/reject (SV-01 ผู้ถือ · SV-02/03 head เท่านั้น 403) unmask (เหตุผล + Audit UNMASK) · Audit CLAIM RETURN FORWARD APPROVE REJECT ผ่าน lib/audit · ปุ่ม issue-btn เรียก API ของ B07 · BUG_MODE B07 B08 B09 B11 B12. แก้เฉพาะ app/server/modules/officer/ และ app/server/db/migrations/officer.sql",
+   "output": "app/server/modules/officer/",
+   "done": "เกณฑ์ TC-QUEUE-01..03 TC-WORKFLOW-01..05 TC-PDPA-01..03 TC-RBAC-02 ผ่านด้วย curl: คิวทะเบียน 17 แถวลำดับตรง TEST-DATA §9.1 · รับซ้อน → 409 · ตีกลับครั้งที่ 3 → 409 RETURN_LIMIT · off.reg อนุมัติ SV-02 → 403 · unmask แล้ว audit มี UNMASK",
+   "exclusive": false
+  },
+  {
+   "id": "B07",
+   "title": "เอกสารดิจิทัล: ออกเอกสาร PDF HMAC + /verify",
+   "size": "M",
+   "depends_on": [
+    "B01",
+    "B02"
+   ],
+   "skill": "cyolo",
+   "difficulty": 3,
+   "reads": [
+    "CONTRACT.md §1 (/verify) §2.13 §6.3 (issue) §6.4 (verify) §8 (tamper)",
+    "DECISIONS.md §10 §18 (ผู้ออกเอกสาร · ปิดบังชื่อ · PDF ภาษาไทย)",
+    "TEST-DATA.md §5"
+   ],
+   "detail": "อ่าน: CONTRACT.md §1 (/verify) §2.13 §6.3 (issue) §6.4 (verify) §8 (tamper) · DECISIONS.md §10 §18 (ผู้ออกเอกสาร · ปิดบังชื่อ · PDF ภาษาไทย) · TEST-DATA.md §5. ขอบเขต: lib ออกเอกสาร DOC-<พ.ศ.>-<6 หลัก> · ลายเซ็น HMAC-SHA256 ลำดับฟิลด์คงที่ · รหัสตรวจสอบ 8 ตัว · วันหมดอายุ SV-01 90 วัน SV-02/03 1 ปี · PDF (มีเลขเอกสาร ASCII + QR ไป /verify/<รหัส>) · POST /api/officer/cases/:caseNo/issue (เฉพาะผู้ออกเอกสาร A-27 · APPROVED → COMPLETED · Audit ISSUE) · GET /api/verify/:code + หน้า /verify/:code ไม่ต้องล็อกอิน (VALID/EXPIRED/TAMPERED · ไม่พบ → 404 ไม่พบเอกสาร · ชื่อปิดบัง สมชาย ใ***) · POST /api/test/documents/:docNo/tamper. แก้เฉพาะ app/server/modules/documents/ และ app/server/db/migrations/documents.sql",
+   "output": "app/server/modules/documents/",
+   "done": "เกณฑ์ TC-DOC-01..03 ผ่านด้วย curl: เอกสาร seed → เอกสารถูกต้อง · CLOCK 1 มี.ค. 2570 สำหรับ SV-01 ออก 1 ธ.ค. → เอกสารหมดอายุ · tamper → ลายเซ็นไม่ถูกต้อง · รหัสไม่มี → 404",
+   "exclusive": false
+  },
+  {
+   "id": "B08",
+   "title": "แจ้งเตือน SLA + ยกเลิกอัตโนมัติ 168 ชม.",
+   "size": "M",
+   "depends_on": [
+    "B02",
+    "B03"
+   ],
+   "skill": "review",
+   "difficulty": 4,
+   "reads": [
+    "CONTRACT.md §0 (ข้อ 7) §2.12 §6.3 (notifications)",
+    "DECISIONS.md §8 (ระดับเตือน · การแจ้งเตือน) §9 (เวลาแก้ไข) §18 (ผู้รับแจ้งเตือน)",
+    "REQUIREMENTS.md §6 (A-30 A-31)",
+    "TEST-DATA.md §8"
+   ],
+   "detail": "อ่าน: CONTRACT.md §0 (ข้อ 7) §2.12 §6.3 (notifications) · DECISIONS.md §8 (ระดับเตือน · การแจ้งเตือน) §9 (เวลาแก้ไข) §18 (ผู้รับแจ้งเตือน) · REQUIREMENTS.md §6 (A-30 A-31) · TEST-DATA.md §8. ขอบเขต: เขียนทับ app/server/lib/notify-hook.js (B01 เรียกทุก request ยกเว้น /api/test/*): ประเมินระดับเตือนด้วย rules/ ตามนาฬิกาปัจจุบัน · สร้างแจ้งเตือน near/overdue ครั้งเดียวต่อระดับ (ไม่ซ้ำ · ข้ามระดับได้) ส่งผู้ถือ/ทั้งแผนก/head/ผู้ออกเอกสารตาม §18 · ยกเลิก NEED_FIX ที่เลย 168:00 ชม. อัตโนมัติ · หน้า /notifications + GET /api/notifications (ของผู้ใช้นั้นเท่านั้น) · bell-count. แก้เฉพาะ app/server/lib/notify-hook.js app/server/modules/notifications/ app/server/db/migrations/notifications.sql",
+   "output": "app/server/modules/notifications/",
+   "done": "เกณฑ์ TC-NOTI-01..02 TC-WORKFLOW-06 ผ่าน: request แรกหลัง reset ที่ ส. 5 ธ.ค. 10:00 ได้ชุดแจ้งเตือนตรง TEST-DATA §8.1 · เรียกซ้ำไม่เพิ่ม · ตีกลับ +167:59 ส่งแก้ได้ +168:00 สถานะ CANCELLED",
+   "exclusive": false
+  },
+  {
+   "id": "B09",
+   "title": "Dashboard + ส่งออก xlsx/pdf",
+   "size": "M",
+   "depends_on": [
+    "B02",
+    "B03",
+    "B04"
+   ],
+   "skill": "review",
+   "difficulty": 4,
+   "reads": [
+    "CONTRACT.md §2.9 §6.4 (dashboard) §7 (xlsx pdf)",
+    "DECISIONS.md §12 §18 (ทันกำหนด · ผู้บริหารไม่เห็นข้อมูลส่วนบุคคล)",
+    "TEST-DATA.md §7",
+    "BUGS.md §2 (B10)"
+   ],
+   "detail": "อ่าน: CONTRACT.md §2.9 §6.4 (dashboard) §7 (xlsx pdf) · DECISIONS.md §12 §18 (ทันกำหนด · ผู้บริหารไม่เห็นข้อมูลส่วนบุคคล) · TEST-DATA.md §7 · BUGS.md §2 (B10). ขอบเขต: หน้า /dashboard (ตัวกรองเดือน ค่าเริ่มต้น = เดือนของนาฬิกา + บริการ ALL/SV-01/02/03 · รายปี = รวมแล้วคิด % ไม่เฉลี่ย · ปิดงาน 0 → – · ปัดครึ่งขึ้น 1 ตำแหน่ง · ทันกำหนด = closed_at ≤ dueAt รวม 16:30:00 · CANCELLED นับรับเรื่องไม่นับปิดงาน) · GET /api/dashboard · export xlsx (ชีตแรกตาม §7) และ pdf (บรรทัด kpi ASCII) ตัวเลขเท่าบนจอ · Audit EXPORT detail `xlsx 2026-11 ALL` · ไม่มีชื่อ/เลขบัตร/เบอร์ในหน้าและไฟล์ · BUG_MODE B10. แก้เฉพาะ app/server/modules/dashboard/",
+   "output": "app/server/modules/dashboard/",
+   "done": "เกณฑ์ TC-DASH-01..04 ผ่าน: หลัง reset ธ.ค. ALL ตรง TEST-DATA §7.1 · พ.ย. received=26 closed=7 onTime=6 ontimePct=85.7 · ปี 2569 = 87.5% · xlsx/pdf ตัวเลขเท่าจอ · ปิด 16:30:00 ทัน 16:30:01 ไม่ทัน",
+   "exclusive": false
+  },
+  {
+   "id": "B10",
+   "title": "Audit Trail + ผู้ดูแลระบบ",
+   "size": "M",
+   "depends_on": [
+    "B01",
+    "B02",
+    "B04"
+   ],
+   "skill": "cyolo",
+   "difficulty": 3,
+   "reads": [
+    "CONTRACT.md §2.10 §2.11 §5 §6.4 (audit) §6.5 §6.8 §7 (csv)",
+    "DECISIONS.md §1 §13 §18 (แก้ค่าธรรมเนียมระหว่างทาง · ขอบค่าที่ admin แก้ได้)",
+    "TEST-DATA.md §2 §3 §10"
+   ],
+   "detail": "อ่าน: CONTRACT.md §2.10 §2.11 §5 §6.4 (audit) §6.5 §6.8 §7 (csv) · DECISIONS.md §1 §13 §18 (แก้ค่าธรรมเนียมระหว่างทาง · ขอบค่าที่ admin แก้ได้) · TEST-DATA.md §2 §3 §10. ขอบเขต: หน้า /audit (กรองผู้ทำ เหตุการณ์ ช่วงวันที่รวมทั้งสองวันตามเวลาไทย · ใหม่→เก่า) · GET /api/audit · export.csv (หัวคอลัมน์ §7 · Audit EXPORT audit-csv) · PUT/PATCH/DELETE /api/audit และ /api/audit/:id → 405 ทุกบทบาท · หน้า /admin/services /admin/holidays /admin/users + API (fee 0–100,000 · SLA 1–60 · DUPLICATE_HOLIDAY · SELF_ROLE_CHANGE · Audit ADMIN_CHANGE detail ตาม §6.8) · admin เรียก API ทำรายการคำขอ → 403 (ตรวจใน lib ของ B01 อยู่แล้ว ห้ามแก้). แก้เฉพาะ app/server/modules/audit/ และ app/server/modules/admin/",
+   "output": "app/server/modules/admin/",
+   "done": "เกณฑ์ TC-AUDIT-01..03 TC-RBAC-04 TC-RBAC-06 ผ่านด้วย curl: DELETE /api/audit/999 → 405 · กรอง from=to=2026-12-01 นับรวมทั้งวัน · fee -1/100,001 → INVALID_FEE · SLA 0/61 → INVALID_SLA · แก้ fee แล้ว audit มี `SV-01 fee 20 → 25`",
+   "exclusive": false
+  },
+  {
+   "id": "B11",
+   "title": "Playwright ชุด 1: ตั้งค่า + AUTH FEE SUBMIT UPLOAD PAY QUEUE SLA NOTI",
+   "size": "L",
+   "depends_on": [],
+   "skill": "yolo",
+   "difficulty": 3,
+   "reads": [
+    "TEST-PLAN.md §0 §1 §2–§9 (TC-AUTH-01..04 TC-FEE-01 TC-SUBMIT-01..03 TC-UPLOAD-01..02 TC-PAY-01..04 TC-QUEUE-01..03 TC-SLA-01..03 TC-NOTI-01..02)",
+    "CONTRACT.md §1 §2 §4 §5 §6 §8",
+    "TEST-DATA.md §1 §4 §8 §9 §11 §12"
+   ],
+   "detail": "อ่าน: TEST-PLAN.md §0 §1 §2–§9 (TC-AUTH-01..04 TC-FEE-01 TC-SUBMIT-01..03 TC-UPLOAD-01..02 TC-PAY-01..04 TC-QUEUE-01..03 TC-SLA-01..03 TC-NOTI-01..02) · CONTRACT.md §1 §2 §4 §5 §6 §8 · TEST-DATA.md §1 §4 §8 §9 §11 §12. ห้ามอ่านโค้ดเว็บใน app/server/ (เขียนจากสัญญาเท่านั้น). ขอบเขต: app/e2e/package.json playwright.config.ts (BASE_URL · testDir tests · workers 1 เพราะ reset ล้างทั้งระบบ · reporter json+html) · app/e2e/helpers/ (RESET CLOCK LOGIN_C LOGIN_S NEW_PAID ตาม §0) · app/e2e/fixtures/ สร้างไฟล์ทดสอบตาม TEST-DATA §11 · 22 TC ใน app/e2e/tests/part1/*.spec.ts ชื่อ test ขึ้นต้นด้วยรหัส TC · ทุก TC เริ่มด้วย RESET และล็อกอินใหม่. แก้เฉพาะ app/e2e/ ยกเว้น app/e2e/tests/part2/",
+   "output": "app/e2e/tests/part1/",
+   "done": "npx playwright test --list ใน app/e2e แสดงครบ 22 TC ของชุด 1 (ชื่อขึ้นต้นด้วยรหัส TC) และ tsc --noEmit ไม่มี error",
+   "exclusive": false
+  },
+  {
+   "id": "B12",
+   "title": "Playwright ชุด 2: WORKFLOW DOC PDPA DASH AUDIT RBAC NFR",
+   "size": "L",
+   "depends_on": [],
+   "skill": "cyolo",
+   "difficulty": 3,
+   "reads": [
+    "TEST-PLAN.md §0 §1 §10–§16 (TC-WORKFLOW-01..06 TC-DOC-01..03 TC-PDPA-01..03 TC-DASH-01..04 TC-AUDIT-01..03 TC-RBAC-01..06 TC-NFR-01..04)",
+    "CONTRACT.md §1 §2 §4 §5 §6 §7 §8",
+    "TEST-DATA.md §1 §4 §5 §7 §9 §10"
+   ],
+   "detail": "อ่าน: TEST-PLAN.md §0 §1 §10–§16 (TC-WORKFLOW-01..06 TC-DOC-01..03 TC-PDPA-01..03 TC-DASH-01..04 TC-AUDIT-01..03 TC-RBAC-01..06 TC-NFR-01..04) · CONTRACT.md §1 §2 §4 §5 §6 §7 §8 · TEST-DATA.md §1 §4 §5 §7 §9 §10. ห้ามอ่านโค้ดเว็บใน app/server/ และไม่รอบล็อก B11: ใช้ helper ของตัวเองใน app/e2e/tests/part2/_helpers.ts (สูตร RESET CLOCK LOGIN_C LOGIN_S NEW_PAID ตาม TEST-PLAN §0) · 29 TC ใน app/e2e/tests/part2/*.spec.ts ชื่อ test ขึ้นต้นด้วยรหัส TC · NFR ใช้ @axe-core/playwright + viewport 375/768/1280 · TC-NFR-04 อ่าน DB_PATH (inspection: ไม่พบเลข 13 หลักตรง ๆ) · อ่าน xlsx ด้วยไลบรารี (ระบุ dependency ไว้ใน app/e2e/tests/part2/DEPS.md ให้บล็อกรวมเพิ่มใน package.json ไม่แก้ package.json เอง). แก้เฉพาะ app/e2e/tests/part2/",
+   "output": "app/e2e/tests/part2/",
+   "done": "ไฟล์ spec ใน app/e2e/tests/part2 ครอบคลุมครบ 29 TC ของชุด 2 (grep รหัส TC ได้ 29 รหัสไม่ซ้ำ) และ tsc --noEmit ผ่านเมื่อวางคู่กับ config ของ B11",
+   "exclusive": false
+  },
+  {
+   "id": "B13",
+   "title": "รวมระบบ + รัน Playwright เต็ม + BUG_MODE B01–B12",
+   "size": "L",
+   "depends_on": [
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B09",
+    "B10",
+    "B11",
+    "B12"
+   ],
+   "skill": "yolo",
+   "difficulty": 4,
+   "reads": [
+    "README.md §2 §6",
+    "BUGS.md §1–§6",
+    "TEST-PLAN.md §1 §17 §18",
+    "CONTRACT.md §8"
+   ],
+   "detail": "อ่าน: README.md §2 §6 · BUGS.md §1–§6 · TEST-PLAN.md §1 §17 §18 · CONTRACT.md §8. ขอบเขต: `docker compose up --build` ด้วย TEST_MODE=1 BUG_MODE= แล้วรัน app/e2e ครบ 51 TC (รวม DEPS.md ของ B12 เข้า app/e2e/package.json) · แก้จุดที่ไม่ตรงสัญญา (แก้เว็บให้ตรง CONTRACT ไม่แก้ test ให้ผ่าน เว้นแต่ test ขัดกับ TEST-PLAN ชัดเจน · จดทุกการแก้) · จากนั้นรันชุดเต็มซ้ำทีละ BUG_MODE=B01…B12 · บันทึกตาราง BUGS §4 (TC ที่ต้องล้มล้มจริง · ที่เหลือผ่าน) + triage ตาม §5 · สคริปต์ app/scripts/run-bugs.sh. บล็อกนี้รันคนเดียว แก้ได้ทุกไฟล์ใน app/",
+   "output": "app/TEST-REPORT.md",
+   "done": "app/TEST-REPORT.md แสดง BUG_MODE ว่าง = 51/51 ผ่าน และแต่ละ B01–B12 มี TC ที่ BUGS.md §2 ระบุว่าต้องล้มล้มจริง พร้อมตาราง triage ครบ 12 แถว",
+   "exclusive": true
+  }
+ ]
+}
