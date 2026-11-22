@@ -99,3 +99,52 @@
 ### 6.4 หลังรัน: เปลี่ยนชื่อหน่วยงาน
 
 เปลี่ยนชื่อหน่วยงานสมมติจาก "เทศบาลนครสุขใจ" เป็น "เทศบาลในฝัน" ใน `blocks.json` · `plan.json` · PLAN.md · ภาพ DAG/Gantt · README · TEST-REPORT และโค้ดเว็บ 10 ไฟล์ (หัวเว็บ · แท็บ · ท้ายหน้า · PDF · คอมเมนต์) · build ใหม่แล้วรัน Playwright ผ่าน 51/51 · ชุดโจทย์ `egov-brief` ยังใช้ชื่อเดิม
+
+### 6.5 หลังตรวจทาน: จับคู่ FR → บล็อก (ช่อง `fr` ใน `blocks.json`)
+
+ร่างแรกของ `blocks.json` อ้างหัวข้อใน CONTRACT/DECISIONS และรหัส TC แต่ไม่มีรหัส FR ทำให้ตรวจข้อ "ทุก FR ใน REQUIREMENTS มีบล็อกที่ทำ" (PROMPTS ขั้น 2) จากไฟล์โดยตรงไม่ได้ · เพิ่มช่อง `fr` ให้ทุกบล็อกหลังรันเสร็จ โดยตรวจกับโค้ดจริงใน `app/app/server/` ว่า route/ฟังก์ชันของ FR นั้นอยู่ในโมดูลของบล็อกไหน · ช่องนี้เป็นเอกสาร ไม่กระทบ rank สายวิกฤต การแจกงาน หรือ `graph.json` ที่รันไปแล้ว
+
+| FR | ความต้องการ (ย่อ) | บล็อก | หลักฐานในโค้ด |
+|---|---|---|---|
+| FR-01 | ล็อกอินประชาชน ThaiD + OTP | B04 | `modules/auth` |
+| FR-02 | ลงทะเบียนครั้งแรก | B04 | `modules/auth` |
+| FR-03 | ล็อกอินเจ้าหน้าที่ + RBAC | B04 · B01 | `modules/auth` · `lib/session.js` (`requireRole`) |
+| FR-04 | บริการ 3 รายการ + คำนวณค่าธรรมเนียม | B05 · B03 | `modules/citizen/service.js` · `rules/` |
+| FR-05 | แนบไฟล์ ตรวจชนิดจากเนื้อไฟล์ | B05 | `modules/citizen` · `lib/upload.js` |
+| FR-06 | เอกสารบังคับครบก่อนชำระ | B05 | `modules/citizen` |
+| FR-07 | บันทึกร่าง | B05 | `/api/drafts` ใน `modules/citizen` |
+| FR-08 | ชำระ QR ออกเลขคำขอ/ใบเสร็จ | B05 | `modules/citizen` |
+| FR-09 | ประชาชนดูคำขอของตัวเอง | B05 | `/api/cases` ใน `modules/citizen` |
+| FR-10 | ยกเลิกคำขอ / ลบร่าง | B05 | `/cancel` ใน `modules/citizen` |
+| FR-11 | ส่งแก้ไขภายใน 168 ชม. / ยกเลิกอัตโนมัติ | B05 · B08 | `/resubmit` ใน `modules/citizen` · ยกเลิกอัตโนมัติใน `lib/notify-hook.js` |
+| FR-12 | คิวงานแยกแผนก | B06 | `/api/officer/queue` |
+| FR-13 | รับเรื่อง | B06 | `modules/officer` |
+| FR-14 | ตีกลับ ≤ 2 ครั้ง | B06 | `modules/officer` |
+| FR-15 | ส่งต่ออัตโนมัติตามเส้นทาง | B06 | `/forward` ใน `modules/officer` |
+| FR-16 | อนุมัติ/ไม่อนุมัติตามอำนาจ | B06 | `/approve` ใน `modules/officer` |
+| FR-17 | ออกเอกสารดิจิทัล + PDF | B07 | `/issue` ใน `modules/documents` |
+| FR-18 | หน้า `/verify` | B07 | `modules/documents` |
+| FR-19 | กำหนดเสร็จ + ระดับเตือน | B03 · B05 · B06 | `rules/` (คำนวณ) · คำนวณตอนชำระใน `citizen/service.js` · แสดงในคิว `officer` |
+| FR-20 | แจ้งเตือนกระดิ่ง | B08 | `modules/notifications` · `lib/notify-hook.js` |
+| FR-21 | ปิดบังเลขบัตร + แสดงเลขเต็มพร้อมเหตุผล | B06 | `/unmask` ใน `modules/officer` |
+| FR-22 | Dashboard | B09 | `modules/dashboard` |
+| FR-23 | ส่งออก Excel / PDF | B09 | `/api/dashboard/export` |
+| FR-24 | Audit Trail | B10 | `modules/audit` |
+| FR-25 | ผู้ดูแลแก้ค่าธรรมเนียม/SLA | B10 | `/api/admin/services` |
+| FR-26 | ผู้ดูแลจัดการวันหยุด | B10 | `/api/admin/holidays` |
+| FR-27 | ผู้ดูแลจัดการผู้ใช้/บทบาท | B10 | `/api/admin/users` |
+| FR-28 | `/api/health` + test hook | B01 · B02 | `modules/testhook` · `lib/reset.js` · seed ที่ reset เรียก |
+| FR-29 | เจ้าหน้าที่เปิดไฟล์แนบ | B05 · B06 | `/files` ใน `modules/citizen` และ `modules/officer` |
+
+ผล: **ครบ 29/29 FR** · B11 · B12 · B13 ไม่ได้ทำ FR โดยตรง (ช่อง `fr` ว่าง) แต่พิสูจน์ทุก FR ผ่าน TC ตามตาราง BR → TC ใน TEST-PLAN
+
+### 6.6 ข้อจำกัดที่พบตอนตรวจทาน: ไฟล์ stub ที่สองบล็อกเขียน
+
+ข้อ "ไม่มีสองบล็อกที่เขียนไฟล์เดียวกัน" (PROMPTS ขั้น 2) **ไม่ผ่านตามตัวอักษร** ช่อง `output` ไม่ซ้ำกัน แต่ใน `detail` มีไฟล์ 2 ไฟล์ที่ออกแบบให้ B01 สร้างเป็น stub แล้วบล็อกเจ้าของเขียนทับ และ `output` ของ B01 (`app/server/`) ครอบโฟลเดอร์ของบล็อกอื่น
+
+| ไฟล์ | B01 ทำอะไร | บล็อกที่เขียนทับ | ทำไมไม่ชนกันตอนรัน |
+|---|---|---|---|
+| `app/server/seed/index.js` | stub ว่างให้ `POST /api/test/reset` เรียกได้ตั้งแต่แรก | B02 (seed ตาม TEST-DATA) | B02 รอ B01 จบก่อน (`depends_on`) |
+| `app/server/lib/notify-hook.js` | stub ว่างที่ทุก request เรียก (ยกเว้น `/api/test/*`) | B08 (แจ้งเตือน + ยกเลิกอัตโนมัติ 168 ชม.) | B08 รอ B02 · B03 ซึ่งรอ B01 อีกที |
+
+ไม่มีครั้งไหนที่สองบล็อกเขียนไฟล์เดียวกันพร้อมกัน และหลังรันจริงทั้งสองไฟล์เป็นของบล็อกเจ้าของ (ผ่าน TC-NOTI-01/02 · TC-WORKFLOW-06 และ seed ตรง TEST-DATA) · ถ้าวางแผนใหม่ ควรให้ B01 สร้างเฉพาะจุดเรียก (ไม่สร้างไฟล์) แล้วให้ B02/B08 เป็นเจ้าของไฟล์ตั้งแต่ต้น และใส่ `output` ของ B01 เป็นรายการไฟล์ของ B01 เอง (เช่น `app/server/index.js` `app/server/lib/` `docker-compose.yml`) แทนทั้งโฟลเดอร์ `app/server/`

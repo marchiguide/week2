@@ -8,6 +8,10 @@
    "size": "L",
    "depends_on": [],
    "skill": "yolo",
+   "fr": [
+    "FR-03",
+    "FR-28"
+   ],
    "difficulty": 4,
    "reads": [
     "README.md §3 §6",
@@ -29,6 +33,9 @@
     "B01"
    ],
    "skill": "review",
+   "fr": [
+    "FR-28"
+   ],
    "difficulty": 4,
    "reads": [
     "TEST-DATA.md §1–§10 §12",
@@ -48,6 +55,10 @@
     "B01"
    ],
    "skill": "review",
+   "fr": [
+    "FR-04",
+    "FR-19"
+   ],
    "difficulty": 4,
    "reads": [
     "DECISIONS.md §0 §3 §8 §18 (เพิ่ม/ลบวันหยุด · แก้ค่าธรรมเนียม)",
@@ -68,6 +79,11 @@
     "B01"
    ],
    "skill": "cyolo",
+   "fr": [
+    "FR-01",
+    "FR-02",
+    "FR-03"
+   ],
    "difficulty": 3,
    "reads": [
     "CONTRACT.md §1 §2.2 §2.3 §5 §6.1",
@@ -90,6 +106,18 @@
     "B04"
    ],
    "skill": "yolo",
+   "fr": [
+    "FR-04",
+    "FR-05",
+    "FR-06",
+    "FR-07",
+    "FR-08",
+    "FR-09",
+    "FR-10",
+    "FR-11",
+    "FR-19",
+    "FR-29"
+   ],
    "difficulty": 4,
    "reads": [
     "CONTRACT.md §1 §2.4 §2.5 §2.6 §4 §5 §6.2 §6.7 §8 (payments)",
@@ -112,6 +140,16 @@
     "B04"
    ],
    "skill": "yolo",
+   "fr": [
+    "FR-12",
+    "FR-13",
+    "FR-14",
+    "FR-15",
+    "FR-16",
+    "FR-19",
+    "FR-21",
+    "FR-29"
+   ],
    "difficulty": 4,
    "reads": [
     "CONTRACT.md §1 §2.6 §2.7 §2.8 §4 §5 §6.3 (ยกเว้น issue · notifications) §6.8",
@@ -133,6 +171,10 @@
     "B02"
    ],
    "skill": "cyolo",
+   "fr": [
+    "FR-17",
+    "FR-18"
+   ],
    "difficulty": 3,
    "reads": [
     "CONTRACT.md §1 (/verify) §2.13 §6.3 (issue) §6.4 (verify) §8 (tamper)",
@@ -153,6 +195,10 @@
     "B03"
    ],
    "skill": "review",
+   "fr": [
+    "FR-11",
+    "FR-20"
+   ],
    "difficulty": 4,
    "reads": [
     "CONTRACT.md §0 (ข้อ 7) §2.12 §6.3 (notifications)",
@@ -175,6 +221,10 @@
     "B04"
    ],
    "skill": "review",
+   "fr": [
+    "FR-22",
+    "FR-23"
+   ],
    "difficulty": 4,
    "reads": [
     "CONTRACT.md §2.9 §6.4 (dashboard) §7 (xlsx pdf)",
@@ -197,6 +247,12 @@
     "B04"
    ],
    "skill": "cyolo",
+   "fr": [
+    "FR-24",
+    "FR-25",
+    "FR-26",
+    "FR-27"
+   ],
    "difficulty": 3,
    "reads": [
     "CONTRACT.md §2.10 §2.11 §5 §6.4 (audit) §6.5 §6.8 §7 (csv)",
@@ -214,6 +270,7 @@
    "size": "L",
    "depends_on": [],
    "skill": "yolo",
+   "fr": [],
    "difficulty": 3,
    "reads": [
     "TEST-PLAN.md §0 §1 §2–§9 (TC-AUTH-01..04 TC-FEE-01 TC-SUBMIT-01..03 TC-UPLOAD-01..02 TC-PAY-01..04 TC-QUEUE-01..03 TC-SLA-01..03 TC-NOTI-01..02)",
@@ -231,6 +288,7 @@
    "size": "L",
    "depends_on": [],
    "skill": "cyolo",
+   "fr": [],
    "difficulty": 3,
    "reads": [
     "TEST-PLAN.md §0 §1 §10–§16 (TC-WORKFLOW-01..06 TC-DOC-01..03 TC-PDPA-01..03 TC-DASH-01..04 TC-AUDIT-01..03 TC-RBAC-01..06 TC-NFR-01..04)",
@@ -258,6 +316,7 @@
     "B12"
    ],
    "skill": "yolo",
+   "fr": [],
    "difficulty": 4,
    "reads": [
     "README.md §2 §6",
