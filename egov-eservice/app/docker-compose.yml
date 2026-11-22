@@ -1,0 +1,23 @@
+# One command:            docker compose up --build
+# Test hooks on:          TEST_MODE=1 docker compose up --build
+# With a bug switched on: TEST_MODE=1 BUG_MODE=B03 docker compose up --build
+# The SQLite file is bind-mounted: container /data/egov.db  ==  host ./data/egov.db  (TC-NFR-04 inspection)
+name: egov-eservice
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: egov-eservice-web:latest
+    init: true
+    ports:
+      - "${HOST_PORT:-3000}:3000"
+    environment:
+      TEST_MODE: ${TEST_MODE:-}          # "1" → /api/test/* + frozen clock · unset → /api/test/* 404
+      BUG_MODE: ${BUG_MODE:-}            # e.g. "B03,B07" · unset → correct app
+      DB_PATH: /data/egov.db             # path inside the container (host: ./data/egov.db)
+      LOG_REQUESTS: ${LOG_REQUESTS:-}
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
