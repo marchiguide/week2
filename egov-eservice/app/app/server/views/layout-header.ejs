@@ -1,0 +1,34 @@
+<%
+  // Header of CONTRACT §2.1 — testids only when logged in (staff, or registered citizen).
+  var loggedIn = !!(user && (user.kind === 'staff' || user.registered));
+  var r = loggedIn ? user.role : null;
+  var isStaffDesk = r === 'officer' || r === 'head';
+%>
+  <header class="app-header"<% if (loggedIn) { %> data-testid="app-header"<% } %>>
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">ฝัน</span><span>e-Service เทศบาลในฝัน</span></a>
+<% if (loggedIn) { %>
+      <nav class="main-nav" aria-label="เมนูหลัก">
+        <ul>
+<% if (r === 'citizen') { %>          <li><a data-testid="nav-my-cases" href="/citizen"<%- currentPath === '/citizen' ? ' aria-current="page"' : '' %>>คำขอของฉัน</a></li>
+<% } %><% if (isStaffDesk) { %>          <li><a data-testid="nav-queue" href="/officer/queue"<%- currentPath === '/officer/queue' ? ' aria-current="page"' : '' %>>คิวงาน</a></li>
+<% } %><% if (r === 'head') { %>          <li><a data-testid="nav-approvals" href="/head/approvals"<%- currentPath === '/head/approvals' ? ' aria-current="page"' : '' %>>รออนุมัติ</a></li>
+<% } %><% if (isStaffDesk) { %>          <li><a data-testid="nav-bell" href="/notifications" class="nav-bell"<%- currentPath === '/notifications' ? ' aria-current="page"' : '' %>>แจ้งเตือน <span data-testid="bell-count" class="badge"><%= bellCount == null ? 0 : bellCount %></span></a></li>
+<% } %><% if (r === 'executive') { %>          <li><a data-testid="nav-dashboard" href="/dashboard"<%- currentPath === '/dashboard' ? ' aria-current="page"' : '' %>>Dashboard</a></li>
+<% } %><% if (r === 'auditor') { %>          <li><a data-testid="nav-audit" href="/audit"<%- currentPath === '/audit' ? ' aria-current="page"' : '' %>>Audit Trail</a></li>
+<% } %><% if (r === 'admin') { %>          <li><a data-testid="nav-admin-services" href="/admin/services"<%- currentPath === '/admin/services' ? ' aria-current="page"' : '' %>>บริการ</a></li>
+          <li><a data-testid="nav-admin-holidays" href="/admin/holidays"<%- currentPath === '/admin/holidays' ? ' aria-current="page"' : '' %>>วันหยุด</a></li>
+          <li><a data-testid="nav-admin-users" href="/admin/users"<%- currentPath === '/admin/users' ? ' aria-current="page"' : '' %>>ผู้ใช้</a></li>
+<% } %>        </ul>
+      </nav>
+      <div class="user-box">
+        <span class="user-ident">
+          <span data-testid="user-name" class="user-name"><%= user.name %></span>
+          <span data-testid="user-role" class="user-role" data-role="<%= r %>"<% if (r === 'officer' && user.dept) { %> data-dept="<%= user.dept %>"<% } %>><%= fmt.roleText(r) %></span><% if (r === 'officer' && user.dept) { %>
+          <span class="user-dept">ฝ่าย<%= fmt.deptText(user.dept) %></span><% } %>
+        </span>
+        <button type="button" class="btn btn-secondary btn-sm" data-testid="logout-btn" data-logout>ออกจากระบบ</button>
+      </div>
+<% } %>
+    </div>
+  </header>

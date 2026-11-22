@@ -1,0 +1,61 @@
+<form id="dashboard-filters" class="card dashboard-filters" method="get" action="/dashboard">
+  <p id="dashboard-filter-hint" class="muted">หน้าเว็บจะอัปเดตเมื่อเปลี่ยนช่วงเวลาหรือบริการ</p>
+  <div class="dashboard-filter-fields">
+    <div>
+      <label for="period-select">ช่วงเวลา</label>
+      <select id="period-select" name="period" data-testid="period-select" aria-describedby="dashboard-filter-hint">
+        <% for (const year of years) { %>
+          <optgroup label="ปี <%= Number(year) + 543 %>">
+            <option value="<%= year %>" <%= filters.period === year ? 'selected' : '' %>>ทั้งปี <%= Number(year) + 543 %></option>
+            <% for (let month = 12; month >= 1; month--) { %>
+              <% const value = `${year}-${String(month).padStart(2, '0')}`; %>
+              <option value="<%= value %>" <%= filters.period === value ? 'selected' : '' %>><%= fmt.thaiMonth(value) %></option>
+            <% } %>
+          </optgroup>
+        <% } %>
+      </select>
+    </div>
+    <div>
+      <label for="service-select">บริการ</label>
+      <select id="service-select" name="service" data-testid="service-select" aria-describedby="dashboard-filter-hint">
+        <% for (const { id, name } of services) { %>
+          <option value="<%= id %>" <%= filters.service === id ? 'selected' : '' %>><%= id === 'ALL' ? name : `${id} ${name}` %></option>
+        <% } %>
+      </select>
+    </div>
+  </div>
+  <noscript><button type="submit">แสดงผล</button></noscript>
+</form>
+
+<dl class="dashboard-kpis">
+  <% for (const { id, label, value } of rows) { %>
+    <div class="card">
+      <dt><%= label %></dt>
+      <dd data-testid="kpi-<%= id %>"><%= value %></dd>
+    </div>
+  <% } %>
+</dl>
+
+<div class="row dashboard-exports">
+  <a class="btn btn-secondary" data-testid="export-xlsx-btn" href="/api/dashboard/export?format=xlsx&amp;<%= exportQuery %>">ส่งออก Excel</a>
+  <a class="btn btn-secondary" data-testid="export-pdf-btn" href="/api/dashboard/export?format=pdf&amp;<%= exportQuery %>">ส่งออก PDF</a>
+</div>
+
+<section class="card" aria-labelledby="dashboard-workload-heading">
+  <h2 id="dashboard-workload-heading">งานในมือรายเจ้าหน้าที่</h2>
+  <div class="table-wrap">
+    <table aria-labelledby="dashboard-workload-heading">
+      <thead>
+        <tr><th scope="col">บัญชีเจ้าหน้าที่</th><th scope="col">จำนวนงานในมือ</th></tr>
+      </thead>
+      <tbody>
+        <% for (const { username, count } of workload) { %>
+          <tr data-testid="workload-row" data-username="<%= username %>">
+            <th scope="row"><%= username %></th>
+            <td data-testid="workload-value"><%= count %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<div class="table-wrap">
+  <table>
+    <caption class="sr-only">ผู้ใช้ระบบเจ้าหน้าที่</caption>
+    <thead>
+      <tr><th scope="col">ชื่อผู้ใช้</th><th scope="col">ชื่อ</th><th scope="col">บทบาท</th><th scope="col">แผนก</th><th scope="col">จัดการ</th></tr>
+    </thead>
+    <tbody>
+      <% for (const [index, account] of users.entries()) { %>
+        <% const formId = `account-${index}`; %>
+        <tr data-testid="user-row" data-username="<%= account.username %>">
+          <th scope="row"><%= account.username %></th>
+          <td><%= account.name %></td>
+          <td>
+            <select name="role" form="<%= formId %>" aria-label="บทบาทของ <%= account.username %>" data-testid="user-role-select">
+              <% for (const [role, label] of Object.entries(codes.ROLE)) { %>
+                <option value="<%= role %>"<%= role === account.role ? ' selected' : '' %><%= role === 'citizen' ? ' disabled' : '' %>><%= label %></option>
+              <% } %>
+            </select>
+          </td>
+          <td>
+            <select name="dept" form="<%= formId %>" aria-label="แผนกของ <%= account.username %>" data-testid="user-dept-select"<%= account.role === 'officer' ? '' : ' disabled' %>>
+              <option value="">–</option>
+              <% for (const [dept, label] of Object.entries(codes.DEPT)) { %>
+                <option value="<%= dept %>"<%= dept === account.dept ? ' selected' : '' %>><%= label %></option>
+              <% } %>
+            </select>
+          </td>
+          <td>
+            <form id="<%= formId %>" data-admin-method="PUT" action="/api/admin/users/<%= encodeURIComponent(account.username) %>">
+              <button type="submit" class="btn-sm" data-testid="user-save-btn" aria-label="บันทึก <%= account.username %>">บันทึก</button>
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

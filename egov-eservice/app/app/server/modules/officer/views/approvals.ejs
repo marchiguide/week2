@@ -1,0 +1,31 @@
+<% if (!rows.length) { %>
+<p class="card" data-testid="approvals-empty">ไม่มีคำขอรออนุมัติ</p>
+<% } else { %>
+<div class="table-wrap" role="region" aria-label="ตารางคำขอรออนุมัติ" tabindex="0">
+  <table data-testid="approval-table">
+    <caption class="sr-only">คำขอรออนุมัติ เรียงตามกำหนดเสร็จเร็วสุดก่อน แล้วตามเลขคำขอ</caption>
+    <thead>
+      <tr>
+        <th scope="col">เลขคำขอ</th>
+        <th scope="col">บริการ</th>
+        <th scope="col">ผู้ยื่น</th>
+        <th scope="col">กำหนดเสร็จ</th>
+        <th scope="col"><span class="sr-only">เปิด</span></th>
+      </tr>
+    </thead>
+    <tbody>
+<% for (const r of rows) { %>
+      <tr data-testid="approval-row" data-case-no="<%= r.caseNo %>">
+        <td data-testid="row-case-no"><%= r.caseNo %></td>
+        <td><span data-testid="row-service"><%= r.serviceId %> <%= fmt.serviceName(r.serviceId) %></span>
+<% if (r.step) { %>          <br><span class="muted small">ขั้นตอน 3/3 · หัวหน้าฝ่าย</span>
+<% } %>        </td>
+        <td data-testid="row-applicant"><%= r.applicantName %></td>
+        <td><%- fmt.timeHtml(r.dueAt, 'row-due') %></td>
+        <td><a class="btn btn-sm" data-testid="approval-open" href="/officer/cases/<%= r.caseNo %>" aria-label="เปิดคำขอ <%= r.caseNo %>">เปิดคำขอ</a></td>
+      </tr>
+<% } %>
+    </tbody>
+  </table>
+</div>
+<% } %>

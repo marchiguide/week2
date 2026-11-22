@@ -1,0 +1,100 @@
+<%
+  var stepText = { 1: '1/3 กรอกข้อมูล', 2: '2/3 แนบเอกสาร', 3: '3/3 ชำระเงิน' };
+  var feeText = initialFee == null ? fmt.EN_DASH : fmt.money(initialFee);
+  var locked = !!(draft && draft.status !== 'DRAFT');
+%>
+<div class="wizard" id="wizard">
+  <p class="muted wizard-kicker">บริการ <%= serviceId %></p>
+  <h2 class="service-name" data-testid="service-name"><%= def.name %></h2>
+
+  <ol class="wizard-steps" aria-label="ขั้นตอนการยื่นคำขอ">
+    <li data-step-mark="1"<% if (step === 1) { %> aria-current="step"<% } %>>1 กรอกข้อมูล</li>
+    <li data-step-mark="2"<% if (step === 2) { %> aria-current="step"<% } %>>2 แนบเอกสาร</li>
+    <li data-step-mark="3"<% if (step === 3) { %> aria-current="step"<% } %>>3 ชำระเงิน</li>
+  </ol>
+  <p class="wizard-current">ขั้นปัจจุบัน: <strong data-testid="wizard-step" id="wizard-step" aria-live="polite"><%= stepText[step] %></strong></p>
+  <p class="draft-line" id="draft-line"<% if (!draft) { %> hidden<% } %>>รหัสร่าง <strong data-testid="draft-id" id="draft-id"><%= draft ? draft.draftId : '' %></strong></p>
+
+  <!-- ===================================================== step 1 -->
+  <section class="card step" id="step-1" aria-labelledby="step-1-title"<% if (step !== 1) { %> hidden<% } %>>
+    <h3 id="step-1-title">1. กรอกข้อมูล</h3>
+    <form id="step-1-form" novalidate>
+<% if (serviceId === 'SV-01') { %>
+      <div class="field">
+        <label for="qty-input">จำนวนฉบับ (1–5 ฉบับ)</label>
+        <input type="number" id="qty-input" name="qty" data-testid="qty-input" min="1" max="5" step="1" inputmode="numeric"
+               value="<%= inputValue %>" aria-describedby="fee-error fee-hint"<% if (locked) { %> readonly<% } %>>
+        <p class="hint" id="fee-hint">ฉบับละ <%= fmt.money(table.valid[1]) %></p>
+      </div>
+<% } else if (serviceId === 'SV-03') { %>
+      <div class="field">
+        <label for="area-input">พื้นที่อาคาร (ตร.ม. จำนวนเต็ม 1–500)</label>
+        <input type="number" id="area-input" name="areaSqm" data-testid="area-input" min="1" max="500" step="1" inputmode="numeric"
+               value="<%= inputValue %>" aria-describedby="fee-error fee-hint"<% if (locked) { %> readonly<% } %>>
+        <p class="hint" id="fee-hint">พื้นที่ 1–100 ตร.ม. <%= fmt.money(table.valid[1]) %> · ส่วนที่เกิน 100 ตร.ม. คิดเพิ่มต่อ ตร.ม. · เกิน 500 ตร.ม. ยื่นที่สำนักงาน</p>
+      </div>
+<% } else { %>
+      <p class="hint">บริการนี้คิดค่าธรรมเนียมคงที่ ไม่ต้องกรอกข้อมูลเพิ่ม</p>
+<% } %>
+      <p class="fee-line">ค่าธรรมเนียม <strong class="fee-total" data-testid="fee-total" id="fee-total" aria-live="polite"><%= feeText %></strong></p>
+      <p class="field-error" data-testid="fee-error" id="fee-error" role="alert" hidden></p>
+      <div class="row wizard-actions">
+        <button type="button" class="btn-secondary" data-testid="save-draft-btn" id="save-draft-btn"<% if (locked) { %> disabled<% } %>>บันทึกร่าง</button>
+        <button type="submit" data-testid="to-upload-btn" id="to-upload-btn"<% if (initialFee == null) { %> disabled<% } %>>ถัดไป: แนบเอกสาร</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===================================================== step 2 -->
+  <section class="card step" id="step-2" aria-labelledby="step-2-title"<% if (step !== 2) { %> hidden<% } %>>
+    <h3 id="step-2-title">2. แนบเอกสาร</h3>
+    <p class="hint" id="upload-hint">รองรับเฉพาะไฟล์ PDF, JPG, PNG · ไม่เกิน 5 MB ต่อไฟล์ · รวมไม่เกิน 5 ไฟล์ต่อคำขอ · ✱ = เอกสารบังคับ</p>
+<% def.docs.forEach(function (d) { %>
+    <div class="field upload-field">
+      <label for="upload-<%= d.key %>"><%= d.name %><% if (d.required) { %> ✱<% } else { %> (ไม่บังคับ)<% } %><% if (d.pdfOnly) { %> · PDF เท่านั้น<% } %></label>
+      <input type="file" id="upload-<%= d.key %>" data-testid="upload-input-<%= d.key %>" data-doc-key="<%= d.key %>"
+             accept="<%= d.pdfOnly ? '.pdf,application/pdf' : '.pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png' %>" aria-describedby="upload-hint upload-error">
+    </div>
+<% }) %>
+    <div class="field upload-field">
+      <label for="upload-extra">เอกสารเพิ่มเติม (ไม่บังคับ · เลือกได้หลายไฟล์)</label>
+      <input type="file" id="upload-extra" data-testid="upload-input-extra" data-doc-key="extra" multiple
+             accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="upload-hint upload-error">
+    </div>
+    <p class="field-error" data-testid="upload-error" id="upload-error" role="alert" hidden></p>
+    <p class="hint" id="upload-busy" aria-live="polite"></p>
+    <h4 id="file-list-title">ไฟล์ที่แนบแล้ว</h4>
+    <ul class="file-list" id="file-list" aria-labelledby="file-list-title"></ul>
+    <div id="missing-slot"></div>
+    <div class="row wizard-actions">
+      <button type="button" class="btn-secondary" id="back-to-1">ย้อนกลับ</button>
+      <button type="button" data-testid="to-payment-btn" id="to-payment-btn" disabled>ไปชำระเงิน</button>
+    </div>
+  </section>
+
+  <!-- ===================================================== step 3 -->
+  <section class="card step" id="step-3" aria-labelledby="step-3-title"<% if (step !== 3) { %> hidden<% } %>>
+    <h3 id="step-3-title">3. ชำระเงิน (PromptPay QR จำลอง)</h3>
+    <p class="pay-amount-line">ยอดที่ต้องชำระ <strong class="pay-amount" data-testid="payment-amount" id="payment-amount"><%= draft ? fmt.money(draft.payment ? draft.payment.amount : draft.fee) : fmt.EN_DASH %></strong></p>
+    <p class="hint">QR มีอายุ 15 นาทีนับจากเวลาสร้าง · ชำระยอดให้ตรงกับค่าธรรมเนียม · ค่าธรรมเนียมที่ชำระแล้วไม่คืน</p>
+    <div class="row wizard-actions" id="create-qr-row">
+      <button type="button" id="back-to-2" class="btn-secondary">ย้อนกลับ</button>
+      <button type="button" data-testid="create-qr-btn" id="create-qr-btn">สร้าง QR</button>
+    </div>
+    <div class="qr-box" id="qr-box" hidden>
+      <img class="qr-image" data-testid="qr-image" id="qr-image" alt="QR พร้อมเพย์ (จำลอง) สำหรับชำระค่าธรรมเนียม" width="200" height="200">
+      <dl class="pay-meta">
+        <div><dt>เลขอ้างอิง</dt><dd data-testid="qr-ref" id="qr-ref"></dd></div>
+        <div><dt>เวลาหมดอายุ</dt><dd><time data-testid="qr-expires" id="qr-expires"></time></dd></div>
+        <div><dt>สถานะการชำระ</dt><dd><span class="chip" data-testid="payment-status" id="payment-status"></span></dd></div>
+      </dl>
+      <div id="expired-slot"></div>
+      <div class="row">
+        <button type="button" class="btn-secondary" data-testid="refresh-payment-btn" id="refresh-payment-btn">ตรวจสอบการชำระเงิน</button>
+      </div>
+    </div>
+    <div id="receipt-slot"></div>
+  </section>
+</div>
+
+<script type="application/json" id="wizard-state"><%- stateJson %></script>

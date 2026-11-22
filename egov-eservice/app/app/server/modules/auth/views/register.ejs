@@ -1,0 +1,30 @@
+<div class="card auth-card">
+  <form id="register-form" method="post" action="/api/auth/register" novalidate>
+    <div class="field">
+      <label for="reg-name">ชื่อ-สกุลจาก ThaiD</label>
+      <input id="reg-name" type="text" data-testid="reg-name" value="<%= user.name %>" readonly>
+    </div>
+    <div class="field">
+      <label for="reg-mobile">เบอร์มือถือ (จำเป็น)</label>
+      <input id="reg-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" required
+        data-testid="reg-mobile" aria-describedby="reg-error-mobile">
+      <div id="reg-error-mobile" class="field-error" role="alert" data-testid="reg-error-mobile" hidden></div>
+    </div>
+    <div class="field">
+      <label for="reg-email">อีเมล (ไม่บังคับ)</label>
+      <input id="reg-email" name="email" type="email" autocomplete="email" data-testid="reg-email">
+    </div>
+    <div class="field">
+      <label class="check" for="reg-consent">
+        <input id="reg-consent" name="consent" type="checkbox" required data-testid="reg-consent"
+          aria-describedby="reg-error-consent">
+        <span>ยินยอมให้ประมวลผลข้อมูลส่วนบุคคล (PDPA) เพื่อใช้บริการของเทศบาล (จำเป็น)</span>
+      </label>
+      <div id="reg-error-consent" class="field-error" role="alert" data-testid="reg-error-consent" hidden></div>
+    </div>
+    <div class="row">
+      <button type="submit" data-testid="reg-submit">ลงทะเบียน</button>
+      <button type="button" class="btn-secondary" data-testid="logout-btn" data-logout>ออกจากระบบ</button>
+    </div>
+  </form>
+</div>

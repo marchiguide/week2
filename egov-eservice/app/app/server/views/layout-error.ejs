@@ -1,0 +1,5 @@
+<section class="error-page card" aria-labelledby="error-title">
+  <p class="error-code" aria-hidden="true"><%= status %></p>
+  <h1 id="error-title"<% if (err.testid) { %> data-testid="<%= err.testid %>"<% } %>><%= err.text %></h1>
+  <p><a href="/">กลับหน้าหลัก</a></p>
+</section>

@@ -1,0 +1,24 @@
+/* Block B06 — officer queue / case / approvals (uses shared variables from /static/app.css) */
+.card-title { font-size: 1.1rem; margin: 0 0 12px; }
+/* sr-only (position:absolute) header cells must not escape the scroll container at 375 px */
+.table-wrap { position: relative; }
+.kv { display: grid; grid-template-columns: minmax(120px, 200px) 1fr; gap: 6px 16px; margin: 0; }
+.kv dt { font-weight: 600; color: var(--c-muted); }
+.kv dd { margin: 0; min-width: 0; }
+.panel { margin-top: 12px; padding: 12px; border: 1px solid var(--c-border); border-radius: var(--radius); background: #fff; }
+.panel .btn, .panel button { margin-top: 8px; }
+.small { font-size: .85em; }
+.inline-label { display: inline; margin: 0 8px 0 0; }
+.queue-toolbar select { width: auto; min-width: 12rem; }
+.workload { margin: 8px 0 0; }
+.timeline { margin: 0; padding-left: 1.2rem; }
+.timeline li + li { margin-top: 8px; }
+.file-list { margin: 0; padding-left: 1.2rem; }
+.doc-qr { width: 160px; max-width: 100%; }
+.doc-qr svg { width: 100%; height: auto; display: block; }
+[data-testid="full-id"] { margin: 0 8px; }
+@media (max-width: 600px) {
+  .kv { grid-template-columns: 1fr; }
+  .kv dt { margin-top: 6px; }
+  .queue-toolbar select { width: 100%; }
+}

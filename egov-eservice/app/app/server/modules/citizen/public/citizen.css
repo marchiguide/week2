@@ -1,0 +1,66 @@
+/* Citizen pages (block B05). Shared look comes from /static/app.css. */
+[hidden] { display: none !important; }
+
+.citizen-welcome { font-size: 1.15rem; font-weight: 600; margin: 0 0 16px; }
+
+.service-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.service-card { border: 1px solid var(--c-border); border-radius: var(--radius); padding: 12px; background: var(--c-card);
+  display: flex; flex-direction: column; gap: 8px; }
+.service-card h3 { margin: 0; font-size: 1.05rem; }
+.service-card p { margin: 0; flex: 1; }
+.service-card .btn { align-self: flex-start; }
+.row-actions { white-space: nowrap; }
+.row-actions .btn, .row-actions button { margin: 2px 0; }
+
+/* wizard */
+.wizard-kicker { margin: 0; }
+.service-name { margin: 0 0 12px; }
+.wizard-steps { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.wizard-steps li { padding: 4px 12px; border-radius: 999px; background: var(--c-muted-bg); color: var(--c-text);
+  border: 1px solid var(--c-border); }
+.wizard-steps li[aria-current="step"] { background: var(--c-primary); color: #fff; border-color: var(--c-primary); font-weight: 600; }
+.wizard-current, .draft-line { margin: 4px 0 12px; }
+.wizard input[type=number] { width: 100%; max-width: 14rem; }
+.wizard input[type=file], #fix-upload-input { display: block; width: 100%; max-width: 100%; }
+.fee-line, .pay-amount-line { font-size: 1.1rem; }
+.fee-total, .pay-amount { font-size: 1.3rem; }
+.wizard-actions { margin-top: 12px; }
+.upload-field { padding: 8px 0; border-bottom: 1px dashed var(--c-border); }
+
+.file-list { list-style: none; margin: 8px 0; padding: 0; }
+.file-list li { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between;
+  border: 1px solid var(--c-border); border-radius: 6px; padding: 8px; margin-bottom: 6px; background: var(--c-card);
+  overflow-wrap: anywhere; min-width: 0; }
+.file-list li.empty { justify-content: flex-start; border-style: dashed; }
+.file-info { min-width: 0; overflow-wrap: anywhere; }
+.file-name { font-weight: 600; }
+
+.qr-box { margin-top: 12px; }
+.qr-image { display: block; width: 200px; height: 200px; max-width: 100%; background: #fff;
+  border: 1px solid var(--c-border); border-radius: 6px; }
+.pay-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 16px; margin: 12px 0; }
+.pay-meta dt { font-weight: 600; color: var(--c-muted); }
+.pay-meta dd { margin: 0; overflow-wrap: anywhere; }
+.chip.pay-PENDING { background: var(--c-warn-bg); color: var(--c-warn); border-color: var(--c-warn); }
+.chip.pay-PAID { background: var(--c-ok-bg); color: var(--c-ok); border-color: var(--c-ok); }
+.chip.pay-EXPIRED { background: var(--c-danger-bg); color: var(--c-danger); border-color: var(--c-danger); }
+.receipt { margin-top: 12px; padding: 12px; border: 1px solid var(--c-ok); border-radius: var(--radius); background: var(--c-ok-bg); }
+.receipt h4 { margin: 0 0 4px; }
+
+/* case page */
+.case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px 16px; margin: 0; }
+.case-meta dt { font-weight: 600; color: var(--c-muted); font-size: .9rem; }
+.case-meta dd { margin: 2px 0 0; overflow-wrap: anywhere; }
+.need-fix { border-color: var(--c-warn); background: var(--c-warn-bg); }
+.confirm-box { margin-top: 12px; padding: 12px; border: 2px solid var(--c-danger); border-radius: var(--radius); background: var(--c-danger-bg); }
+.confirm-box p { margin: 0 0 8px; }
+.doc-box { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.doc-box .case-meta { flex: 1 1 240px; }
+.doc-qr { width: 160px; max-width: 100%; background: #fff; }
+.doc-qr svg { display: block; width: 100%; height: auto; }
+.timeline { margin: 0; padding-left: 1.25rem; }
+.timeline li { margin-bottom: 8px; overflow-wrap: anywhere; }
+.timeline time { font-weight: 600; margin-right: 6px; }
+.timeline-note { color: var(--c-muted); }
+.hint a { overflow-wrap: anywhere; }

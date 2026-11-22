@@ -1,0 +1,137 @@
+<%
+  const c = v.c;
+  const a = v.actions;
+  const closed = c.status === 'COMPLETED' || c.status === 'REJECTED';
+%>
+<h1 class="page-title">คำขอ <span data-testid="case-no"><%= v.caseNo %></span></h1>
+
+<div id="case-root" data-case-no="<%= v.caseNo %>">
+<section class="card" aria-labelledby="sum-h">
+  <h2 id="sum-h" class="card-title">ข้อมูลคำขอ</h2>
+  <dl class="kv">
+    <dt>สถานะ</dt>
+    <dd><span data-testid="case-status" class="chip status-<%= c.status %>" data-status="<%= c.status %>"><%= fmt.statusText(c.status) %></span></dd>
+    <dt>บริการ</dt>
+    <dd data-testid="case-service"><%= v.serviceId %> <%= v.serviceName %></dd>
+<% if (v.stepText) { %>    <dt>ขั้นตอน</dt>
+    <dd data-testid="case-step"><%= v.stepText %></dd>
+<% } %>    <dt>ค่าธรรมเนียม</dt>
+    <dd data-testid="case-fee"><%= fmt.money(c.fee) %></dd>
+    <dt>ผู้ยื่น</dt>
+    <dd data-testid="applicant-name"><%= v.applicantName %></dd>
+    <dt>เลขบัตรประชาชน</dt>
+    <dd>
+      <span data-testid="applicant-id"><%= v.idMasked %></span>
+      <span id="full-id-slot"></span>
+      <button type="button" class="btn-sm btn-secondary" data-testid="show-full-id-btn" aria-controls="unmask-panel" aria-expanded="false">แสดงเลขเต็ม</button>
+      <div id="unmask-panel" class="panel" hidden>
+        <label for="unmask-reason">เหตุผลที่ขอดูเลขเต็ม (บันทึกใน Audit)</label>
+        <input type="text" id="unmask-reason" data-testid="unmask-reason" maxlength="500" autocomplete="off">
+        <p class="field-error" id="unmask-error-slot" aria-live="polite"></p>
+        <button type="button" class="btn-sm" data-testid="unmask-submit">ยืนยัน</button>
+      </div>
+    </dd>
+    <dt>กำหนดเสร็จ</dt>
+    <dd><%- fmt.timeHtml(c.due_at, 'sla-due') %></dd>
+    <dt>ระดับเตือน</dt>
+    <dd><span data-testid="sla-level" class="chip level-<%= v.slaLevel %>" data-level="<%= v.slaLevel %>"><%= fmt.levelText(v.slaLevel) %></span></dd>
+<% if (closed) { %>    <dt>ปิดงานเมื่อ</dt>
+    <dd><%- fmt.timeHtml(c.closed_at, 'closed-at') %></dd>
+<% } %><% if (c.status === 'CANCELLED' && c.cancelled_at) { %>    <dt>ยกเลิกเมื่อ</dt>
+    <dd><%- fmt.timeHtml(c.cancelled_at) %></dd>
+<% } %>    <dt>ผู้ถือเรื่อง</dt>
+    <dd data-testid="case-owner"><%= c.owner || 'ยังไม่มีผู้รับ' %></dd>
+    <dt>ตีกลับแล้ว</dt>
+    <dd><span data-testid="return-count"><%= v.returnCount %></span> / 2 ครั้ง</dd>
+<% if (c.status === 'NEED_FIX') { %>    <dt>เหตุผลที่ตีกลับ</dt>
+    <dd data-testid="return-reason-display"><%= v.lastReturnReason || '' %></dd>
+    <dt>เส้นตายแก้ไขของประชาชน</dt>
+    <dd><%- fmt.timeHtml(c.fix_deadline, 'fix-deadline') %></dd>
+<% } %><% if (c.status === 'REJECTED' && c.reject_reason) { %>    <dt>เหตุผลที่ไม่อนุมัติ</dt>
+    <dd><%= c.reject_reason %></dd>
+<% } %>  </dl>
+</section>
+
+<% const anyAction = a.claim || a.return || a.forward || a.approve || a.reject || a.issue; %>
+<% if (anyAction) { %>
+<section class="card" aria-labelledby="act-h">
+  <h2 id="act-h" class="card-title">ดำเนินการ</h2>
+  <div class="row">
+<% if (a.claim) { %>    <button type="button" data-testid="claim-btn" data-action="claim">รับเรื่อง</button>
+<% } %><% if (a.approve) { %>    <button type="button" data-testid="approve-btn" data-action="approve">อนุมัติ</button>
+<% } %><% if (a.issue) { %>    <button type="button" data-testid="issue-btn" data-action="issue">ออกเอกสาร</button>
+<% } %><% if (a.return) { %>    <button type="button" class="btn-secondary" data-testid="return-btn" aria-controls="return-panel" aria-expanded="false">ตีกลับ</button>
+<% } %><% if (a.reject) { %>    <button type="button" class="btn-danger" data-testid="reject-btn" aria-controls="reject-panel" aria-expanded="false">ไม่อนุมัติ</button>
+<% } %>  </div>
+<% if (a.forward) { %>
+  <div class="panel">
+    <label for="forward-note">หมายเหตุส่งต่อ (ไม่บังคับ)</label>
+    <input type="text" id="forward-note" data-testid="forward-note" maxlength="500" autocomplete="off">
+    <p class="hint">ระบบส่งต่อไปขั้นถัดไปตามเส้นทางของบริการโดยอัตโนมัติ</p>
+    <button type="button" data-testid="forward-btn" data-action="forward">ผ่าน/ส่งต่อ</button>
+  </div>
+<% } %>
+<% if (a.return) { %>
+  <div id="return-panel" class="panel" hidden>
+    <label for="return-reason">เหตุผลที่ตีกลับ (อย่างน้อย 10 ตัวอักษร)</label>
+    <textarea id="return-reason" data-testid="return-reason" maxlength="1000"></textarea>
+    <p class="field-error" id="return-error-slot" aria-live="polite"></p>
+    <button type="button" data-testid="return-submit" data-action="return">ยืนยันตีกลับ</button>
+  </div>
+<% } %>
+<% if (a.reject) { %>
+  <div id="reject-panel" class="panel" hidden>
+    <label for="reject-reason">เหตุผลที่ไม่อนุมัติ (อย่างน้อย 10 ตัวอักษร)</label>
+    <textarea id="reject-reason" data-testid="reject-reason" maxlength="1000"></textarea>
+    <p class="field-error" id="reject-error-slot" aria-live="polite"></p>
+    <button type="button" class="btn-danger" data-testid="reject-submit" data-action="reject">ยืนยันไม่อนุมัติ</button>
+  </div>
+<% } %>
+</section>
+<% } %>
+
+<% if (v.doc) { %>
+<section class="card" aria-labelledby="doc-h">
+  <h2 id="doc-h" class="card-title">เอกสารที่ออกแล้ว</h2>
+  <dl class="kv">
+    <dt>เลขเอกสาร</dt>
+    <dd data-testid="doc-no"><%= v.doc.doc_no %></dd>
+    <dt>รหัสตรวจสอบ</dt>
+    <dd data-testid="verify-code"><%= v.doc.verify_code %></dd>
+    <dt>ใช้ได้ถึง</dt>
+    <dd><%= fmt.thaiDate(v.doc.valid_until) %></dd>
+  </dl>
+  <div class="row">
+    <div class="doc-qr" data-testid="doc-qr" data-url="<%= qr.url %>" role="img" aria-label="QR สำหรับตรวจสอบเอกสาร <%= qr.url %>"><%- qr.svg %></div>
+    <a class="btn btn-secondary" href="/api/documents/<%= encodeURIComponent(v.doc.doc_no) %>/pdf">เปิดไฟล์ PDF</a>
+  </div>
+</section>
+<% } %>
+
+<section class="card" aria-labelledby="files-h">
+  <h2 id="files-h" class="card-title">เอกสารแนบ</h2>
+<% if (v.filesHidden) { %>
+  <p class="muted">ไม่มีสิทธิ์ดูไฟล์แนบของคำขอนี้ (เฉพาะแผนกที่รับผิดชอบขั้นปัจจุบันหรือเคยผ่าน)</p>
+<% } else if (!v.files.length) { %>
+  <p class="muted">ไม่มีไฟล์แนบ</p>
+<% } else { %>
+  <ul class="file-list">
+<% for (const f of v.files) { %>    <li data-testid="doc-item" data-name="<%= f.name %>" data-file-id="<%= f.id %>">
+      <span><%= fmt.docName(f.doc_key) %>:</span>
+      <a data-testid="doc-download-link" href="/api/files/<%= encodeURIComponent(f.id) %>" target="_blank" rel="noopener"><%= f.name %></a>
+      <span class="muted small">(<%= fmt.number(Math.ceil((f.size || 0) / 1024)) %> KB)</span>
+    </li>
+<% } %>  </ul>
+<% } %>
+</section>
+
+<section class="card" aria-labelledby="tl-h">
+  <h2 id="tl-h" class="card-title">ไทม์ไลน์</h2>
+  <ol class="timeline" data-testid="case-timeline">
+<% for (const e of v.events) { %>    <li data-testid="timeline-item" data-iso="<%= fmt.iso(e.time) %>" data-event="<%= e.event %>">
+      <%- fmt.timeHtml(e.time) %> · <strong><%= e.text %></strong><% if (e.actor) { %> · <%= e.actor %><% } %>
+<% if (e.note) { %>      <div class="muted">หมายเหตุ: <%= e.note %></div>
+<% } %>    </li>
+<% } %>  </ol>
+</section>
+</div>

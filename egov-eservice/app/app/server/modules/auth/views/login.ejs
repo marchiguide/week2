@@ -1,0 +1,54 @@
+<div id="login" class="card auth-card">
+  <div class="row auth-tabs" role="tablist" aria-label="ประเภทผู้ใช้">
+    <button type="button" id="citizen-tab" role="tab" aria-selected="true" aria-controls="citizen-panel"
+      data-testid="login-tab-citizen">ประชาชน</button>
+    <button type="button" id="staff-tab" role="tab" aria-selected="false" aria-controls="staff-panel" tabindex="-1"
+      data-testid="login-tab-staff">เจ้าหน้าที่</button>
+  </div>
+
+  <div id="citizen-panel" role="tabpanel" aria-labelledby="citizen-tab">
+    <form id="thaid-form" method="post" action="/api/auth/thaid/start" novalidate>
+      <div class="field">
+        <label for="thaid-id">เลขบัตรประชาชน 13 หลัก</label>
+        <input id="thaid-id" name="idNo" type="text" inputmode="numeric" autocomplete="off" required
+          data-testid="thaid-id-input" aria-describedby="thaid-error">
+        <div id="thaid-error" class="field-error" role="alert" data-testid="thaid-error" hidden></div>
+      </div>
+      <button type="submit" data-testid="thaid-submit">เข้าสู่ระบบด้วย ThaiD (จำลอง)</button>
+    </form>
+
+    <form id="otp-form" class="auth-otp" method="post" action="/api/auth/thaid/verify" data-testid="otp-step" hidden novalidate>
+      <div class="field">
+        <label for="otp">รหัส OTP</label>
+        <p id="otp-hint" class="hint">รหัส OTP สำหรับ ThaiD จำลองคือ 123456</p>
+        <input id="otp" name="otp" type="text" inputmode="numeric" autocomplete="one-time-code" required
+          data-testid="otp-input" aria-describedby="otp-hint otp-error otp-attempts-left">
+        <div id="otp-error" class="field-error" role="alert" data-testid="otp-error" hidden></div>
+        <div id="otp-attempts-left" role="status" data-testid="otp-attempts-left" hidden></div>
+      </div>
+      <button type="submit" data-testid="otp-submit">ยืนยัน OTP</button>
+    </form>
+
+    <div id="otp-lock" class="alert alert-error auth-lock" role="alert" hidden>
+      <div data-testid="lock-message" id="lock-message"></div>
+      <div>ลองใหม่ได้เวลา <time id="lock-until" data-testid="lock-until"></time></div>
+    </div>
+  </div>
+
+  <div id="staff-panel" role="tabpanel" aria-labelledby="staff-tab" hidden>
+    <form id="staff-form" method="post" action="/api/auth/staff/login" novalidate>
+      <div class="field">
+        <label for="staff-username">ชื่อผู้ใช้</label>
+        <input id="staff-username" name="username" type="text" autocomplete="username" required
+          data-testid="staff-username" aria-describedby="staff-error">
+      </div>
+      <div class="field">
+        <label for="staff-password">รหัสผ่าน</label>
+        <input id="staff-password" name="password" type="password" autocomplete="current-password" required
+          data-testid="staff-password" aria-describedby="staff-error">
+        <div id="staff-error" class="field-error" role="alert" data-testid="staff-error" hidden></div>
+      </div>
+      <button type="submit" data-testid="staff-submit">เข้าสู่ระบบเจ้าหน้าที่ (SSO ภาครัฐ จำลอง)</button>
+    </form>
+  </div>
+</div>

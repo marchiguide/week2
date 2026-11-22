@@ -1,0 +1,30 @@
+.auth-card {
+  max-width: 32rem;
+}
+
+.auth-tabs {
+  margin-bottom: 1.25rem;
+}
+
+.auth-tabs [aria-selected="false"] {
+  background: var(--c-card);
+  color: var(--c-primary-dark);
+}
+
+.auth-tabs [aria-selected="false"]:hover {
+  background: var(--c-info-bg);
+}
+
+.auth-otp {
+  border-top: 1px solid var(--c-border);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.auth-otp .hint {
+  margin: 0 0 .5rem;
+}
+
+.auth-lock {
+  margin: 1rem 0 0;
+}

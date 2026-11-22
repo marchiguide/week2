@@ -1,0 +1,72 @@
+<p class="citizen-welcome" data-testid="citizen-welcome">สวัสดี <%= user.name %></p>
+
+<section class="card" aria-labelledby="start-title">
+  <h2 id="start-title">เริ่มยื่นคำขอใหม่</h2>
+  <ul class="service-grid">
+<% services.forEach(function (s) { %>
+    <li class="service-card">
+      <h3><%= s.id %> <%= s.name %></h3>
+      <p class="muted">
+<% if (s.feeType === 'per_copy') { %>        ค่าธรรมเนียม <%= fmt.money(s.fee) %> ต่อฉบับ (1–5 ฉบับ)
+<% } else if (s.feeType === 'area') { %>        ค่าธรรมเนียม <%= fmt.money(s.fee) %> (พื้นที่ 1–100 ตร.ม.) + <%= fmt.money(s.feePerSqm) %> ต่อ ตร.ม. ส่วนเกิน
+<% } else { %>        ค่าธรรมเนียม <%= fmt.money(s.fee) %>
+<% } %>        · กำหนดเสร็จ <%= s.sla %> วันทำการ
+      </p>
+      <a class="btn" href="/citizen/new/<%= s.id %>" data-testid="start-service-<%= s.id %>">เริ่มยื่น<span class="sr-only"> <%= s.name %></span></a>
+    </li>
+<% }) %>
+  </ul>
+</section>
+
+<section class="card" aria-labelledby="drafts-title">
+  <h2 id="drafts-title">ร่างและรายการรอชำระเงิน</h2>
+<% if (!drafts.length) { %>
+  <p class="muted">ไม่มีร่างค้าง</p>
+<% } else { %>
+  <div class="table-wrap">
+    <table>
+      <caption class="sr-only">ร่างคำขอที่ยังไม่มีเลขคำขอ</caption>
+      <thead><tr><th scope="col">รหัสร่าง</th><th scope="col">บริการ</th><th scope="col">สถานะ</th><th scope="col">ค่าธรรมเนียม</th><th scope="col">ดำเนินการ</th></tr></thead>
+      <tbody>
+<% drafts.forEach(function (d) { %>
+        <tr data-testid="my-draft-row" data-draft-id="<%= d.draftId %>" data-status="<%= d.status %>">
+          <td data-testid="row-draft-id"><%= d.draftId %></td>
+          <td data-testid="row-service"><%= d.serviceId %> <%= d.serviceName %></td>
+          <td><span class="chip status-<%= d.status %>" data-testid="row-status" data-status="<%= d.status %>"><%= fmt.statusText(d.status) %></span></td>
+          <td><%= fmt.money(d.fee) %></td>
+          <td class="row-actions">
+            <a class="btn btn-sm" data-testid="open-draft-btn" href="/citizen/new/<%= d.serviceId %>?draft=<%= encodeURIComponent(d.draftId) %>">เปิดร่าง<span class="sr-only"> <%= d.draftId %></span></a>
+            <button type="button" class="btn-secondary btn-sm" data-delete-draft="<%= d.draftId %>">ลบร่าง<span class="sr-only"> <%= d.draftId %></span></button>
+          </td>
+        </tr>
+<% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+</section>
+
+<section class="card" aria-labelledby="cases-title">
+  <h2 id="cases-title">คำขอของฉัน</h2>
+<% if (!cases.length) { %>
+  <p class="muted">ยังไม่มีคำขอ</p>
+<% } else { %>
+  <div class="table-wrap">
+    <table>
+      <caption class="sr-only">คำขอที่ชำระเงินแล้ว เรียงเลขคำขอมากไปน้อย</caption>
+      <thead><tr><th scope="col">เลขคำขอ</th><th scope="col">บริการ</th><th scope="col">สถานะ</th><th scope="col">กำหนดเสร็จ</th><th scope="col">ระดับ</th></tr></thead>
+      <tbody>
+<% cases.forEach(function (c) { %>
+        <tr data-testid="my-case-row" data-case-no="<%= c.caseNo %>" data-status="<%= c.status %>">
+          <td data-testid="row-case-no"><a href="/citizen/cases/<%= c.caseNo %>"><%= c.caseNo %></a></td>
+          <td data-testid="row-service"><%= c.serviceId %> <%= fmt.serviceName(c.serviceId) %></td>
+          <td><span class="chip status-<%= c.status %>" data-testid="row-status" data-status="<%= c.status %>"><%= fmt.statusText(c.status) %></span></td>
+          <td><%- fmt.timeHtml(c.dueAt, 'row-due') %></td>
+          <td><span class="chip level-<%= c.slaLevel %>" data-level="<%= c.slaLevel %>"><%= fmt.levelText(c.slaLevel) %></span></td>
+        </tr>
+<% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+</section>

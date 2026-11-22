@@ -1,0 +1,54 @@
+.dashboard-filters p {
+  margin: 0 0 12px;
+}
+
+.dashboard-filter-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.dashboard-filters noscript button {
+  margin-top: 12px;
+}
+
+.dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.dashboard-kpis .card {
+  margin: 0;
+}
+
+.dashboard-kpis dt {
+  color: var(--c-muted);
+  font-weight: 600;
+}
+
+.dashboard-kpis dd {
+  margin: 4px 0 0;
+  color: var(--c-primary-dark);
+  font-size: 1.875rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.dashboard-exports {
+  margin-bottom: 16px;
+}
+
+#dashboard-workload-heading {
+  font-size: 1.125rem;
+  margin-top: 0;
+}
+
+@media (min-width: 580px) {
+  .dashboard-filter-fields {
+    grid-template-columns: minmax(165px, 1fr) minmax(0, 2fr);
+    max-width: 680px;
+  }
+}

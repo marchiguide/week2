@@ -1,0 +1,58 @@
+<form class="card" action="/audit" method="get" aria-label="กรองประวัติการทำรายการ">
+  <div class="grid">
+    <div class="field">
+      <label for="audit-actor">ชื่อผู้ใช้</label>
+      <input type="search" id="audit-actor" name="actor" data-testid="audit-filter-actor" value="<%= filters.actor %>">
+    </div>
+    <div class="field">
+      <label for="audit-event">เหตุการณ์</label>
+      <select id="audit-event" name="event" data-testid="audit-filter-event">
+        <option value="">ทุกเหตุการณ์</option>
+        <% for (const event of events) { %>
+          <option value="<%= event %>"<%= filters.event === event ? ' selected' : '' %>><%= event %></option>
+        <% } %>
+      </select>
+    </div>
+    <div class="field">
+      <label for="audit-from">ตั้งแต่วันที่</label>
+      <input type="date" id="audit-from" name="from" data-testid="audit-filter-from" value="<%= filters.from %>">
+    </div>
+    <div class="field">
+      <label for="audit-to">ถึงวันที่</label>
+      <input type="date" id="audit-to" name="to" data-testid="audit-filter-to" value="<%= filters.to %>">
+    </div>
+  </div>
+  <button type="submit" data-testid="audit-apply-btn">ค้นหา</button>
+</form>
+
+<div class="row">
+  <p>พบ <strong data-testid="audit-count"><%= items.length %></strong> รายการ</p>
+  <a class="btn btn-secondary" href="<%= exportUrl %>" data-testid="audit-export-csv-btn">ส่งออก CSV</a>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <caption class="sr-only">ประวัติการทำรายการ เรียงจากใหม่ไปเก่า</caption>
+    <thead>
+      <tr>
+        <th scope="col">เวลา</th><th scope="col">ผู้ทำรายการ</th><th scope="col">บทบาท</th>
+        <th scope="col">เหตุการณ์</th><th scope="col">เลขคำขอ</th><th scope="col">สถานะก่อน → หลัง</th>
+        <th scope="col">รายละเอียด</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const item of items) { %>
+        <tr data-testid="audit-row" data-id="<%= item.id %>" data-event="<%= item.event %>"
+            data-actor="<%= item.username %>" data-case-no="<%= item.caseNo ?? '' %>">
+          <td><%- fmt.timeHtml(item.time, 'audit-time') %></td>
+          <td data-testid="audit-actor"><%= item.username %></td>
+          <td data-testid="audit-role"><%= item.role %></td>
+          <td data-testid="audit-event"><%= item.event %></td>
+          <td data-testid="audit-case-no"><%= item.caseNo ?? '–' %></td>
+          <td data-testid="audit-transition"><%= item.fromStatus && item.toStatus ? `${item.fromStatus} → ${item.toStatus}` : '–' %></td>
+          <td data-testid="audit-detail"><%= item.detail %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

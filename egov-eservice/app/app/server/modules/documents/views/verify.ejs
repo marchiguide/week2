@@ -1,0 +1,38 @@
+<%
+  const results = {
+    VALID: ['เอกสารถูกต้อง', 'success'],
+    EXPIRED: ['เอกสารหมดอายุ', 'warn'],
+    TAMPERED: ['ลายเซ็นไม่ถูกต้อง', 'error'],
+    NOT_FOUND: ['ไม่พบเอกสาร', 'error'],
+  };
+  const [message, variant] = results[document.result];
+%>
+<p class="alert alert-<%= variant %>" data-testid="verify-result" data-result="<%= document.result %>"><%= message %></p>
+<% if (document.docNo) { %>
+<dl class="card stack">
+  <div>
+    <dt>เลขเอกสาร</dt>
+    <dd data-testid="verify-doc-no"><%= document.docNo %></dd>
+  </div>
+  <div>
+    <dt>ผู้ยื่น</dt>
+    <dd data-testid="verify-applicant"><%= document.applicantMasked %></dd>
+  </div>
+  <div>
+    <dt>บริการ</dt>
+    <dd data-testid="verify-service"><%= document.serviceId %> <%= fmt.serviceName(document.serviceId) %></dd>
+  </div>
+  <div>
+    <dt>วันออก</dt>
+    <dd><time data-testid="verify-issued" datetime="<%= document.issuedAt %>" data-iso="<%= document.issuedAt %>"><%= fmt.thaiDateTime(document.issuedAt) %></time></dd>
+  </div>
+  <div>
+    <dt>ใช้ได้ถึง</dt>
+    <dd><time data-testid="verify-expires" datetime="<%= document.validUntil %>" data-iso="<%= document.validUntil %>"><%= fmt.thaiDate(document.validUntil) %></time></dd>
+  </div>
+  <div>
+    <dt>ผู้ลงนาม</dt>
+    <dd data-testid="verify-signer"><%= document.signer %></dd>
+  </div>
+</dl>
+<% } %>

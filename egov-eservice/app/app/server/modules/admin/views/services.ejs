@@ -1,0 +1,27 @@
+<div class="grid">
+  <% for (const service of services) { %>
+    <section class="card" data-testid="service-row" data-service-id="<%= service.id %>">
+      <h2><%= service.name %></h2>
+      <form data-admin-method="PUT" action="/api/admin/services/<%= service.id %>" novalidate>
+        <div class="field">
+          <label for="fee-<%= service.id %>"><%= ({ per_copy: 'ค่าธรรมเนียมต่อฉบับ (บาท)', flat: 'ค่าธรรมเนียมคงที่ (บาท)', area: 'ค่าธรรมเนียมสำหรับพื้นที่ 1–100 ตร.ม. (บาท)' })[service.feeType] %></label>
+          <input type="number" id="fee-<%= service.id %>" name="<%= service.feeType === 'area' ? 'feeBase' : 'fee' %>"
+                 min="0" max="100000" step="1" required value="<%= service.fee %>" data-testid="svc-fee-<%= service.id %>">
+        </div>
+        <% if (service.feeType === 'area') { %>
+          <div class="field">
+            <label for="fee-per-sqm-SV-03">ค่าธรรมเนียมต่อ ตร.ม. ส่วนที่เกิน 100 (บาท)</label>
+            <input type="number" id="fee-per-sqm-SV-03" name="feePerSqm" min="0" max="100000" step="1"
+                   required value="<%= service.feePerSqm %>" data-testid="svc-fee-per-sqm-SV-03">
+          </div>
+        <% } %>
+        <div class="field">
+          <label for="sla-<%= service.id %>">SLA (วันทำการ)</label>
+          <input type="number" id="sla-<%= service.id %>" name="sla" min="1" max="60" step="1"
+                 required value="<%= service.sla %>" data-testid="svc-sla-<%= service.id %>">
+        </div>
+        <button type="submit" data-testid="svc-save-<%= service.id %>">บันทึก</button>
+      </form>
+    </section>
+  <% } %>
+</div>

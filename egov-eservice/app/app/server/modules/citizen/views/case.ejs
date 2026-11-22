@@ -1,0 +1,129 @@
+<%
+  var c = v.c;
+  var NO_REFUND = 'ค่าธรรมเนียมที่ชำระแล้วไม่คืน';
+  function kb(n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; }
+%>
+<div id="case-page" data-case-no="<%= v.caseNo %>">
+  <section class="card" aria-labelledby="case-summary-title">
+    <h2 id="case-summary-title" class="sr-only">สรุปคำขอ</h2>
+    <dl class="case-meta">
+      <div><dt>เลขคำขอ</dt><dd data-testid="case-no"><%= v.caseNo %></dd></div>
+      <div><dt>สถานะ</dt><dd><span class="chip status-<%= v.status %>" data-testid="case-status" data-status="<%= v.status %>"><%= v.statusText %></span></dd></div>
+      <div><dt>บริการ</dt><dd data-testid="case-service"><%= v.serviceText %></dd></div>
+<% if (v.stepText) { %>
+      <div><dt>ขั้นตอน</dt><dd data-testid="case-step"><%= v.stepText %></dd></div>
+<% } %>
+<% if (v.serviceId === 'SV-01' && v.qty) { %>
+      <div><dt>จำนวนฉบับ</dt><dd><%= v.qty %> ฉบับ</dd></div>
+<% } else if (v.serviceId === 'SV-03' && v.areaSqm) { %>
+      <div><dt>พื้นที่</dt><dd><%= fmt.number(v.areaSqm) %> ตร.ม.</dd></div>
+<% } %>
+      <div><dt>ค่าธรรมเนียม</dt><dd data-testid="case-fee"><%= fmt.money(v.fee) %></dd></div>
+      <div><dt>กำหนดเสร็จ</dt><dd><%- fmt.timeHtml(v.dueAt, 'sla-due') %></dd></div>
+      <div><dt>ระดับเตือน</dt><dd><span class="chip level-<%= v.slaLevel %>" data-testid="sla-level" data-level="<%= v.slaLevel %>"><%= fmt.levelText(v.slaLevel) %></span></dd></div>
+<% if (v.closedAt) { %>
+      <div><dt>ปิดงานเมื่อ</dt><dd><%- fmt.timeHtml(v.closedAt, 'closed-at') %></dd></div>
+<% } %>
+      <div><dt>ผู้ยื่น</dt><dd><%= v.applicantName %></dd></div>
+      <div><dt>เลขบัตรประชาชน</dt><dd data-testid="case-id-full"><%= v.idFull %></dd></div>
+      <div><dt>ใบเสร็จ</dt><dd><%= v.receiptNo || fmt.EN_DASH %><% if (v.paidAt) { %> · ชำระ <%- fmt.timeHtml(v.paidAt) %><% } %></dd></div>
+    </dl>
+  </section>
+
+<% if (v.noRefund) { %>
+  <p class="alert alert-info no-refund" data-testid="no-refund-note"><%= NO_REFUND %></p>
+<% } %>
+<% if (v.status === 'REJECTED' && v.rejectReason) { %>
+  <p class="alert alert-warn">เหตุผลที่ไม่อนุมัติ: <%= v.rejectReason %></p>
+<% } %>
+
+<% if (v.needFix) { %>
+  <section class="card need-fix" aria-labelledby="fix-title">
+    <h2 id="fix-title">คำขอถูกตีกลับให้แก้ไขเอกสาร</h2>
+    <p>เหตุผล: <span data-testid="return-reason-display"><%= v.returnReason %></span></p>
+    <p>ส่งแก้ไขได้ถึง <%- fmt.timeHtml(v.fixDeadline, 'fix-deadline') %> (7 วันนับจากเวลาตีกลับ · เลยกำหนดระบบยกเลิกคำขออัตโนมัติ)</p>
+<% if (v.canResubmit) { %>
+    <form id="fix-form" novalidate>
+      <div class="field">
+        <label for="fix-doc-key">ประเภทเอกสารที่แนบใหม่</label>
+        <select id="fix-doc-key" name="docKey">
+<% v.docKeys.forEach(function (d) { %>          <option value="<%= d.key %>"><%= d.name %></option>
+<% }) %>        </select>
+      </div>
+      <div class="field">
+        <label for="fix-upload-input">แนบไฟล์ใหม่ (ไม่บังคับ · PDF, JPG, PNG ไม่เกิน 5 MB)</label>
+        <input type="file" id="fix-upload-input" data-testid="fix-upload-input" multiple accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+      </div>
+      <button type="submit" data-testid="submit-fix-btn" id="submit-fix-btn">ส่งแก้ไข</button>
+    </form>
+<% } else { %>
+    <p class="field-error">พ้นกำหนดเวลาแก้ไขแล้ว</p>
+<% } %>
+  </section>
+<% } %>
+
+<% if (v.canCancel) { %>
+  <section class="card" aria-labelledby="cancel-title">
+    <h2 id="cancel-title">ยกเลิกคำขอ</h2>
+    <p class="hint">ยกเลิกได้เฉพาะคำขอที่ยังไม่มีเจ้าหน้าที่รับเรื่อง</p>
+    <button type="button" class="btn-danger" data-testid="cancel-case-btn" id="cancel-case-btn" aria-controls="cancel-confirm" aria-expanded="false">ยกเลิกคำขอ</button>
+    <div class="confirm-box" id="cancel-confirm" role="group" aria-labelledby="cancel-confirm-title" hidden>
+      <p id="cancel-confirm-title"><strong>ยืนยันการยกเลิกคำขอ <%= v.caseNo %></strong></p>
+      <p data-testid="cancel-confirm-text"><%= NO_REFUND %></p>
+      <div class="row">
+        <button type="button" class="btn-danger" data-testid="confirm-cancel-btn" id="confirm-cancel-btn">ยืนยันยกเลิก</button>
+        <button type="button" class="btn-secondary" id="cancel-abort-btn">ไม่ยกเลิก</button>
+      </div>
+    </div>
+  </section>
+<% } %>
+
+<% if (v.doc) { %>
+  <section class="card" aria-labelledby="doc-title">
+    <h2 id="doc-title">เอกสารดิจิทัล</h2>
+    <div class="doc-box">
+      <dl class="case-meta">
+        <div><dt>เลขเอกสาร</dt><dd data-testid="doc-no"><%= v.doc.doc_no %></dd></div>
+        <div><dt>รหัสตรวจสอบ</dt><dd data-testid="verify-code"><%= v.doc.verify_code %></dd></div>
+        <div><dt>วันออก</dt><dd><%- fmt.timeHtml(v.doc.issued_at) %></dd></div>
+        <div><dt>ใช้ได้ถึง</dt><dd><%- fmt.timeHtml(v.doc.valid_until, null, {}, { dateOnly: true }) %></dd></div>
+        <div><dt>ผู้ลงนาม</dt><dd><%= v.doc.signer %></dd></div>
+      </dl>
+      <div class="doc-qr" data-testid="doc-qr" data-url="<%= docUrl %>" role="img" aria-label="QR สำหรับตรวจสอบเอกสาร <%= v.doc.verify_code %>"><%- qrSvg %></div>
+    </div>
+    <p class="hint">ตรวจสอบเอกสารได้ที่ <a href="<%= docUrl %>"><%= docUrl %></a></p>
+    <a class="btn" data-testid="download-doc-btn" href="/api/documents/<%= encodeURIComponent(v.doc.doc_no) %>/pdf" download="<%= v.doc.doc_no %>.pdf">ดาวน์โหลดเอกสาร</a>
+  </section>
+<% } %>
+
+  <section class="card" aria-labelledby="files-title">
+    <h2 id="files-title">เอกสารแนบ</h2>
+<% if (!v.files.length) { %>
+    <p class="muted">ไม่มีไฟล์แนบ</p>
+<% } else { %>
+    <ul class="file-list">
+<% v.files.forEach(function (f) { %>
+      <li data-testid="doc-item" data-name="<%= f.name %>" data-file-id="<%= f.fileId %>">
+        <a data-testid="doc-download-link" href="/api/files/<%= encodeURIComponent(f.fileId) %>" download="<%= f.name %>"><%= f.name %></a>
+        <span class="muted"><%= f.docKey === 'extra' ? 'เอกสารเพิ่มเติม' : fmt.docName(f.docKey) %> · <%= kb(f.size) %></span>
+      </li>
+<% }) %>
+    </ul>
+<% } %>
+  </section>
+
+  <section class="card" aria-labelledby="timeline-title">
+    <h2 id="timeline-title">ไทม์ไลน์</h2>
+    <ol class="timeline" data-testid="case-timeline">
+<% v.events.forEach(function (e) { %>
+      <li data-testid="timeline-item" data-iso="<%= fmt.iso(e.time) %>" data-event="<%= e.event %>">
+        <time datetime="<%= fmt.iso(e.time) %>"><%= fmt.thaiDateTime(e.time) %></time>
+        <span class="timeline-text"><%= e.text %></span><% if (e.note) { %>
+        <span class="timeline-note">— <%= e.note %></span><% } %>
+      </li>
+<% }) %>
+    </ol>
+  </section>
+
+  <p><a href="/citizen">← กลับไปหน้าคำขอของฉัน</a></p>
+</div>

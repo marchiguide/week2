@@ -1,0 +1,11 @@
+<div class="card">
+  <% if (items.length) { %>
+    <ul class="stack">
+      <% for (const item of items) { %>
+        <li data-testid="noti-item" data-case-no="<%= item.caseNo %>" data-level="<%= item.level %>"><%= item.text %></li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <p data-testid="noti-empty">ไม่มีแจ้งเตือน</p>
+  <% } %>
+</div>

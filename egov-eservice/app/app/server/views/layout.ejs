@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> · e-Service เทศบาลในฝัน</title>
+  <link rel="stylesheet" href="/static/app.css">
+<% (styles || []).forEach(function (s) { %>  <link rel="stylesheet" href="<%= s %>">
+<% }) %>  <script src="/static/app.js" defer></script>
+<% (scripts || []).forEach(function (s) { %>  <script src="<%= s %>" defer></script>
+<% }) %></head>
+<body>
+  <a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
+<%- include('layout-header') %>
+  <main id="main" tabindex="-1" class="container">
+<% if (!hideTitle) { %>    <h1 class="page-title"><%= title %></h1>
+<% } %>    <div id="flash" class="flash-area"></div>
+<%- body %>
+  </main>
+  <footer class="app-footer">
+    <div class="container">
+      <p>เทศบาลในฝัน (หน่วยงานสมมติ) · ระบบจำลองเพื่อการเรียนรู้ ThaiD / PromptPay / ลายเซ็นดิจิทัล เป็นตัวจำลอง ไม่เชื่อมระบบจริง<% if (testMode) { %> · โหมดทดสอบ<% } %></p>
+    </div>
+  </footer>
+</body>
+</html>
